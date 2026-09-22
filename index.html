@@ -728,6 +728,28 @@
             border-top: 1px solid var(--border-subtle);
         }
 
+        .type-pill {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 0.3rem 0.65rem;
+            border-radius: 9999px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .type-pill.active {
+            background: rgba(56, 189, 248, 0.2);
+            border-color: #38bdf8;
+            color: #38bdf8;
+        }
+        .type-pill#pill-nerve.active {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: #ef4444;
+            color: #ef4444;
+        }
+
         .severity-label {
             display: flex;
             justify-content: space-between;
@@ -1137,6 +1159,16 @@
                             <strong id="sev-val" style="color: #f87171;">Level 2 (Noticeable Ache)</strong>
                         </div>
                         <input type="range" min="1" max="5" value="2" class="slider" id="sev-slider" oninput="updateSeverity(this.value)">
+
+                        <!-- 1-Tap Clinical Sensation Discriminator -->
+                        <div style="margin-top: 0.6rem;">
+                            <div style="font-size:0.7rem; color:#94a3b8; margin-bottom: 0.3rem; font-weight:600; text-transform:uppercase; letter-spacing:0.04em;">Sensation Nature (Clinical Discriminator):</div>
+                            <div style="display: flex; gap: 0.4rem; flex-wrap: wrap;">
+                                <button type="button" class="type-pill active" id="pill-joint" onclick="setSensationType('Joint / Tendon Shear')">⚡ Joint / Tendon Shear</button>
+                                <button type="button" class="type-pill" id="pill-burn" onclick="setSensationType('Muscle Burn (Fatigue)')">🔥 Muscle Burn (Fatigue)</button>
+                                <button type="button" class="type-pill" id="pill-nerve" onclick="setSensationType('Neural / Tingling (Red Flag)')">⚠️ Tingling / Nerve</button>
+                            </div>
+                        </div>
                     </div>
 
                     <textarea class="note-input" id="muscle-notes" rows="1" placeholder="e.g. Left inner elbow tender before starting / tweak on rep 6..."></textarea>
@@ -1412,6 +1444,15 @@
         
         let sessionStore = {};
         let activeMuscleTag = null;
+        let currentSensationType = "Joint / Tendon Shear";
+
+        function setSensationType(typeStr) {
+            currentSensationType = typeStr;
+            document.querySelectorAll(".type-pill").forEach(p => p.classList.remove("active"));
+            if (typeStr.includes("Joint")) document.getElementById("pill-joint").classList.add("active");
+            else if (typeStr.includes("Muscle")) document.getElementById("pill-burn").classList.add("active");
+            else if (typeStr.includes("Neural")) document.getElementById("pill-nerve").classList.add("active");
+        }
 
         function loadPersistentStore() {
             try {
@@ -1712,6 +1753,7 @@
                     weight: weightVal,
                     reps: repsVal,
                     status: chosenStatus,
+                    sensationType: chosenStatus === 'pain' ? currentSensationType : null,
                     severity: chosenStatus === 'pain' ? document.getElementById('sev-slider').value : null,
                     notes: document.getElementById('muscle-notes').value,
                     muscleName: activeMuscleTag ? activeMuscleTag.name : 'All Target Muscles'
