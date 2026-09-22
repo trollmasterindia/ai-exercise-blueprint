@@ -382,3 +382,51 @@ Please review the following open points and leave inline comments:
    - *Current Design:* The Head Coach Arbiter has absolute dictatorial authority. If specialists disagree on safety vs hypertrophy, safety always receives veto power.
 3. **User Compliance vs Efficacy:**
    - If Jev picks a foot drill that the user consistently skips (zero compliance), how should the system decay that intervention's priority score over time?
+
+---
+
+## 10. Closed-Loop Remediation Engine: Per-Set Feedback, 3D Pain Mapping & Clinical RAG Guardrails
+
+To build a robust, dynamic closed-loop—where per-set logs and 3D body coordinates query an elite coach knowledge base without hallucinating dangerous or over-compensatory advice—the architecture enforces three mandatory clinical layers:
+
+```mermaid
+flowchart TD
+    A["User Action: Set Complete"] --> B["3D Coordinate + Discomfort Score"]
+    B --> C{"Pain Classification Discriminator"}
+    
+    C -->|"Muscle Burn (Target Fatigue)"| D["Desired State: Reinforce & Overload"]
+    C -->|"Nerve / Tingling / Numbness"| E["RED STOP: Neural Decompression & Physio Flag"]
+    C -->|"Joint / Tendon Shear"| F["Deterministic Biomechanical Taxonomy Filter"]
+    
+    F --> G["Structured Metadata Query<br/>(Lever Arm, Kinetic Up/Downstream, Vector)"]
+    G --> H["RAG Retrieval: Curated Elite Coach DB"]
+    H --> I["Deterministic Remediation Hierarchy (Tiers 1-3)"]
+    
+    I --> J1["Tier 1: Micro Setup/Stance Tweak"]
+    I --> J2["Tier 2: Tempo / Mechanical Deload"]
+    I --> J3["Tier 3: Regressive Exercise Swap"]
+```
+
+### 10.1 Layer A: Pre-RAG "Pain Classification" Discriminator
+Users routinely conflate hypertrophic fatigue with joint damage on visual diagrams. Directing raw 3D body clicks directly into a RAG/LLM prompt causes hallucinated exercise swaps. The engine enforces a 1-tap discriminator before retrieval:
+1. **Target Muscle Fatigue / Hypertrophic Burn (Desired):** Diffuse, warm sensation across the muscle belly (e.g., quadriceps burning during a wall sit or pump in lats during rows).  
+   * *Engine Action:* Reinforce execution; log as successful stimulus; **no exercise swap**.
+2. **Delayed Tendon / Ligamentous Strain (High Concern):** Localized, sharp, focal ache at tendon-to-bone insertions (e.g., inferior pole of the patella, medial epicondyle / golfer's elbow, distal triceps tendon).  
+   * *Engine Action:* Route immediately into the Deterministic Remediation Engine.
+3. **Nerve / Radiating Pain (Critical Stop):** Tingling, electric shock, numbness, or shooting sensation along a nerve pathway.  
+   * *Engine Action:* Immediate session pause; mandatory spinal/joint decompression; prompt clinical referral.
+
+### 10.2 Layer B: Biomechanical Taxonomy (Preventing Pure Vector Search Collapse)
+A naive vector similarity search on "front of left knee pain" retrieves hundreds of disconnected articles (foam rolling, VMO cues, knee sleeves, backwards walking). The coach knowledge base must be indexed by a structured 3-vector biomechanical taxonomy *prior* to similarity search:
+* **Vector 1: Joint Position & Lever Arms:** Did discomfort occur at deep joint flexion (lengthened extreme, max shear) or near lockout (shortened position)?
+* **Vector 2: Upstream & Downstream Kinetic Chain:** Patellar pain is rarely an isolated knee problem—it is driven by an ankle dorsiflexion deficit (talocrural block / foot pronation) or hip internal rotation deficit. Inner elbow pain is driven by grip mechanics or shoulder rotation deficits.
+* **Vector 3: Contributory Vector:** Classifies whether the fix requires a movement swap, a tempo alteration (slow eccentric/pause), or a setup modification (wedge, stance width, grip).
+
+### 10.3 Layer C: Deterministic Guardrails Before LLM Generation (Tiered Remediation Hierarchy)
+LLMs are notoriously prone to "compensatory over-fixing"—prescribing three new mobility drills instead of simply changing the foot angle by 5 degrees. The remediation pipeline strictly follows a tiered escalation hierarchy:
+
+| Tier | Intervention Level | Engine Action & Example |
+| :--- | :--- | :--- |
+| **Tier 1: Setup Tweak** | Micro-Adjustment *(Zero equipment change)* | Keep the exercise, alter the mechanics. (e.g., *"Shift torso forward 10° to transfer load from patella to hip"*, *"Increase heel wedge height"*, or *"Switch to thumbless neutral grip"*). |
+| **Tier 2: Tempo / Load Shift** | Mechanical Deload *(Kinetic alteration)* | Reduce load by 15–20%, eliminate explosive concentric, or switch to an isometric hold at a pain-free joint angle (30°–45°). |
+| **Tier 3: Regressive Exercise Swap** | Pattern Substitution *(Biomotor equivalent)* | Swap to a biomotor equivalent that removes shear force. (e.g., Heel-Elevated RFESS $\rightarrow$ Reverse Lunge with forward torso lean $\rightarrow$ Poliquin Step-Up on books). |
