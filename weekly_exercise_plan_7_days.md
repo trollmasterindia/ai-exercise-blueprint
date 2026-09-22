@@ -82,15 +82,21 @@ Day 1: Upper A ──► Day 2: Lower A ──► Day 3: Active Recovery ──�
 
 ---
 
-## Day 6: Athletic Rotary & Court-Sport Elasticity (Basketball / Pickleball Prep)
+## Day 6: Athletic Rotary, High-Velocity Plyometrics & Elasticity
 
-| Segment | Exercise | Sets × Reps / Duration | Setup & Execution (No Bench) | Blueprint Goal Alignment |
+> **Verified Baseline:** Concentric Bed Jump from 4 feet away onto 3-foot bed (~91 cm); Double-Leg Broad Jump baseline: **170 cm**.  
+> **Bio-Mechanical Advantage:** Jumping *onto* the bed generates maximal concentric power and hip displacement with **near-zero joint/Achilles landing shock** (mattress decelerates body smoothly).
+
+| Segment | Exercise | Sets × Reps / Target | Setup & Execution (No Bench) | Blueprint Goal Alignment |
 | :--- | :--- | :--- | :--- | :--- |
-| **Tendon Spring** | **Barefoot Low-Amplitude Pogo Hops** | 3 sets × 20 quick bounces | Bounce lightly on balls of feet on carpet/mat. Ankles stay stiff like springs. Minimal knee bend. | **Tendon Elasticity & Fascial Recoil:** Remodels Achilles tendon and builds jump springiness for court sports. |
-| **Deceleration** | **Lateral Skater Hops with Stick** | 3 sets × 6 reps/side | Bound laterally off one leg, land softly on the other leg, and hold balance for 2 seconds before returning. | **Sports Deceleration & Knee Stabilization:** Prevents knee valgus and builds lateral cutting stability. |
-| **Rotary Power** | **High-to-Low Rotational Band Chops** | 3 sets × 10 reps/side | Anchor band high on doorframe or pull-up bar. Rotate torso diagonally downward using hips, not lower back. | **Contralateral Sling & Transverse Core:** Builds rotational racket and throwing power for pickleball/badminton. |
-| **Motor Control** | **Single-Leg Eyes-Closed Balance** | 2 sets × 30s/side | Stand barefoot on single leg, close eyes, grip ground with foot tripod. | **Proprioception & Foot Tripod:** Enhances balance and sensory awareness to prevent ankle rolling. |
+| **Primer** | **Barefoot Ankle Pogo Hops** | 2 sets × 20 rapid bounces | Bounce lightly on balls of feet on mat/carpet. Stiff ankle joint, minimal knee bend. Rapid ground contact. | **Tendon Elasticity & Fascial Recoil:** Pre-tenses Achilles tendon and wakes up foot tripod spring mechanics. |
+| **Max Power 1** | **Horizontal-to-Vertical Bed Box Jump** | 4 sets × 4 explosive jumps | Stand **4 feet away** from 3-foot bed. Forceful countermovement arm swing, project forward & up, land softly on bed. **Step down gently onto floor (never jump backward).** | **Maximal Concentric RFD (Jump Height & Power):** High hip displacement & triple extension with **zero landing strain** on knee/Achilles. |
+| **Max Power 2** | **Double-Leg Broad Jump to 2s Stick** | 3 sets × 3–4 reps | Mark starting line. Explosive broad jump aiming for **170–185 cm**. Land quietly like a ninja in an athletic quarter-squat and **hold for 2 seconds**. | **Horizontal Power + Deceleration Brake:** Trains eccentric quad/hamstring capacity to absorb landing force safely. |
+| **Deceleration** | **Lateral Skater Hops with Stick** | 3 sets × 6 reps/side | Bound laterally off outside leg, land softly on opposite leg, hold balance for 2s before returning. | **Sports Deceleration & Knee Stabilization:** Prevents knee valgus and builds lateral cutting stability for court sports. |
+| **Rotary Power** | **High-to-Low Rotational Band Chops** | 3 sets × 10 reps/side | Anchor band high on doorframe or pull-up bar. Rotate torso diagonally downward using hips and glutes, not lumbar spine. | **Contralateral Sling & Transverse Core:** Builds rotational racket and throwing power for pickleball/court sports. |
+| **Motor Control** | **Single-Leg Eyes-Closed Balance** | 2 sets × 30s/side | Stand barefoot on single leg, close eyes, grip ground with foot tripod. | **Proprioception & Foot Tripod:** Enhances sensory awareness to prevent ankle rolling. |
 | **Core Anti-Ext.** | **Deadbug with Band Lat Pulldown** | 3 sets × 10 reps/side | Lie supine on floor holding anchored band under tension. Alternate extending opposite leg while keeping spine pressed flat. | **Motor Control & Pelvic Bracing:** Trains deep transverse abdominis to prevent lower back arching when sleeping. |
+
 
 ---
 
