@@ -1,0 +1,1771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhysioSync • Real-Time Set-by-Set Biomechanical Logger</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-base: #070a12;
+            --bg-surface: #0f172a;
+            --bg-card: rgba(15, 23, 42, 0.88);
+            --border-subtle: rgba(255, 255, 255, 0.1);
+            --border-focus: #38bdf8;
+            
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            
+            --color-activated: #10b981;
+            --color-activated-glow: rgba(16, 185, 129, 0.4);
+            --color-pain: #ef4444;
+            --color-pain-glow: rgba(239, 68, 68, 0.5);
+            --color-fatigued: #f59e0b;
+            --color-fatigued-glow: rgba(245, 158, 11, 0.4);
+            --color-pre-check: #a855f7;
+            --color-pre-check-glow: rgba(168, 85, 247, 0.45);
+            
+            --accent-cyan: #06b6d4;
+            --accent-blue: #3b82f6;
+            --accent-indigo: #6366f1;
+            --accent-red: #f43f5e;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 10%, rgba(99, 102, 241, 0.14) 0%, transparent 45%),
+                radial-gradient(circle at 90% 90%, rgba(6, 182, 212, 0.1) 0%, transparent 45%);
+        }
+
+        header {
+            padding: 0.85rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-subtle);
+            background: rgba(7, 10, 18, 0.92);
+            backdrop-filter: blur(14px);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .badge-pill {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 0.25rem 0.65rem;
+            border-radius: 9999px;
+            background: rgba(6, 182, 212, 0.15);
+            color: var(--accent-cyan);
+            border: 1px solid rgba(6, 182, 212, 0.35);
+        }
+
+        .header-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .btn-copy-chat {
+            background: rgba(56, 189, 248, 0.15);
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            color: #38bdf8;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 0.45rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: all 0.2s ease;
+        }
+        .btn-copy-chat:hover {
+            background: rgba(56, 189, 248, 0.25);
+            border-color: #38bdf8;
+            transform: translateY(-1px);
+        }
+
+        /* Top Session Selector Bar */
+        .session-selector-bar {
+            background: rgba(15, 23, 42, 0.75);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 0.75rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+        }
+
+        .selector-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .selector-label {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .select-input {
+            background: #090d16;
+            border: 1px solid var(--border-subtle);
+            color: #38bdf8;
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0.4rem 0.75rem;
+            border-radius: 0.5rem;
+            outline: none;
+            cursor: pointer;
+        }
+        .select-input:focus {
+            border-color: var(--border-focus);
+        }
+
+        /* Exercise Chips Bar */
+        .exercise-chip-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            overflow-x: auto;
+            flex: 1;
+            padding-left: 0.5rem;
+        }
+        .exercise-chip {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-subtle);
+            padding: 0.4rem 0.85rem;
+            border-radius: 0.5rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: all 0.2s ease;
+        }
+        .exercise-chip:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.25);
+            color: var(--text-primary);
+        }
+        .exercise-chip.active {
+            background: rgba(56, 189, 248, 0.15);
+            border-color: #38bdf8;
+            color: #38bdf8;
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
+        }
+        .chip-weight {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            background: rgba(0, 0, 0, 0.35);
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            color: #fbbf24;
+        }
+
+        /* Main Grid */
+        .main-container {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 470px;
+            gap: 1.25rem;
+            padding: 1.25rem 2rem;
+            max-width: 1750px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Model Stage Area */
+        .stage-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 1.25rem;
+            backdrop-filter: blur(16px);
+            display: flex;
+            flex-direction: column;
+            padding: 1.25rem 1.5rem;
+            position: relative;
+            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.6);
+        }
+
+        .stage-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .view-switch {
+            display: flex;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 0.25rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .view-btn {
+            padding: 0.45rem 1.15rem;
+            font-size: 0.82rem;
+            font-weight: 600;
+            background: transparent;
+            color: var(--text-secondary);
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .view-btn.active {
+            background: rgba(56, 189, 248, 0.15);
+            color: #38bdf8;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .legend-bar {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.75rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .legend-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+        }
+        .dot-green { background: var(--color-activated); box-shadow: 0 0 8px var(--color-activated-glow); }
+        .dot-red { background: var(--color-pain); box-shadow: 0 0 8px var(--color-pain-glow); }
+        .dot-yellow { background: var(--color-fatigued); box-shadow: 0 0 8px var(--color-fatigued-glow); }
+        .dot-purple { background: var(--color-pre-check); box-shadow: 0 0 8px var(--color-pre-check-glow); }
+
+        /* Anatomy Viewport */
+        .anatomy-viewport {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            min-height: 590px;
+            background: radial-gradient(circle at center, rgba(30, 41, 59, 0.35) 0%, rgba(15, 23, 42, 0) 70%);
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .anatomy-svg {
+            height: 580px;
+            max-width: 100%;
+            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.7));
+        }
+
+        /* SVG Muscle Styling */
+        .muscle-node {
+            cursor: pointer;
+            fill: #1e293b;
+            stroke: #475569;
+            stroke-width: 1.5;
+            transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .muscle-node:hover {
+            fill: #334155;
+            stroke: #38bdf8;
+            stroke-width: 2.5;
+            filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.5));
+        }
+
+        .muscle-node.prime-mover {
+            stroke: #38bdf8 !important;
+            stroke-width: 2.5 !important;
+            fill: #1e3a8a !important;
+            filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.5)) !important;
+        }
+
+        .muscle-node.selected-active {
+            stroke: #ffffff !important;
+            stroke-width: 3 !important;
+            filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.7)) !important;
+        }
+
+        .muscle-node.state-activated {
+            fill: #059669 !important;
+            stroke: #34d399 !important;
+            filter: drop-shadow(0 0 10px var(--color-activated-glow));
+        }
+
+        .muscle-node.state-pain {
+            fill: #dc2626 !important;
+            stroke: #f87171 !important;
+            filter: drop-shadow(0 0 14px var(--color-pain-glow));
+            animation: pulse-pain 1.8s infinite ease-in-out;
+        }
+
+        .muscle-node.state-fatigue {
+            fill: #d97706 !important;
+            stroke: #fbbf24 !important;
+            filter: drop-shadow(0 0 10px var(--color-fatigued-glow));
+        }
+
+        .muscle-node.state-pre-warning {
+            stroke: #c084fc !important;
+            stroke-width: 2.5 !important;
+            fill: #581c87 !important;
+            filter: drop-shadow(0 0 12px var(--color-pre-check-glow)) !important;
+        }
+
+        @keyframes pulse-pain {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.72; }
+        }
+
+        .joint-node {
+            cursor: pointer;
+            fill: #0284c7;
+            stroke: #38bdf8;
+            stroke-width: 2;
+            transition: all 0.2s ease;
+        }
+        .joint-node:hover {
+            fill: #38bdf8;
+            stroke: #ffffff;
+            filter: drop-shadow(0 0 8px #38bdf8);
+        }
+
+        .anatomy-label {
+            font-size: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            fill: #94a3b8;
+            pointer-events: none;
+            letter-spacing: 0.05em;
+        }
+
+        /* Floating Tooltip */
+        .floating-tooltip {
+            position: fixed;
+            pointer-events: none;
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid var(--border-focus);
+            border-radius: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.75rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: none;
+            transform: translate(15px, 15px);
+        }
+        .tooltip-title {
+            font-weight: 700;
+            color: #38bdf8;
+            font-size: 0.82rem;
+            margin-bottom: 2px;
+        }
+        .tooltip-desc {
+            color: var(--text-secondary);
+            font-size: 0.72rem;
+        }
+
+        /* Sidebar / Inspector */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .panel-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 1.25rem;
+            padding: 1.25rem;
+            backdrop-filter: blur(16px);
+        }
+
+        .panel-title {
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Exercise Banner */
+        .active-exercise-banner {
+            background: rgba(30, 41, 59, 0.4);
+            border: 1px solid var(--border-subtle);
+            border-radius: 0.75rem;
+            padding: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+        .banner-name {
+            font-size: 0.98rem;
+            font-weight: 700;
+            color: #38bdf8;
+            margin-bottom: 0.25rem;
+        }
+        .banner-meta {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Creator Video Guide Card */
+        .video-guide-card {
+            background: rgba(2, 6, 23, 0.6);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: 0.65rem;
+            padding: 0.5rem 0.8rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+        }
+        .video-creator-tag {
+            font-size: 0.68rem;
+            font-weight: 700;
+            color: #f43f5e;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .video-title-preview {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 230px;
+        }
+        .btn-watch-video {
+            background: linear-gradient(135deg, #e11d48, #be123c);
+            border: none;
+            color: #fff;
+            padding: 0.35rem 0.7rem;
+            border-radius: 0.45rem;
+            font-size: 0.72rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+
+        /* Set Navigation Tabs (PRE-CHECK + SETS) */
+        .set-navigation-tabs {
+            display: flex;
+            gap: 0.4rem;
+            margin-bottom: 0.75rem;
+        }
+        .set-tab-btn {
+            flex: 1;
+            padding: 0.5rem 0.25rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-subtle);
+            border-radius: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            transition: all 0.2s ease;
+        }
+        .set-tab-btn.active {
+            background: rgba(56, 189, 248, 0.15);
+            border-color: #38bdf8;
+            color: #38bdf8;
+        }
+        .set-tab-btn.tab-precheck {
+            border-color: rgba(168, 85, 247, 0.4);
+            color: #c084fc;
+        }
+        .set-tab-btn.tab-precheck.active {
+            background: rgba(168, 85, 247, 0.2);
+            border-color: #a855f7;
+            color: #e9d5ff;
+        }
+        .set-tab-btn.logged-green {
+            border-color: var(--color-activated);
+            color: #34d399;
+        }
+        .set-tab-btn.logged-issue {
+            border-color: var(--color-pain);
+            color: #f87171;
+            background: rgba(239, 68, 68, 0.1);
+        }
+        .set-tab-status {
+            font-size: 0.65rem;
+            font-weight: 600;
+            opacity: 0.85;
+        }
+
+        /* Pre-Check Banner Alert */
+        .pre-check-banner {
+            background: rgba(168, 85, 247, 0.12);
+            border: 1px solid rgba(168, 85, 247, 0.35);
+            border-radius: 0.65rem;
+            padding: 0.65rem 0.85rem;
+            font-size: 0.8rem;
+            color: #e9d5ff;
+            margin-bottom: 0.75rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        /* Steppers */
+        .metric-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem;
+            margin-bottom: 0.75rem;
+        }
+        .metric-field {
+            background: #090d16;
+            border: 1px solid var(--border-subtle);
+            border-radius: 0.5rem;
+            padding: 0.45rem 0.6rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+        .metric-label {
+            font-size: 0.68rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+        .metric-input-wrap {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .num-input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            color: #f8fafc;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+            font-weight: 700;
+            outline: none;
+        }
+        .step-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-primary);
+            border-radius: 4px;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-weight: 700;
+        }
+        .step-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Fast Sensation Actions */
+        .quick-set-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .btn-all-good {
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid var(--color-activated);
+            color: #34d399;
+            padding: 0.65rem 0.85rem;
+            border-radius: 0.65rem;
+            font-weight: 700;
+            font-size: 0.82rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.2s ease;
+        }
+        .btn-all-good:hover {
+            background: rgba(16, 185, 129, 0.25);
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+        }
+
+        /* Specific Muscle Sensation Box */
+        .specific-issue-box {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-subtle);
+            border-radius: 0.75rem;
+            padding: 0.75rem;
+        }
+        .issue-box-title {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.4rem;
+        }
+
+        .status-selector {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.4rem;
+        }
+
+        .status-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.55rem 0.8rem;
+            border-radius: 0.5rem;
+            border: 1px solid var(--border-subtle);
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-primary);
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.78rem;
+            transition: all 0.2s ease;
+        }
+
+        .status-btn.active-activated {
+            background: rgba(16, 185, 129, 0.16);
+            border-color: var(--color-activated);
+            color: #34d399;
+        }
+
+        .status-btn.active-pain {
+            background: rgba(239, 68, 68, 0.16);
+            border-color: var(--color-pain);
+            color: #f87171;
+        }
+
+        .status-btn.active-fatigue {
+            background: rgba(245, 158, 11, 0.16);
+            border-color: var(--color-fatigued);
+            color: #fbbf24;
+        }
+
+        .status-btn.active-precheck {
+            background: rgba(168, 85, 247, 0.2);
+            border-color: var(--color-pre-check);
+            color: #e9d5ff;
+        }
+
+        .severity-box {
+            margin-top: 0.5rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .severity-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.72rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.3rem;
+        }
+
+        .slider {
+            width: 100%;
+            height: 5px;
+            border-radius: 3px;
+            background: #334155;
+            outline: none;
+            accent-color: var(--color-pain);
+        }
+
+        .note-input {
+            width: 100%;
+            margin-top: 0.45rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border-subtle);
+            border-radius: 0.5rem;
+            padding: 0.45rem 0.65rem;
+            color: var(--text-primary);
+            font-size: 0.78rem;
+            font-family: inherit;
+            resize: none;
+        }
+
+        .btn-log-set {
+            width: 100%;
+            margin-top: 0.75rem;
+            padding: 0.75rem;
+            background: linear-gradient(135deg, #2563eb, #06b6d4);
+            border: none;
+            border-radius: 0.65rem;
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.88rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+            transition: all 0.2s ease;
+        }
+        .btn-log-set:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(37, 99, 235, 0.5);
+        }
+
+        /* Logged Sets Summary Table */
+        .sets-summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 0.5rem;
+            font-size: 0.78rem;
+        }
+        .sets-summary-table th {
+            text-align: left;
+            color: var(--text-muted);
+            padding: 0.35rem 0.5rem;
+            border-bottom: 1px solid var(--border-subtle);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+        }
+        .sets-summary-table td {
+            padding: 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            color: var(--text-primary);
+        }
+        .badge-status-tag {
+            font-size: 0.68rem;
+            font-weight: 700;
+            padding: 0.15rem 0.45rem;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        .tag-green { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+        .tag-red { background: rgba(239, 68, 68, 0.2); color: #f87171; }
+        .tag-yellow { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+        .tag-purple { background: rgba(168, 85, 247, 0.2); color: #c084fc; }
+
+        /* Video Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(8px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+        .video-modal-card {
+            background: #0f172a;
+            border: 1px solid var(--border-subtle);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            max-width: 680px;
+            width: 92%;
+        }
+        .video-embed-container {
+            width: 100%;
+            height: 360px;
+            background: #000;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            margin: 1rem 0;
+            position: relative;
+        }
+        .video-embed-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .cues-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-subtle);
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+        .cues-box ul {
+            padding-left: 1.25rem;
+            margin-top: 0.35rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-area">
+            <span class="badge-pill">PhysioSync AI</span>
+            <h1 class="header-title">Biomechanical Workout Matrix</h1>
+        </div>
+        <button class="btn-copy-chat" onclick="copySessionLogForChat()">
+            <span>📋 Copy Log for Chat Analysis</span>
+        </button>
+    </header>
+
+    <!-- Prepopulated Week & Day Navigation -->
+    <div class="session-selector-bar">
+        <div class="selector-group">
+            <span class="selector-label">Week:</span>
+            <select id="week-select" class="select-input" onchange="onSessionChange()">
+                <option value="1" selected>Week 1 (Calibration)</option>
+                <option value="2">Week 2 (Rep Expansion)</option>
+                <option value="3">Week 3 (Load Step-Up)</option>
+                <option value="4">Week 4 (TUT & Density)</option>
+                <option value="5">Week 5 (Peak Overload)</option>
+                <option value="6">Week 6 (Strategic Deload)</option>
+                <option value="7">Week 7 (Meso 2)</option>
+                <option value="8">Week 8 (Meso 2 Peak)</option>
+            </select>
+        </div>
+
+        <div class="selector-group">
+            <span class="selector-label">Day:</span>
+            <select id="day-select" class="select-input" onchange="onSessionChange()">
+                <option value="day1" selected>Day 1: Upper A (Lats, Chest, Triceps, Neck)</option>
+                <option value="day2">Day 2: Lower A (Quads, Ankle, Patellar)</option>
+                <option value="day3">Day 3: Active Recovery & Gait</option>
+                <option value="day4">Day 4: Upper B (Delts, Biceps, Forearms, Neck)</option>
+                <option value="day5">Day 5: Lower B (Hamstrings, Glutes, Core)</option>
+                <option value="day6">Day 6: Athletic Rotary & Court-Sport Prep</option>
+            </select>
+        </div>
+
+        <!-- Dynamic Prepopulated Exercise Pills -->
+        <div class="exercise-chip-container" id="exercise-chips">
+            <!-- Injected by JS -->
+        </div>
+    </div>
+
+    <div class="main-container">
+        <!-- Interactive Model Canvas -->
+        <div class="stage-card">
+            <div class="stage-toolbar">
+                <div class="view-switch">
+                    <button class="view-btn active" id="btn-front" onclick="switchView('front')">Anterior (Front)</button>
+                    <button class="view-btn" id="btn-back" onclick="switchView('back')">Posterior (Back)</button>
+                </div>
+                <div class="legend-bar">
+                    <div class="legend-item"><span class="legend-dot dot-green"></span> Target</div>
+                    <div class="legend-item"><span class="legend-dot dot-purple"></span> Pre-Tension</div>
+                    <div class="legend-item"><span class="legend-dot dot-yellow"></span> Fatigue</div>
+                    <div class="legend-item"><span class="legend-dot dot-red"></span> Pain</div>
+                </div>
+            </div>
+
+            <div class="anatomy-viewport">
+                <!-- ANTERIOR (FRONT) VIEW SVG -->
+                <svg id="svg-front" class="anatomy-svg" viewBox="0 0 320 620">
+                    <g id="head" opacity="0.35">
+                        <ellipse cx="160" cy="45" rx="22" ry="28" fill="#1e293b" stroke="#475569" stroke-width="1.5"/>
+                    </g>
+
+                    <path id="neck_front" class="muscle-node" data-name="Neck & SCM (Front)" data-cue="Neck flexion & cervical spine alignment" d="M150,70 L170,70 L173,92 L147,92 Z" />
+                    <path id="chest_upper_left" class="muscle-node" data-name="Left Upper Pec (Clavicular)" data-cue="Incline press & clavicular fibers" d="M158,95 L118,105 L116,118 L158,114 Z" />
+                    <path id="chest_lower_left" class="muscle-node" data-name="Left Lower/Mid Pec (Sternal)" data-cue="Floor press & chest stretch" d="M158,115 L115,119 L112,142 L158,137 Z" />
+                    <path id="chest_upper_right" class="muscle-node" data-name="Right Upper Pec (Clavicular)" data-cue="Incline press & clavicular fibers" d="M162,95 L202,105 L204,118 L162,114 Z" />
+                    <path id="chest_lower_right" class="muscle-node" data-name="Right Lower/Mid Pec (Sternal)" data-cue="Floor press & chest stretch" d="M162,115 L205,119 L208,142 L162,137 Z" />
+
+                    <path id="delts_front_left" class="muscle-node" data-name="Left Anterior (Front) Delt" data-cue="Overhead pressing & vertical pushing" d="M116,104 L96,114 L100,138 L114,124 Z" />
+                    <path id="delts_lateral_left" class="muscle-node" data-name="Left Lateral (Side) Delt" data-cue="Lateral raises & V-taper silhouette" d="M95,114 L82,126 L86,145 L99,138 Z" />
+                    <path id="delts_front_right" class="muscle-node" data-name="Right Anterior (Front) Delt" data-cue="Overhead pressing & vertical pushing" d="M204,104 L224,114 L220,138 L206,124 Z" />
+                    <path id="delts_lateral_right" class="muscle-node" data-name="Right Lateral (Side) Delt" data-cue="Lateral raises & V-taper silhouette" d="M225,114 L238,126 L234,145 L221,138 Z" />
+
+                    <path id="biceps_left" class="muscle-node" data-name="Left Bicep (Brachii)" data-cue="Elbow flexion & forearm supination" d="M86,146 L108,140 L104,185 L84,185 Z" />
+                    <path id="biceps_right" class="muscle-node" data-name="Right Bicep (Brachii)" data-cue="Elbow flexion & forearm supination" d="M234,146 L212,140 L216,185 L236,185 Z" />
+
+                    <circle id="elbow_inner_left" class="joint-node" data-name="Left Inner Elbow (Medial Tendon)" data-cue="Golfer's elbow zone / flexor attachment" cx="106" cy="190" r="5" />
+                    <circle id="elbow_outer_left" class="joint-node" data-name="Left Outer Elbow (Lateral Tendon)" data-cue="Tennis elbow zone / extensor attachment" cx="81" cy="190" r="5" />
+                    <circle id="elbow_inner_right" class="joint-node" data-name="Right Inner Elbow (Medial Tendon)" data-cue="Golfer's elbow zone / flexor attachment" cx="214" cy="190" r="5" />
+                    <circle id="elbow_outer_right" class="joint-node" data-name="Right Outer Elbow (Lateral Tendon)" data-cue="Tennis elbow zone / extensor attachment" cx="239" cy="190" r="5" />
+
+                    <path id="forearm_outer_left" class="muscle-node" data-name="Left Outer Forearm (Brachioradialis)" data-cue="Top/lateral forearm muscle used in pullups & reverse curls" d="M78,198 L92,198 L87,250 L72,246 Z" />
+                    <path id="forearm_inner_left" class="muscle-node" data-name="Left Inner Forearm (Medial Flexors)" data-cue="Grip flexors on pinky side / causes inner elbow strain" d="M93,198 L108,198 L100,250 L88,250 Z" />
+                    <path id="forearm_inner_right" class="muscle-node" data-name="Right Inner Forearm (Medial Flexors)" data-cue="Grip flexors on pinky side / causes inner elbow strain" d="M212,198 L227,198 L232,250 L220,250 Z" />
+                    <path id="forearm_outer_right" class="muscle-node" data-name="Right Outer Forearm (Brachioradialis)" data-cue="Top/lateral forearm muscle used in pullups & reverse curls" d="M228,198 L242,198 L248,246 L233,250 Z" />
+
+                    <text x="60" y="225" class="anatomy-label">OUTER</text>
+                    <text x="110" y="225" class="anatomy-label">INNER</text>
+                    <text x="195" y="225" class="anatomy-label">INNER</text>
+                    <text x="250" y="225" class="anatomy-label">OUTER</text>
+
+                    <path id="abs_upper" class="muscle-node" data-name="Upper Abdominals" data-cue="Anti-extension & trunk flexion" d="M142,142 L178,142 L176,175 L144,175 Z" />
+                    <path id="abs_lower" class="muscle-node" data-name="Lower Abdominals / Pelvic Core" data-cue="Hanging leg raises & posterior pelvic tilt" d="M144,177 L176,177 L173,215 L147,215 Z" />
+                    <path id="obliques_left" class="muscle-node" data-name="Left External Obliques" data-cue="Rotational power & suitcase carry bracing" d="M118,148 L140,148 L143,215 L125,215 Z" />
+                    <path id="obliques_right" class="muscle-node" data-name="Right External Obliques" data-cue="Rotational power & suitcase carry bracing" d="M202,148 L180,148 L177,215 L195,215 Z" />
+
+                    <path id="quad_lat_left" class="muscle-node" data-name="Left Outer Quad (Vastus Lateralis)" data-cue="Outer quad sweep for leg width" d="M125,250 L140,250 L135,360 L118,355 Z" />
+                    <path id="quad_vmo_left" class="muscle-node" data-name="Left Inner Quad (Teardrop / VMO)" data-cue="Knee stabilization teardrop muscle" d="M141,250 L155,250 L152,360 L136,360 Z" />
+                    <path id="quad_vmo_right" class="muscle-node" data-name="Right Inner Quad (Teardrop / VMO)" data-cue="Knee stabilization teardrop muscle" d="M165,250 L179,250 L184,360 L168,360 Z" />
+                    <path id="quad_lat_right" class="muscle-node" data-name="Right Outer Quad (Vastus Lateralis)" data-cue="Outer quad sweep for leg width" d="M180,250 L195,250 L202,355 L185,360 Z" />
+
+                    <circle id="knee_inner_left" class="joint-node" data-name="Left Inner Knee (MCL / Joint line)" data-cue="Inner knee strain / check valgus collapse" cx="147" cy="375" r="5" />
+                    <circle id="knee_patellar_left" class="joint-node" data-name="Left Patellar Tendon" data-cue="Direct under-kneecap tendon / wall sit shield" cx="134" cy="375" r="7" />
+                    <circle id="knee_patellar_right" class="joint-node" data-name="Right Patellar Tendon" data-cue="Direct under-kneecap tendon / wall sit shield" cx="186" cy="375" r="7" />
+                    <circle id="knee_inner_right" class="joint-node" data-name="Right Inner Knee (MCL / Joint line)" data-cue="Inner knee stabilization" cx="173" cy="375" r="5" />
+
+                    <path id="tibialis_left" class="muscle-node" data-name="Left Tibialis Anterior (Shin)" data-cue="Shin muscle that decelerates basketball jumps" d="M125,392 L142,392 L137,485 L125,480 Z" />
+                    <path id="tibialis_right" class="muscle-node" data-name="Right Tibialis Anterior (Shin)" data-cue="Shin muscle that decelerates basketball jumps" d="M195,392 L178,392 L183,485 L195,480 Z" />
+
+                    <path id="foot_left" class="muscle-node" data-name="Left Foot Tripod & Ankle" data-cue="1st MTP, 5th MTP & heel ground contact" d="M122,500 L144,500 L148,535 L116,535 Z" />
+                    <path id="foot_right" class="muscle-node" data-name="Right Foot Tripod & Ankle" data-cue="1st MTP, 5th MTP & heel ground contact" d="M198,500 L176,500 L172,535 L204,535 Z" />
+                </svg>
+
+                <!-- POSTERIOR (BACK) VIEW SVG -->
+                <svg id="svg-back" class="anatomy-svg" viewBox="0 0 320 620" style="display: none;">
+                    <g id="head_back" opacity="0.35">
+                        <ellipse cx="160" cy="45" rx="22" ry="28" fill="#1e293b" stroke="#475569" stroke-width="1.5"/>
+                    </g>
+
+                    <path id="neck_back" class="muscle-node" data-name="Neck Extensors (Suboccipitals)" data-cue="Base of skull neck strain from desk posture" d="M150,70 L170,70 L174,88 L146,88 Z" />
+                    <path id="traps_upper" class="muscle-node" data-name="Upper Trapezius" data-cue="Shoulder shrugging & neck tension relief" d="M145,88 L175,88 L200,105 L120,105 Z" />
+                    <path id="rear_delt_left" class="muscle-node" data-name="Left Rear Delt (Posterior)" data-cue="Face pulls, posture, and 3D shoulder capping" d="M116,104 L84,116 L88,142 L112,126 Z" />
+                    <path id="rear_delt_right" class="muscle-node" data-name="Right Rear Delt (Posterior)" data-cue="Face pulls, posture, and 3D shoulder capping" d="M204,104 L236,116 L232,142 L208,126 Z" />
+
+                    <path id="rhomboids" class="muscle-node" data-name="Rhomboids & Mid-Traps" data-cue="Scapular retraction between shoulder blades" d="M138,106 L182,106 L175,155 L145,155 Z" />
+
+                    <path id="lat_upper_left" class="muscle-node" data-name="Left Upper Lat (Armpit Sweep)" data-cue="Pull-ups and vertical width builder" d="M112,130 L140,140 L136,175 L116,170 Z" />
+                    <path id="lat_lower_left" class="muscle-node" data-name="Left Lower Lat (Hip Flank)" data-cue="Gorilla row / elbow drive to beltline" d="M116,171 L136,176 L134,215 L120,205 Z" />
+                    <path id="lat_upper_right" class="muscle-node" data-name="Right Upper Lat (Armpit Sweep)" data-cue="Pull-ups and vertical width builder" d="M208,130 L180,140 L184,175 L204,170 Z" />
+                    <path id="lat_lower_right" class="muscle-node" data-name="Right Lower Lat (Hip Flank)" data-cue="Gorilla row / elbow drive to beltline" d="M204,171 L184,176 L186,215 L200,205 Z" />
+
+                    <path id="tricep_lateral_left" class="muscle-node" data-name="Left Tricep (Lateral Head - Outer)" data-cue="Outer arm horseshoe thickness" d="M84,144 L98,140 L93,185 L80,185 Z" />
+                    <path id="tricep_long_left" class="muscle-node" data-name="Left Tricep (Long Head - Inner)" data-cue="Overhead extension / mass near armpit" d="M99,140 L110,144 L107,185 L94,185 Z" />
+                    <path id="tricep_long_right" class="muscle-node" data-name="Right Tricep (Long Head - Inner)" data-cue="Overhead extension / mass near armpit" d="M221,140 L210,144 L213,185 L226,185 Z" />
+                    <path id="tricep_lateral_right" class="muscle-node" data-name="Right Tricep (Lateral Head - Outer)" data-cue="Outer arm horseshoe thickness" d="M236,144 L222,140 L227,185 L240,185 Z" />
+
+                    <path id="forearm_ext_left" class="muscle-node" data-name="Left Forearm Extensors (Back of arm)" data-cue="Reverse wrist curls & wrist stability" d="M78,198 L104,198 L96,250 L75,246 Z" />
+                    <path id="forearm_ext_right" class="muscle-node" data-name="Right Forearm Extensors (Back of arm)" data-cue="Reverse wrist curls & wrist stability" d="M242,198 L216,198 L224,250 L245,246 Z" />
+
+                    <path id="erectors_left" class="muscle-node" data-name="Left Lower Back (Erector Spinae)" data-cue="Lumbar stabilization / nighttime soreness check" d="M142,205 L158,205 L156,245 L144,245 Z" />
+                    <path id="erectors_right" class="muscle-node" data-name="Right Lower Back (Erector Spinae)" data-cue="Lumbar stabilization / nighttime soreness check" d="M162,205 L178,205 L176,245 L164,245 Z" />
+
+                    <path id="glute_med_left" class="muscle-node" data-name="Left Glute Medius (Hip Stabilizer)" data-cue="Single leg balance & prevents knee valgus" d="M120,248 L150,248 L148,270 L118,265 Z" />
+                    <path id="glute_max_left" class="muscle-node" data-name="Left Gluteus Maximus" data-cue="Hip thrust & single-leg RDL driver" d="M118,271 L150,271 L146,305 L114,300 Z" />
+                    <path id="glute_med_right" class="muscle-node" data-name="Right Glute Medius (Hip Stabilizer)" data-cue="Single leg balance & prevents knee valgus" d="M200,248 L170,248 L172,270 L202,265 Z" />
+                    <path id="glute_max_right" class="muscle-node" data-name="Right Gluteus Maximus" data-cue="Hip thrust & single-leg RDL driver" d="M202,271 L170,271 L174,305 L206,300 Z" />
+
+                    <path id="hamstring_outer_left" class="muscle-node" data-name="Left Hamstring (Outer / Biceps Femoris)" data-cue="RDL hinge & knee flexion" d="M120,310 L137,310 L132,370 L120,365 Z" />
+                    <path id="hamstring_inner_left" class="muscle-node" data-name="Left Hamstring (Inner / Semimembranosus)" data-cue="Prone leg curl knee flexion" d="M138,310 L154,310 L149,370 L133,370 Z" />
+                    <path id="hamstring_inner_right" class="muscle-node" data-name="Right Hamstring (Inner / Semimembranosus)" data-cue="Prone leg curl knee flexion" d="M166,310 L182,310 L187,370 L171,370 Z" />
+                    <path id="hamstring_outer_right" class="muscle-node" data-name="Right Hamstring (Outer / Biceps Femoris)" data-cue="RDL hinge & knee flexion" d="M183,310 L200,310 L200,365 L188,370 Z" />
+
+                    <path id="calf_outer_left" class="muscle-node" data-name="Left Outer Calf (Lateral Head)" data-cue="Deficit calf raises & running spring" d="M120,390 L134,390 L130,465 L120,460 Z" />
+                    <path id="calf_inner_left" class="muscle-node" data-name="Left Inner Calf (Medial Head)" data-cue="Deficit calf raises & foot arch connection" d="M135,390 L148,390 L144,465 L131,465 Z" />
+                    <path id="calf_inner_right" class="muscle-node" data-name="Right Inner Calf (Medial Head)" data-cue="Deficit calf raises & foot arch connection" d="M172,390 L185,390 L189,465 L176,465 Z" />
+                    <path id="calf_outer_right" class="muscle-node" data-name="Right Outer Calf (Lateral Head)" data-cue="Deficit calf raises & running spring" d="M186,390 L200,390 L200,460 L190,465 Z" />
+
+                    <circle id="achilles_left" class="joint-node" data-name="Left Achilles Tendon" data-cue="Past jump strain zone / 30s stretch hold" cx="137" cy="495" r="7" />
+                    <circle id="achilles_right" class="joint-node" data-name="Right Achilles Tendon" data-cue="Past jump strain zone / 30s stretch hold" cx="183" cy="495" r="7" />
+                </svg>
+            </div>
+        </div>
+
+        <!-- Sidebar / Set Logger Engine -->
+        <div class="sidebar">
+            <div class="panel-card">
+                <div class="panel-title">
+                    <span id="set-logger-header">Set Logger</span>
+                    <span id="active-day-tag" class="badge-pill">DAY 1</span>
+                </div>
+
+                <!-- Exercise Meta Banner -->
+                <div class="active-exercise-banner">
+                    <div class="banner-name" id="current-ex-title">DB Floor Press</div>
+                    <div class="banner-meta">
+                        <span id="current-ex-target">Target: 28 kg × 8 reps</span>
+                        <span id="current-ex-tempo">Tempo: 3s floor pause</span>
+                    </div>
+                </div>
+
+                <!-- Video Demo Guide -->
+                <div class="video-guide-card" id="video-card">
+                    <div style="display:flex; flex-direction:column; gap:2px;">
+                        <span class="video-creator-tag" id="video-creator-badge">DR. MIKE ISRAETEL (RP)</span>
+                        <span class="video-title-preview" id="video-title-text">How to Dumbbell Floor Press</span>
+                    </div>
+                    <button class="btn-watch-video" onclick="openVideoModal()">
+                        <span>▶ Form Demo</span>
+                    </button>
+                </div>
+
+                <!-- Set Navigation Buttons (PRE-CHECK + SETS) -->
+                <div class="set-navigation-tabs" id="set-tabs-container">
+                    <!-- Injected by JS -->
+                </div>
+
+                <!-- PRE-CHECK INTERFACE (Visible when activeSetIndex === 0) -->
+                <div id="precheck-container" style="display: none;">
+                    <div class="pre-check-banner">
+                        <strong>🛡️ Pre-Exercise Readiness & Tissue Check:</strong>
+                        <span>Feeling any pre-existing tightness or mild ache <em>before</em> lifting? Tag the muscle to alert your coach.</span>
+                    </div>
+
+                    <div class="quick-set-actions">
+                        <button class="btn-all-good" onclick="logPreCheckClean()">
+                            <span>🟢 100% Ready (Zero Pre-Existing Tightness)</span>
+                            <span>✔</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- SET EXECUTION INTERFACE (Visible when activeSetIndex > 0) -->
+                <div id="set-metrics-container">
+                    <div class="metric-row">
+                        <div class="metric-field">
+                            <span class="metric-label">Set Weight (kg)</span>
+                            <div class="metric-input-wrap">
+                                <input type="number" id="input-weight" class="num-input" value="28" step="1">
+                                <button class="step-btn" onclick="stepWeight(-1)">-</button>
+                                <button class="step-btn" onclick="stepWeight(+1)">+</button>
+                            </div>
+                        </div>
+                        <div class="metric-field">
+                            <span class="metric-label">Reps Completed</span>
+                            <div class="metric-input-wrap">
+                                <input type="number" id="input-reps" class="num-input" value="8" step="1">
+                                <button class="step-btn" onclick="stepReps(-1)">-</button>
+                                <button class="step-btn" onclick="stepReps(+1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="quick-set-actions">
+                        <button class="btn-all-good" onclick="logAllCleanSet()">
+                            <span>🟢 Set Felt Clean (All Prime Muscles Good)</span>
+                            <span>✔</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Specific Muscle / Joint Issue Trigger -->
+                <div class="specific-issue-box">
+                    <div class="issue-box-title">
+                        <span id="issue-box-label">Tag Specific Muscle or Joint Sensation:</span>
+                        <span id="selected-muscle-name" style="color: #38bdf8; font-weight:700;">Click body part</span>
+                    </div>
+
+                    <div class="status-selector">
+                        <button class="status-btn" id="btn-status-activated" onclick="setMuscleStatus('activated')">
+                            <span>🟢 High Target Pump</span>
+                        </button>
+                        <button class="status-btn" id="btn-status-fatigue" onclick="setMuscleStatus('fatigue')">
+                            <span>🟡 Early Fatigue / Grip Limit</span>
+                        </button>
+                        <button class="status-btn" id="btn-status-pain" onclick="setMuscleStatus('pain')">
+                            <span>🔴 Pain / Joint Strain</span>
+                        </button>
+                        <button class="status-btn" id="btn-status-precheck" style="display:none;" onclick="setMuscleStatus('precheck')">
+                            <span>🟣 Pre-Existing Stiffness / Ache</span>
+                        </button>
+                    </div>
+
+                    <div class="severity-box" id="severity-container" style="display: none;">
+                        <div class="severity-label">
+                            <span id="sev-title">Discomfort Severity:</span>
+                            <strong id="sev-val" style="color: #f87171;">Level 2 (Noticeable Ache)</strong>
+                        </div>
+                        <input type="range" min="1" max="5" value="2" class="slider" id="sev-slider" oninput="updateSeverity(this.value)">
+                    </div>
+
+                    <textarea class="note-input" id="muscle-notes" rows="1" placeholder="e.g. Left inner elbow tender before starting / tweak on rep 6..."></textarea>
+                </div>
+
+                <button class="btn-log-set" id="btn-submit-action" onclick="commitRecord()">
+                    💾 Save Set & Advance
+                </button>
+            </div>
+
+            <!-- Set History Table for Current Exercise -->
+            <div class="panel-card" style="flex: 1;">
+                <div class="panel-title">
+                    <span>Exercise Set Log</span>
+                    <span id="completed-sets-count" style="font-size: 0.78rem; color: var(--text-muted);">0 / 4 completed</span>
+                </div>
+
+                <table class="sets-summary-table">
+                    <thead>
+                        <tr>
+                            <th>Phase</th>
+                            <th>Weight</th>
+                            <th>Reps</th>
+                            <th>Sensation & Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sets-table-body">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Tooltip -->
+    <div class="floating-tooltip" id="tooltip">
+        <div class="tooltip-title" id="tt-title">Muscle</div>
+        <div class="tooltip-desc" id="tt-desc">Function</div>
+    </div>
+
+    <!-- Video Demonstration Modal -->
+    <div class="modal-overlay" id="video-modal" onclick="closeVideoModal(event)">
+        <div class="video-modal-card" onclick="event.stopPropagation()">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                <div>
+                    <span class="video-creator-tag" id="modal-video-creator">RENAISSANCE PERIODIZATION</span>
+                    <h3 style="font-size: 1.15rem; font-weight: 700; color: #fff; margin-top: 2px;" id="modal-video-title">Floor Press Form Guide</h3>
+                </div>
+                <button class="step-btn" style="width:28px; height:28px;" onclick="closeVideoModal()">✕</button>
+            </div>
+
+            <div class="video-embed-container" id="video-frame-wrap"></div>
+
+            <div class="cues-box">
+                <strong style="color: #38bdf8;">🧠 Coach Biomechanical Form Cues:</strong>
+                <ul id="modal-cues-list"></ul>
+            </div>
+
+            <div style="display:flex; justify-content: space-between; align-items:center;">
+                <a id="modal-youtube-link" href="#" target="_blank" style="color: #f43f5e; font-size: 0.82rem; font-weight: 700; text-decoration: none;">
+                    Open on YouTube ↗
+                </a>
+                <button class="btn-copy-chat" style="padding: 0.45rem 1rem;" onclick="closeVideoModal()">
+                    Done
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const WORKOUT_DATABASE = {
+            day1: {
+                name: "Day 1: Upper A (Lats, Chest, Triceps, Neck)",
+                exercises: [
+                    { 
+                        id: "floor_press", 
+                        name: "DB Floor Press", 
+                        totalSets: 4,
+                        getTarget: w => w >= 7 ? "34 kg × 8 reps" : w >= 5 ? "32 kg × 8 reps" : w >= 3 ? "30 kg × 8 reps" : w === 2 ? "28 kg × 10 reps" : "28 kg × 8 reps", 
+                        defaultWeight: w => w >= 7 ? 34 : w >= 5 ? 32 : w >= 3 ? 30 : 28, 
+                        defaultReps: w => w === 2 || w === 4 ? 10 : 8, 
+                        tempo: "Set 1: 3s floor pause", 
+                        primeMuscles: ["chest_lower_left", "chest_lower_right", "tricep_lateral_left", "tricep_lateral_right", "delts_front_left", "delts_front_right"], 
+                        view: "front",
+                        creator: "Dr. Mike Israetel (Renaissance Periodization)",
+                        videoTitle: "How to Dumbbell Floor Press for Huge Pecs",
+                        youtubeId: "uUGDRwge4F8",
+                        cues: ["Tuck elbows at 45°–60° from torso.", "Set 1: 3-second dead-stop on carpet to build tendon stiffness.", "Squeeze pecs at lockout."]
+                    },
+                    { 
+                        id: "bed_row", 
+                        name: "Bed-Braced Single-Arm DB Row", 
+                        totalSets: 4,
+                        getTarget: w => w >= 7 ? "38–40 kg × 8 reps" : w >= 5 ? "36 kg × 8 reps" : w >= 3 ? "34 kg × 8 reps" : w === 2 ? "32 kg × 10 reps" : "32 kg × 8 reps", 
+                        defaultWeight: w => w >= 7 ? 38 : w >= 5 ? 36 : w >= 3 ? 34 : 32, 
+                        defaultReps: w => w === 2 || w === 4 ? 10 : 8, 
+                        tempo: "2s peak squeeze at hip", 
+                        primeMuscles: ["lat_lower_left", "lat_lower_right", "rhomboids"], 
+                        view: "back",
+                        creator: "Eugene Teo (Ganbaru Method)",
+                        videoTitle: "Dumbbell Row: Fix Your Form & Stop Bicep/Grip Fatigue",
+                        youtubeId: "DMo3HJoawrU",
+                        cues: ["Brace one palm on bed, hips at 45°.", "Pull elbow in an arc to hip pocket.", "Hook grip to save forearms."]
+                    },
+                    { 
+                        id: "pullup", 
+                        name: "Neutral-Grip Pull-Up", 
+                        totalSets: 3,
+                        getTarget: w => w >= 7 ? "+12.5 kg × 6–8 reps" : w >= 5 ? "+10 kg × 6 reps" : w >= 4 ? "+7.5 kg × 6 reps" : w >= 3 ? "+5 kg × 6 reps" : w === 2 ? "Bodyweight × 10 reps" : "Bodyweight × 8 reps", 
+                        defaultWeight: w => w >= 7 ? 12.5 : w >= 5 ? 10 : w >= 4 ? 7.5 : w >= 3 ? 5 : 0, 
+                        defaultReps: w => w >= 3 ? 6 : w === 2 ? 10 : 8, 
+                        tempo: "Thumbless grip, 3s lower", 
+                        primeMuscles: ["lat_upper_left", "lat_upper_right", "biceps_left", "biceps_right"], 
+                        view: "back",
+                        creator: "Jeff Cavaliere (Athlean-X)",
+                        videoTitle: "Pull-Ups Without Elbow Pain (Neutral Grip Technique)",
+                        youtubeId: "eGo4IYlbE5g",
+                        cues: ["Thumbless neutral grip to protect brachioradialis.", "Depress shoulder blades before pulling.", "3s slow eccentric lower."]
+                    },
+                    { 
+                        id: "tricep_ext", 
+                        name: "Overhead DB Triceps Extension", 
+                        totalSets: 3,
+                        getTarget: w => w >= 7 ? "20 kg × 10 reps" : w >= 5 ? "20 kg × 8 reps" : w >= 3 ? "17.5 kg × 8 reps" : w === 2 ? "15 kg × 12 reps" : "15 kg × 10 reps", 
+                        defaultWeight: w => w >= 5 ? 20 : w >= 3 ? 17.5 : 15, 
+                        defaultReps: w => w === 2 ? 12 : w === 4 ? 10 : w >= 3 ? 8 : 10, 
+                        tempo: "15s iso-hold final set", 
+                        primeMuscles: ["tricep_long_left", "tricep_long_right"], 
+                        view: "back",
+                        creator: "Dr. Mike Israetel (RP)",
+                        videoTitle: "Overhead Triceps Extensions: Maximizing Long Head Growth",
+                        youtubeId: "ir5Psb44uGs",
+                        cues: ["Ribcage down, no lumbar arching.", "Deep stretch at bottom.", "Final set 15s hold at 90°."]
+                    },
+                    { 
+                        id: "neck_curl", 
+                        name: "Bed-Edge Neck Curls & Ext.", 
+                        totalSets: 3,
+                        getTarget: w => w >= 7 ? "12.5 kg × 12 reps" : w >= 5 ? "10 kg × 12 reps" : w >= 3 ? "7.5 kg × 12 reps" : w === 2 ? "5 kg × 18 reps" : "5 kg × 15 reps", 
+                        defaultWeight: w => w >= 7 ? 12.5 : w >= 5 ? 10 : w >= 3 ? 7.5 : 5, 
+                        defaultReps: w => w === 2 ? 18 : 12, 
+                        tempo: "10–15s hold neutral", 
+                        primeMuscles: ["neck_front", "neck_back", "traps_upper"], 
+                        view: "front",
+                        creator: "Jeff Nippard",
+                        videoTitle: "How to Build a Thicker Neck Safely",
+                        youtubeId: "k_21Z6i5p80",
+                        cues: ["Wrap towel around plate/DB.", "Chin-tuck before curling.", "Controlled smooth tempo."]
+                    }
+                ]
+            },
+            day2: {
+                name: "Day 2: Lower A (Quads, Ankle, Patellar)",
+                exercises: [
+                    { id: "rfess", name: "RFESS (Foot on Bed)", totalSets: 4, getTarget: () => "18 kg DBs × 8 reps", defaultWeight: () => 18, defaultReps: () => 8, tempo: "3s pause Set 1", primeMuscles: ["quad_lat_left", "quad_vmo_left", "glute_max_left"], view: "front", creator: "Ben Patrick (ATG)", videoTitle: "Bulgarian Split Squats for Bulletproof Knees", youtubeId: "2C-uNgKwPLE", cues: ["Heel wedge under front foot.", "Full stretch without knee pain."] },
+                    { id: "goblet", name: "Goblet Squat (Heels Up)", totalSets: 3, getTarget: () => "28 kg DB × 10 reps", defaultWeight: () => 28, defaultReps: () => 10, tempo: "Full knee bend", primeMuscles: ["quad_vmo_left", "quad_vmo_right", "knee_patellar_left"], view: "front", creator: "Ben Patrick", videoTitle: "Heel-Elevated Goblet Squat", youtubeId: "p3g4wUPE8iM", cues: ["Deep upright squat.", "Teardrop VMO focus."] }
+                ]
+            }
+        };
+
+        let currentWeek = 1;
+        let currentDay = "day1";
+        let currentExercise = null;
+        let activeSetIndex = 0; // 0 = PRE-CHECK, 1..N = Working Sets
+        
+        let sessionStore = {};
+        let activeMuscleTag = null;
+
+        function initApp() {
+            onSessionChange();
+        }
+
+        function onSessionChange() {
+            currentWeek = parseInt(document.getElementById('week-select').value);
+            currentDay = document.getElementById('day-select').value;
+            
+            document.getElementById('active-day-tag').textContent = currentDay.toUpperCase();
+
+            const chipContainer = document.getElementById('exercise-chips');
+            chipContainer.innerHTML = '';
+            const dayData = WORKOUT_DATABASE[currentDay] || WORKOUT_DATABASE['day1'];
+            
+            dayData.exercises.forEach((ex, idx) => {
+                const targetText = ex.getTarget(currentWeek);
+                const chip = document.createElement('div');
+                chip.className = `exercise-chip ${idx === 0 ? 'active' : ''}`;
+                chip.innerHTML = `
+                    <span>${ex.name}</span>
+                    <span class="chip-weight">${targetText.split('×')[0].trim()}</span>
+                `;
+                chip.onclick = () => selectExercise(ex, chip);
+                chipContainer.appendChild(chip);
+            });
+
+            if (dayData.exercises.length > 0) {
+                selectExercise(dayData.exercises[0], chipContainer.children[0]);
+            }
+        }
+
+        function selectExercise(ex, chipElem) {
+            currentExercise = ex;
+            document.querySelectorAll('.exercise-chip').forEach(c => c.classList.remove('active'));
+            if (chipElem) chipElem.classList.add('active');
+
+            if (!sessionStore[ex.id]) sessionStore[ex.id] = { precheck: null };
+
+            document.getElementById('current-ex-title').textContent = ex.name;
+            document.getElementById('current-ex-target').textContent = `Target: ${ex.getTarget(currentWeek)}`;
+            document.getElementById('current-ex-tempo').textContent = `Tempo: ${ex.tempo}`;
+
+            if (ex.creator && ex.videoTitle) {
+                document.getElementById('video-card').style.display = 'flex';
+                document.getElementById('video-creator-badge').textContent = ex.creator.toUpperCase();
+                document.getElementById('video-title-text').textContent = ex.videoTitle;
+            } else {
+                document.getElementById('video-card').style.display = 'none';
+            }
+
+            if (ex.view) switchView(ex.view);
+
+            // Highlight Prime Movers on SVG
+            document.querySelectorAll('.muscle-node').forEach(node => {
+                node.classList.remove('prime-mover');
+                if (ex.primeMuscles && ex.primeMuscles.includes(node.id)) {
+                    node.classList.add('prime-mover');
+                }
+            });
+
+            renderSetTabs();
+            // Start at precheck if not done, else Set 1
+            if (!sessionStore[ex.id].precheck) goToSet(0);
+            else goToSet(1);
+            renderSetHistoryTable();
+        }
+
+        function renderSetTabs() {
+            const tabsContainer = document.getElementById('set-tabs-container');
+            tabsContainer.innerHTML = '';
+            
+            // 1. PRE-CHECK TAB
+            const preBtn = document.createElement('button');
+            preBtn.className = `set-tab-btn tab-precheck ${activeSetIndex === 0 ? 'active' : ''}`;
+            const preData = sessionStore[currentExercise.id] && sessionStore[currentExercise.id].precheck;
+            let preStatusText = "Pending";
+            if (preData) {
+                if (preData.status === 'clean') preStatusText = "🟢 Ready";
+                else preStatusText = `🟣 ${preData.severity ? `${preData.severity}/5` : 'Caution'}`;
+            }
+            preBtn.innerHTML = `
+                <span>🛡️ PRE-CHECK</span>
+                <span class="set-tab-status">${preStatusText}</span>
+            `;
+            preBtn.onclick = () => goToSet(0);
+            tabsContainer.appendChild(preBtn);
+
+            // 2. WORKING SET TABS (1..N)
+            const totalSets = currentExercise.totalSets || 4;
+            for (let i = 1; i <= totalSets; i++) {
+                const logged = sessionStore[currentExercise.id] && sessionStore[currentExercise.id][i];
+                const btn = document.createElement('button');
+                btn.className = `set-tab-btn ${i === activeSetIndex ? 'active' : ''}`;
+                
+                let statusBadge = "Pending";
+                if (logged) {
+                    if (logged.status === 'clean' || logged.status === 'activated') {
+                        btn.classList.add('logged-green');
+                        statusBadge = "🟢 Clean";
+                    } else if (logged.status === 'pain') {
+                        btn.classList.add('logged-issue');
+                        statusBadge = `🔴 Pain ${logged.severity}/5`;
+                    } else if (logged.status === 'fatigue') {
+                        btn.classList.add('logged-issue');
+                        statusBadge = "🟡 Fatigue";
+                    }
+                }
+
+                btn.innerHTML = `
+                    <span>SET ${i}</span>
+                    <span class="set-tab-status">${statusBadge}</span>
+                `;
+                btn.onclick = () => goToSet(i);
+                tabsContainer.appendChild(btn);
+            }
+        }
+
+        function goToSet(setIndex) {
+            activeSetIndex = setIndex;
+
+            if (setIndex === 0) {
+                // PRE-CHECK MODE
+                document.getElementById('set-logger-header').textContent = `Pre-Flight Readiness Check`;
+                document.getElementById('precheck-container').style.display = 'block';
+                document.getElementById('set-metrics-container').style.display = 'none';
+                document.getElementById('btn-status-precheck').style.display = 'flex';
+                document.getElementById('btn-status-activated').style.display = 'none';
+                document.getElementById('issue-box-label').textContent = 'Flag Any Pre-Existing Tightness / Sore Spot:';
+                document.getElementById('btn-submit-action').textContent = '💾 Save Readiness & Start Set 1';
+
+                const pre = sessionStore[currentExercise.id] && sessionStore[currentExercise.id].precheck;
+                if (pre) {
+                    document.getElementById('muscle-notes').value = pre.notes || '';
+                    if (pre.status === 'precheck' || pre.status === 'pain') {
+                        document.getElementById('severity-container').style.display = 'block';
+                        document.getElementById('sev-slider').value = pre.severity || 2;
+                        updateSeverity(pre.severity || 2);
+                    }
+                } else {
+                    document.getElementById('muscle-notes').value = '';
+                    document.getElementById('severity-container').style.display = 'none';
+                }
+            } else {
+                // REGULAR SET MODE (1..N)
+                document.getElementById('set-logger-header').textContent = `Set Logger • Set ${setIndex} of ${currentExercise.totalSets || 4}`;
+                document.getElementById('precheck-container').style.display = 'none';
+                document.getElementById('set-metrics-container').style.display = 'block';
+                document.getElementById('btn-status-precheck').style.display = 'none';
+                document.getElementById('btn-status-activated').style.display = 'flex';
+                document.getElementById('issue-box-label').textContent = 'Tag Muscle / Joint Sensation for this Set:';
+                document.getElementById('btn-submit-action').textContent = '💾 Save Set & Advance';
+
+                const logged = sessionStore[currentExercise.id] && sessionStore[currentExercise.id][setIndex];
+                const prevLogged = sessionStore[currentExercise.id] && sessionStore[currentExercise.id][setIndex - 1];
+
+                if (logged) {
+                    document.getElementById('input-weight').value = logged.weight;
+                    document.getElementById('input-reps').value = logged.reps;
+                    document.getElementById('muscle-notes').value = logged.notes || '';
+                    if (logged.status === 'pain') {
+                        document.getElementById('severity-container').style.display = 'block';
+                        document.getElementById('sev-slider').value = logged.severity || 2;
+                        updateSeverity(logged.severity || 2);
+                    } else {
+                        document.getElementById('severity-container').style.display = 'none';
+                    }
+                } else if (prevLogged && prevLogged.weight !== undefined) {
+                    document.getElementById('input-weight').value = prevLogged.weight;
+                    document.getElementById('input-reps').value = prevLogged.reps;
+                    document.getElementById('muscle-notes').value = '';
+                    document.getElementById('severity-container').style.display = 'none';
+                } else {
+                    document.getElementById('input-weight').value = currentExercise.defaultWeight(currentWeek);
+                    document.getElementById('input-reps').value = currentExercise.defaultReps(currentWeek);
+                    document.getElementById('muscle-notes').value = '';
+                    document.getElementById('severity-container').style.display = 'none';
+                }
+            }
+
+            resetButtons();
+            activeMuscleTag = null;
+            document.getElementById('selected-muscle-name').textContent = "Click body part";
+            renderSetTabs();
+        }
+
+        function logPreCheckClean() {
+            if (!sessionStore[currentExercise.id]) sessionStore[currentExercise.id] = {};
+            sessionStore[currentExercise.id].precheck = {
+                status: 'clean',
+                severity: null,
+                notes: 'Zero pre-existing aches, ready to train',
+                muscleName: 'Full Body Ready'
+            };
+            advanceToNextSet();
+        }
+
+        function logAllCleanSet() {
+            const weightVal = parseFloat(document.getElementById('input-weight').value) || 0;
+            const repsVal = parseInt(document.getElementById('input-reps').value) || 0;
+
+            if (!sessionStore[currentExercise.id]) sessionStore[currentExercise.id] = {};
+            
+            sessionStore[currentExercise.id][activeSetIndex] = {
+                weight: weightVal,
+                reps: repsVal,
+                status: 'clean',
+                severity: null,
+                notes: document.getElementById('muscle-notes').value || 'Clean target activation',
+                muscleName: 'All Target Muscles'
+            };
+
+            advanceToNextSet();
+        }
+
+        function setMuscleStatus(status) {
+            if (!activeMuscleTag) {
+                alert("Please click a muscle or joint on the body diagram first!");
+                return;
+            }
+            resetButtons();
+            if (status === 'activated') {
+                document.getElementById('btn-status-activated').classList.add('active-activated');
+                document.getElementById('severity-container').style.display = 'none';
+            } else if (status === 'pain') {
+                document.getElementById('btn-status-pain').classList.add('active-pain');
+                document.getElementById('severity-container').style.display = 'block';
+            } else if (status === 'fatigue') {
+                document.getElementById('btn-status-fatigue').classList.add('active-fatigue');
+                document.getElementById('severity-container').style.display = 'none';
+            } else if (status === 'precheck') {
+                document.getElementById('btn-status-precheck').classList.add('active-precheck');
+                document.getElementById('severity-container').style.display = 'block';
+            }
+        }
+
+        function commitRecord() {
+            if (activeSetIndex === 0) {
+                // Saving Pre-Check
+                let chosenStatus = 'clean';
+                if (document.getElementById('btn-status-precheck').classList.contains('active-precheck')) chosenStatus = 'precheck';
+                else if (document.getElementById('btn-status-pain').classList.contains('active-pain')) chosenStatus = 'pain';
+                else if (document.getElementById('btn-status-fatigue').classList.contains('active-fatigue')) chosenStatus = 'fatigue';
+
+                if (!sessionStore[currentExercise.id]) sessionStore[currentExercise.id] = {};
+                sessionStore[currentExercise.id].precheck = {
+                    status: chosenStatus,
+                    severity: document.getElementById('severity-container').style.display !== 'none' ? document.getElementById('sev-slider').value : null,
+                    notes: document.getElementById('muscle-notes').value || 'Pre-existing tension noted',
+                    muscleName: activeMuscleTag ? activeMuscleTag.name : 'Target Muscle'
+                };
+
+                // Highlight warning on body
+                if (activeMuscleTag) {
+                    const node = document.getElementById(activeMuscleTag.id);
+                    if (node) node.classList.add('state-pre-warning');
+                }
+            } else {
+                // Saving Regular Set (1..N)
+                const weightVal = parseFloat(document.getElementById('input-weight').value) || 0;
+                const repsVal = parseInt(document.getElementById('input-reps').value) || 0;
+
+                let chosenStatus = 'clean';
+                if (document.getElementById('btn-status-pain').classList.contains('active-pain')) chosenStatus = 'pain';
+                else if (document.getElementById('btn-status-fatigue').classList.contains('active-fatigue')) chosenStatus = 'fatigue';
+                else if (document.getElementById('btn-status-activated').classList.contains('active-activated')) chosenStatus = 'activated';
+
+                if (!sessionStore[currentExercise.id]) sessionStore[currentExercise.id] = {};
+
+                sessionStore[currentExercise.id][activeSetIndex] = {
+                    weight: weightVal,
+                    reps: repsVal,
+                    status: chosenStatus,
+                    severity: chosenStatus === 'pain' ? document.getElementById('sev-slider').value : null,
+                    notes: document.getElementById('muscle-notes').value,
+                    muscleName: activeMuscleTag ? activeMuscleTag.name : 'All Target Muscles'
+                };
+            }
+
+            advanceToNextSet();
+        }
+
+        function advanceToNextSet() {
+            renderSetTabs();
+            renderSetHistoryTable();
+
+            const total = currentExercise.totalSets || 4;
+            if (activeSetIndex === 0) {
+                goToSet(1); // From precheck advance to Set 1
+            } else if (activeSetIndex < total) {
+                goToSet(activeSetIndex + 1); // Advance to next set
+            }
+        }
+
+        function renderSetHistoryTable() {
+            const tbody = document.getElementById('sets-table-body');
+            tbody.innerHTML = '';
+            const exData = sessionStore[currentExercise.id] || {};
+            const total = currentExercise.totalSets || 4;
+            let completedCount = 0;
+
+            // 1. Render Pre-Check Row
+            const pre = exData.precheck;
+            const trPre = document.createElement('tr');
+            if (pre) {
+                let tagClass = pre.status === 'clean' ? 'tag-green' : 'tag-purple';
+                let tagText = pre.status === 'clean' ? 'Ready' : `Pre-Tension ${pre.severity ? `${pre.severity}/5` : ''}`;
+                trPre.innerHTML = `
+                    <td><strong style="color:#c084fc;">PRE-CHECK</strong></td>
+                    <td style="color:var(--text-muted);">Baseline</td>
+                    <td style="color:var(--text-muted);">--</td>
+                    <td>
+                        <span class="badge-status-tag ${tagClass}">${tagText}</span>
+                        <span style="font-size:0.75rem; color:var(--text-muted); margin-left:4px;">
+                            ${pre.muscleName !== 'Full Body Ready' ? `(${pre.muscleName})` : ''} ${pre.notes ? `• "${pre.notes}"` : ''}
+                        </span>
+                    </td>
+                `;
+                trPre.style.cursor = 'pointer';
+                trPre.onclick = () => goToSet(0);
+            } else {
+                trPre.innerHTML = `
+                    <td style="color:#c084fc;">PRE-CHECK</td>
+                    <td style="color:var(--text-muted);">Baseline</td>
+                    <td style="color:var(--text-muted);">--</td>
+                    <td style="color:var(--text-muted); font-style:italic;">Not logged</td>
+                `;
+            }
+            tbody.appendChild(trPre);
+
+            // 2. Render Working Sets Rows
+            for (let i = 1; i <= total; i++) {
+                const s = exData[i];
+                const tr = document.createElement('tr');
+                if (s) {
+                    completedCount++;
+                    let tagClass = 'tag-green';
+                    let tagLabel = 'Clean';
+                    if (s.status === 'pain') { tagClass = 'tag-red'; tagLabel = `Pain ${s.severity}/5`; }
+                    else if (s.status === 'fatigue') { tagClass = 'tag-yellow'; tagLabel = 'Fatigue'; }
+
+                    tr.innerHTML = `
+                        <td><strong>Set ${i}</strong></td>
+                        <td>${s.weight} kg</td>
+                        <td>${s.reps}</td>
+                        <td>
+                            <span class="badge-status-tag ${tagClass}">${tagLabel}</span>
+                            <span style="font-size:0.75rem; color:var(--text-muted); margin-left:4px;">
+                                ${s.muscleName !== 'All Target Muscles' ? `(${s.muscleName})` : ''} ${s.notes ? `• "${s.notes}"` : ''}
+                            </span>
+                        </td>
+                    `;
+                    tr.style.cursor = 'pointer';
+                    tr.onclick = () => goToSet(i);
+                } else {
+                    tr.innerHTML = `
+                        <td style="color:var(--text-muted);">Set ${i}</td>
+                        <td style="color:var(--text-muted);">--</td>
+                        <td style="color:var(--text-muted);">--</td>
+                        <td style="color:var(--text-muted); font-style:italic;">Pending</td>
+                    `;
+                }
+                tbody.appendChild(tr);
+            }
+
+            document.getElementById('completed-sets-count').textContent = `${completedCount} / ${total} completed`;
+        }
+
+        function resetButtons() {
+            document.getElementById('btn-status-activated').className = 'status-btn';
+            document.getElementById('btn-status-pain').className = 'status-btn';
+            document.getElementById('btn-status-fatigue').className = 'status-btn';
+            document.getElementById('btn-status-precheck').className = 'status-btn';
+        }
+
+        function updateSeverity(val) {
+            const labels = ["", "Mild Twinge / Stiffness (1/5)", "Noticeable Ache (2/5)", "Moderate Strain (3/5)", "Sharp Pain (4/5)", "Severe Pain (5/5)"];
+            document.getElementById('sev-val').textContent = labels[val];
+        }
+
+        function stepWeight(delta) {
+            const el = document.getElementById('input-weight');
+            let val = parseFloat(el.value) || 0;
+            val = Math.max(0, val + delta);
+            el.value = val;
+        }
+
+        function stepReps(delta) {
+            const el = document.getElementById('input-reps');
+            let val = parseInt(el.value) || 0;
+            val = Math.max(1, val + delta);
+            el.value = val;
+        }
+
+        function switchView(view) {
+            document.getElementById('btn-front').classList.toggle('active', view === 'front');
+            document.getElementById('btn-back').classList.toggle('active', view === 'back');
+            document.getElementById('svg-front').style.display = view === 'front' ? 'block' : 'none';
+            document.getElementById('svg-back').style.display = view === 'back' ? 'block' : 'none';
+        }
+
+        // SVG Node Click Handlers
+        document.querySelectorAll('.muscle-node, .joint-node').forEach(elem => {
+            elem.addEventListener('click', function() {
+                document.querySelectorAll('.muscle-node, .joint-node').forEach(n => n.classList.remove('selected-active'));
+                this.classList.add('selected-active');
+
+                activeMuscleTag = {
+                    id: this.id,
+                    name: this.getAttribute('data-name') || this.id
+                };
+
+                document.getElementById('selected-muscle-name').textContent = activeMuscleTag.name;
+                resetButtons();
+            });
+
+            elem.addEventListener('mousemove', function(e) {
+                const tooltip = document.getElementById('tooltip');
+                tooltip.style.display = 'block';
+                tooltip.style.left = `${e.clientX + 14}px`;
+                tooltip.style.top = `${e.clientY + 14}px`;
+                document.getElementById('tt-title').textContent = this.getAttribute('data-name') || this.id;
+                document.getElementById('tt-desc').textContent = this.getAttribute('data-cue') || 'Target zone';
+            });
+
+            elem.addEventListener('mouseleave', function() {
+                document.getElementById('tooltip').style.display = 'none';
+            });
+        });
+
+        // Form Video Modal
+        function openVideoModal() {
+            if (!currentExercise || !currentExercise.youtubeId) return;
+            document.getElementById('modal-video-creator').textContent = currentExercise.creator.toUpperCase();
+            document.getElementById('modal-video-title').textContent = currentExercise.videoTitle;
+            document.getElementById('video-frame-wrap').innerHTML = `
+                <iframe src="https://www.youtube-nocookie.com/embed/${currentExercise.youtubeId}?autoplay=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            `;
+            const cuesList = document.getElementById('modal-cues-list');
+            cuesList.innerHTML = '';
+            (currentExercise.cues || []).forEach(c => {
+                const li = document.createElement('li');
+                li.textContent = c;
+                cuesList.appendChild(li);
+            });
+            document.getElementById('modal-youtube-link').href = `https://www.youtube.com/watch?v=${currentExercise.youtubeId}`;
+            document.getElementById('video-modal').style.display = 'flex';
+        }
+
+        function closeVideoModal() {
+            document.getElementById('video-frame-wrap').innerHTML = '';
+            document.getElementById('video-modal').style.display = 'none';
+        }
+
+        // Copy Set Logs directly to Clipboard for Chat Analysis
+        function copySessionLogForChat() {
+            const exKeys = Object.keys(sessionStore);
+            if (exKeys.length === 0) {
+                alert("Log at least one set before copying!");
+                return;
+            }
+
+            let text = `Workout Log (Week ${currentWeek} • ${WORKOUT_DATABASE[currentDay].name}):\n\n`;
+            for (const exId of exKeys) {
+                const exData = sessionStore[exId];
+                const exObj = (WORKOUT_DATABASE[currentDay].exercises || []).find(e => e.id === exId) || { name: exId };
+                text += `🏋️ **${exObj.name}:**\n`;
+
+                if (exData.precheck) {
+                    const p = exData.precheck;
+                    let pTag = p.status === 'clean' ? '🟢 Ready (Zero pre-existing aches)' : `🟣 Pre-Existing Tension [${p.severity ? `${p.severity}/5` : 'Caution'} in ${p.muscleName}]`;
+                    text += `  • [PRE-CHECK]: ${pTag}${p.notes ? ` — "${p.notes}"` : ''}\n`;
+                }
+
+                for (let i = 1; i <= (exObj.totalSets || 4); i++) {
+                    const s = exData[i];
+                    if (!s) continue;
+                    let tag = s.status === 'clean' ? '🟢 Clean Set' : s.status === 'pain' ? `🔴 Pain [${s.severity}/5 in ${s.muscleName}]` : `🟡 Fatigue [${s.muscleName}]`;
+                    text += `  • Set ${i}: ${s.weight} kg × ${s.reps} reps — ${tag}${s.notes ? ` ("${s.notes}")` : ''}\n`;
+                }
+                text += `\n`;
+            }
+
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Session log (including Pre-Check) copied to clipboard! You can now paste it directly into our chat.");
+            });
+        }
+
+        window.onload = initApp;
+    </script>
+</body>
+</html>
