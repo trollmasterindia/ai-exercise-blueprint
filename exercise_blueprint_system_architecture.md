@@ -422,6 +422,17 @@ A naive vector similarity search on "front of left knee pain" retrieves hundreds
 * **Vector 2: Upstream & Downstream Kinetic Chain:** Patellar pain is rarely an isolated knee problem—it is driven by an ankle dorsiflexion deficit (talocrural block / foot pronation) or hip internal rotation deficit. Inner elbow pain is driven by grip mechanics or shoulder rotation deficits.
 * **Vector 3: Contributory Vector:** Classifies whether the fix requires a movement swap, a tempo alteration (slow eccentric/pause), or a setup modification (wedge, stance width, grip).
 
+#### Mandatory Chat Intake Protocol: "Phase-of-Movement Triage" (Layer B Fulfillment)
+Whenever a user reports joint or tendon discomfort in chat, the AI agent is **hard-coded to ask exactly WHEN in the movement arc the sensation occurs** before prescribing any intervention:
+1. **At the Lengthened Extreme / Bottom Stretch?** (e.g. deep hole of squat, chest touch on floor press, dead hang on pull-up)  
+   $ightarrow$ *Indicates: End-range passive tissue shear, excessive passive ROM, or lack of joint capsule clearance.*
+2. **At Peak Shortening / Lockout?** (e.g. top of row, full elbow extension on overhead triceps)  
+   $ightarrow$ *Indicates: Active insufficiency, bony impingement, or joint compression.*
+3. **During the Turnaround / Dynamic Transition?** (instant of switching from lowering to lifting)  
+   $ightarrow$ *Indicates: Rate-of-Force Development (RFD) shock; lack of eccentric deceleration braking.*
+4. **Post-Set / Delayed Throbbing?** (only after releasing the dumbbells or bar)  
+   $ightarrow$ *Indicates: Tendon vascular remodeling lag or reactive tendinopathy.*
+
 ### 10.3 Layer C: Deterministic Guardrails Before LLM Generation (Tiered Remediation Hierarchy)
 LLMs are notoriously prone to "compensatory over-fixing"—prescribing three new mobility drills instead of simply changing the foot angle by 5 degrees. The remediation pipeline strictly follows a tiered escalation hierarchy:
 
