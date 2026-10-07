@@ -117,6 +117,27 @@
             transform: translateY(-1px);
         }
 
+        .btn-restore-journal {
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.35);
+            color: #34d399;
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 0.45rem 0.85rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+        .btn-restore-journal:hover {
+            background: rgba(16, 185, 129, 0.22);
+            border-color: #10b981;
+            color: #fff;
+            transform: translateY(-1px);
+        }
+
         .btn-export-json {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--border-subtle);
@@ -131,6 +152,11 @@
         .btn-export-json:hover {
             background: rgba(255, 255, 255, 0.1);
             color: var(--text-primary);
+        }
+
+        .exercise-chip.chip-completed {
+            border-color: rgba(16, 185, 129, 0.45);
+            background: rgba(16, 185, 129, 0.08);
         }
 
         /* Top Session Selector Bar */
@@ -522,14 +548,24 @@
             gap: 0.4rem;
             margin-bottom: 0.75rem;
         }
+        /* Set Navigation Tabs (PRE-CHECK + WORKING SETS) */
+        .set-tabs-container {
+            display: flex;
+            align-items: stretch;
+            gap: 0.4rem;
+            margin-bottom: 0.85rem;
+            overflow-x: auto;
+            padding-bottom: 2px;
+        }
         .set-tab-btn {
             flex: 1;
-            padding: 0.5rem 0.25rem;
+            min-width: 66px;
+            padding: 0.5rem 0.35rem;
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--border-subtle);
             border-radius: 0.5rem;
             color: var(--text-secondary);
-            font-size: 0.75rem;
+            font-size: 0.74rem;
             font-weight: 700;
             cursor: pointer;
             display: flex;
@@ -538,33 +574,46 @@
             gap: 2px;
             transition: all 0.2s ease;
         }
+        .set-tab-btn:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: rgba(255, 255, 255, 0.25);
+            color: #fff;
+        }
         .set-tab-btn.active {
-            background: rgba(56, 189, 248, 0.15);
+            background: rgba(56, 189, 248, 0.18);
             border-color: #38bdf8;
             color: #38bdf8;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.25);
         }
         .set-tab-btn.tab-precheck {
             border-color: rgba(168, 85, 247, 0.4);
             color: #c084fc;
         }
         .set-tab-btn.tab-precheck.active {
-            background: rgba(168, 85, 247, 0.2);
+            background: rgba(168, 85, 247, 0.22);
             border-color: #a855f7;
             color: #e9d5ff;
+            box-shadow: 0 0 10px rgba(168, 85, 247, 0.3);
         }
         .set-tab-btn.logged-green {
-            border-color: var(--color-activated);
+            border-color: rgba(16, 185, 129, 0.6);
             color: #34d399;
+            background: rgba(16, 185, 129, 0.08);
         }
         .set-tab-btn.logged-issue {
-            border-color: var(--color-pain);
+            border-color: rgba(239, 68, 68, 0.6);
             color: #f87171;
-            background: rgba(239, 68, 68, 0.1);
+            background: rgba(239, 68, 68, 0.12);
+        }
+        .set-tab-btn.logged-fatigue {
+            border-color: rgba(245, 158, 11, 0.6);
+            color: #fbbf24;
+            background: rgba(245, 158, 11, 0.1);
         }
         .set-tab-status {
             font-size: 0.65rem;
             font-weight: 600;
-            opacity: 0.85;
+            opacity: 0.9;
         }
 
         /* Pre-Check Banner Alert */
@@ -877,16 +926,158 @@
             padding-left: 1.25rem;
             margin-top: 0.35rem;
         }
-    </style>
+    
+        .version-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            padding: 0.4rem 0.9rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #34d399;
+            margin-left: auto;
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.15);
+        }
+        .version-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #10b981;
+            box-shadow: 0 0 10px #10b981;
+            animation: pulse-green 2s infinite;
+        }
+        @keyframes pulse-green {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.85); }
+        }
+        .selector-controls {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+        }
+        .exercise-nav-bar {
+            background: #090e17;
+            border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+            padding: 0.65rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            overflow-x: auto;
+        }
+        .exercise-nav-label {
+            font-size: 0.72rem;
+            font-weight: 800;
+            color: var(--accent-blue);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+        .exercise-nav-bar .exercise-chip-container {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            overflow-x: auto;
+            flex: 1;
+        }
+        .exercise-chip {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-subtle);
+            padding: 0.45rem 0.85rem;
+            border-radius: 0.5rem;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s ease;
+        }
+        .exercise-chip:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.3);
+            color: #fff;
+            transform: translateY(-1px);
+        }
+        .exercise-chip.active {
+            background: rgba(56, 189, 248, 0.15);
+            border-color: #38bdf8;
+            color: #38bdf8;
+            box-shadow: 0 0 14px rgba(56, 189, 248, 0.3);
+        }
+        .chip-num {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-muted);
+            border-radius: 4px;
+            padding: 0.1rem 0.35rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+        .exercise-chip.active .chip-num {
+            background: rgba(56, 189, 248, 0.3);
+            color: #38bdf8;
+        }
+        .chip-weight {
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            padding: 0.1rem 0.4rem;
+            font-size: 0.72rem;
+            color: var(--accent-green);
+            font-weight: 700;
+        }
+        .exercise-quick-nav {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .btn-ex-nav {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            border-radius: 0.35rem;
+            padding: 0.25rem 0.6rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .btn-ex-nav:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        .exercise-dropdown-wrap {
+            margin-bottom: 0.85rem;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+</style>
 </head>
 <body>
 
     <header>
         <div class="logo-area">
             <span class="badge-pill">PhysioSync AI</span>
-            <h1 class="header-title">Biomechanical Workout Matrix</h1>
+            <h1 class="header-title">Biomechanical Workout Matrix <a href="http://127.0.0.1:8789" target="_blank" style="text-decoration:none;"><span id="sync-status-badge" style="font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 12px; background: rgba(0, 230, 118, 0.12); color: #00E676; border: 1px solid rgba(0, 230, 118, 0.35); vertical-align: middle; margin-left: 12px; cursor: pointer;" title="Click to open web app at http://localhost:8789">🟢 Disk Sync Active (Port 8789)</span></a></h1>
         </div>
         <div class="header-actions">
+            <button class="btn-restore-journal" onclick="restoreVerifiedWorkoutJournal(true)" title="Restore verified Day 1 & Day 2 logs from journal">
+                🔄 Restore Verified Logs
+            </button>
+            <button class="btn-sync-disk" onclick="triggerManualDiskSync()" title="Auto-sync live tracker inputs directly to workspace disk for AI assistant" style="background: rgba(0, 230, 118, 0.15); border: 1px solid #00E676; color: #00E676; cursor: pointer; padding: 7px 14px; border-radius: 8px; font-weight: 600; margin-left: 6px; transition: all 0.2s ease;">
+                ⚡ Sync to AI Disk
+            </button>
             <button class="btn-export-json" onclick="exportHistoryToJSON()">
                 💾 Export History (JSON)
             </button>
@@ -898,33 +1089,61 @@
 
     <!-- Prepopulated Week & Day Navigation -->
     <div class="session-selector-bar">
-        <div class="selector-group">
-            <span class="selector-label">Week:</span>
-            <select id="week-select" class="select-input" onchange="onSessionChange()">
-                <option value="1" selected>Week 1 (Calibration)</option>
-                <option value="2">Week 2 (Rep Expansion)</option>
-                <option value="3">Week 3 (Load Step-Up)</option>
-                <option value="4">Week 4 (TUT & Density)</option>
-                <option value="5">Week 5 (Peak Overload)</option>
-                <option value="6">Week 6 (Strategic Deload)</option>
-                <option value="7">Week 7 (Meso 2)</option>
-                <option value="8">Week 8 (Meso 2 Peak)</option>
+        <div class="selector-controls">
+            <div class="selector-group">
+                <span class="selector-label">🗓️ Week:</span>
+                <select id="week-select" class="select-input" onchange="onSessionChange()">
+                <option value="1" selected>Week 1 (Meso 1 - Calibration Baseline)</option>
+                <option value="2">Week 2 (Meso 1 - Rep Expansion)</option>
+                <option value="3">Week 3 (Meso 1 - Load Step-Up)</option>
+                <option value="4">Week 4 (Meso 1 - TUT & Density)</option>
+                <option value="5">Week 5 (Meso 1 - Peak Overload)</option>
+                <option value="6">Week 6 (Meso 1 - Tendon Deload)</option>
+                <option value="7">Week 7 (Meso 2 - Launch)</option>
+                <option value="8">Week 8 (Meso 2 - Rep Expansion)</option>
+                <option value="9">Week 9 (Meso 2 - Load Step-Up)</option>
+                <option value="10">Week 10 (Meso 2 - TUT & Density)</option>
+                <option value="11">Week 11 (Meso 2 - Peak Overload)</option>
+                <option value="12">Week 12 (Meso 2 - Tendon Deload)</option>
+                <option value="13">Week 13 (Meso 3 - Launch)</option>
+                <option value="14">Week 14 (Meso 3 - Rep Expansion)</option>
+                <option value="15">Week 15 (Meso 3 - 40kg Rack Cap)</option>
+                <option value="16">Week 16 (Meso 3 - TUT & Density)</option>
+                <option value="17">Week 17 (Meso 3 - Peak Overload)</option>
+                <option value="18">Week 18 (Meso 3 - Tendon Deload)</option>
+                <option value="19">Week 19 (Meso 4 - Launch)</option>
+                <option value="20">Week 20 (Meso 4 - Density & Control)</option>
+                <option value="21">Week 21 (Meso 4 - +15kg Pull-Up PR)</option>
+                <option value="22">Week 22 (Meso 4 - TUT & Peak Tension)</option>
+                <option value="23">Week 23 (Meso 4 - Grand Peak Overload)</option>
+                <option value="24">Week 24 (Meso 4 - Benchmark Testing & Mastery)</option>
             </select>
         </div>
 
         <div class="selector-group">
             <span class="selector-label">Day:</span>
             <select id="day-select" class="select-input" onchange="onSessionChange()">
-                <option value="day1" selected>Day 1: Upper A (Lats, Chest, Triceps, Neck)</option>
-                <option value="day2">Day 2: Lower A (Quads, Ankle, Patellar)</option>
-                <option value="day3">Day 3: Active Recovery & Gait</option>
-                <option value="day4">Day 4: Upper B (Delts, Biceps, Forearms, Neck)</option>
-                <option value="day5">Day 5: Lower B (Hamstrings, Glutes, Core)</option>
-                <option value="day6">Day 6: Athletic Rotary & Court-Sport Prep</option>
+                <option value="day1" selected>Day 1: Athletic Power & Anterior Quads/Pecs (Bed Jumps, Wedged Squat, Single-Arm Deficit Press, Tibialis, Neck)</option>
+                <option value="day2">Day 2: Posterior Chain & V-Taper Lats (Strapped Rows, B-Stance RDLs, Rotational Chops, Calf Raise)</option>
+                <option value="day3">Day 3: Active Rest & Pelvic De-Torque (Outdoor PRI Walk, Couch Stretch, Ribcage Windmills, PRI 90/90 Breathing)</option>
+                <option value="day4">Day 4: Vertical Pull, Shoulders & Long-Head Triceps (Neutral Pull-Ups, DB Press, Overhead Ext, Lateral Raise)</option>
+                <option value="day5">Day 5: Unilateral Ankle Restoration & Glute Drive (Skater Bounds, ATG Split Squats, Hip Thrust, Left Carry)</option>
+                <option value="day6">Day 6: Deceleration Power, Pectoral Deficit & Arms (Broad Jumps, Bed-Deficit Pushups, Biceps, Spanish Squats)</option>
+                <option value="day7">Day 7: Full Regeneration & Sunday Latency Tendon Audit (Palpation Audit, Restorative Walk)</option>
             </select>
         </div>
 
-        <!-- Dynamic Prepopulated Exercise Pills -->
+        </div>
+
+        <div class="version-badge">
+            <span class="version-dot"></span>
+            <span class="version-text">Clean-Slate Blueprint v4.0 • 24 Weeks • Pure Tabula Rasa System</span>
+        </div>
+    </div>
+
+    <!-- Dedicated Full-Width Exercise Navigation Row -->
+    <div class="exercise-nav-bar">
+        <span class="exercise-nav-label">⚡ Exercises:</span>
         <div class="exercise-chip-container" id="exercise-chips">
             <!-- Injected by JS -->
         </div>
@@ -1058,57 +1277,76 @@
         <div class="sidebar">
             <div class="panel-card">
                 <div class="panel-title">
-                    <span id="set-logger-header">Set Logger</span>
-                    <span id="active-day-tag" class="badge-pill">DAY 1</span>
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <span id="set-logger-header">Set Logger</span>
+                        <span id="active-day-tag" class="badge-pill">DAY 1</span>
+                    </div>
+                    <div class="exercise-quick-nav">
+                        <button class="btn-ex-nav" id="btn-prev-ex" onclick="navigateExercise(-1)" title="Previous Exercise">◀ Prev Ex</button>
+                        <button class="btn-ex-nav" id="btn-next-ex" onclick="navigateExercise(1)" title="Next Exercise">Next Ex ▶</button>
+                    </div>
                 </div>
 
-                <!-- Exercise Meta Banner -->
+                <!-- Exercise Quick Dropdown Switcher -->
+                <div class="exercise-dropdown-wrap">
+                    <label for="exercise-select-dropdown" style="display: block; font-size: 0.72rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 4px;">Active Exercise:</label>
+                    <select id="exercise-select-dropdown" class="select-input" style="width: 100%; font-size: 0.85rem;" onchange="onExerciseDropdownChange(this.value)">
+                        <!-- Injected by JS -->
+                    </select>
+                </div>
+
+                                <!-- Exercise Meta Banner -->
                 <div class="active-exercise-banner">
-                    <div class="banner-name" id="current-ex-title">DB Floor Press</div>
+                    <div class="banner-name" id="current-ex-title">Thoracic-Elevated Deficit DB Press</div>
                     <div class="banner-meta">
-                        <span id="current-ex-target">Target: 28 kg × 8 reps</span>
-                        <span id="current-ex-tempo">Tempo: 3s floor pause</span>
+                        <span id="current-ex-target">Target: 18 kg × 8–10 reps/side</span>
+                        <span id="current-ex-tempo">Tempo: 3-1-1-0: 3s eccentric, 1s dead-stop loaded deficit stretch</span>
                     </div>
                 </div>
 
                 <!-- Video Demo Guide -->
                 <div class="video-guide-card" id="video-card">
                     <div style="display:flex; flex-direction:column; gap:2px;">
-                        <span class="video-creator-tag" id="video-creator-badge">DR. MIKE ISRAETEL (RP)</span>
-                        <span class="video-title-preview" id="video-title-text">How to Dumbbell Floor Press</span>
+                        <span class="video-creator-tag" id="video-creator-badge">NOREGRETSPT (PHYSICAL THERAPY)</span>
+                        <span class="video-title-preview" id="video-title-text">Why Chest Press on a Foam Roller is Great for Chest Stretch & Shoulders</span>
                     </div>
                     <button class="btn-watch-video" onclick="openVideoModal()">
                         <span>▶ Form Demo</span>
                     </button>
                 </div>
 
-                <!-- Set Navigation Buttons (PRE-CHECK + SETS) -->
-                <div class="set-navigation-tabs" id="set-tabs-container">
-                    <!-- Injected by JS -->
+                                <!-- Set Navigation Tabs (PRE-CHECK + WORKING SETS) -->
+                <div class="set-tabs-container" id="set-tabs-container">
+                    <!-- Dynamic tabs populated by JS: [🛡️ PRE-CHECK] [SET 1] [SET 2] [SET 3] [SET 4] -->
                 </div>
 
-                <!-- PRE-CHECK INTERFACE -->
+                <!-- PRE-CHECK INTERFACE (Before Set 1) -->
                 <div id="precheck-container" style="display: none;">
                     <div class="pre-check-banner">
-                        <strong>🛡️ Pre-Exercise Readiness & Tissue Check:</strong>
-                        <span>Feeling any pre-existing tightness or mild ache <em>before</em> lifting? Tag the muscle to alert your coach.</span>
+                        <div style="display: flex; align-items: center; justify-content: space-between;">
+                            <strong style="color: #c084fc; font-size: 0.82rem;">🛡️ Pre-Flight Tendon & Joint Readiness Audit</strong>
+                            <span style="font-size: 0.68rem; color: #e9d5ff; background: rgba(168, 85, 247, 0.25); border: 1px solid rgba(168, 85, 247, 0.4); padding: 0.15rem 0.45rem; border-radius: 4px; font-weight: 700;">Pre-Check</span>
+                        </div>
+                        <p style="margin: 0; font-size: 0.76rem; color: #d8b4fe; line-height: 1.4;">
+                            Palpate elbows, shoulders, knees & tendons before loading. If 100% pain-free, tap "Ready to Train". If tight or sore, click the body diagram to log pre-existing pain before your set.
+                        </p>
                     </div>
 
-                    <div class="quick-set-actions">
-                        <button class="btn-all-good" onclick="logPreCheckClean()">
-                            <span>🟢 100% Ready (Zero Pre-Existing Tightness)</span>
-                            <span>✔</span>
+                    <div class="quick-set-actions" style="margin-bottom: 0.85rem;">
+                        <button class="btn-all-good" style="border-color: rgba(168, 85, 247, 0.4); background: rgba(168, 85, 247, 0.12);" onclick="logPreCheckClean()">
+                            <span style="color: #e9d5ff;">🟣 Zero Aches / Ready to Train (Clean Baseline)</span>
+                            <span style="color: #c084fc; font-weight: 700;">✔</span>
                         </button>
                     </div>
                 </div>
 
-                <!-- SET EXECUTION INTERFACE -->
+                <!-- SET EXECUTION INTERFACE (Working Sets) -->
                 <div id="set-metrics-container">
                     <div class="metric-row">
                         <div class="metric-field">
                             <span class="metric-label">Set Weight (kg)</span>
                             <div class="metric-input-wrap">
-                                <input type="number" id="input-weight" class="num-input" value="28" step="1">
+                                <input type="number" id="input-weight" class="num-input" value="18" step="1">
                                 <button class="step-btn" onclick="stepWeight(-1)">-</button>
                                 <button class="step-btn" onclick="stepWeight(+1)">+</button>
                             </div>
@@ -1217,8 +1455,15 @@
                     <span class="video-creator-tag" id="modal-video-creator">RENAISSANCE PERIODIZATION</span>
                     <h3 style="font-size: 1.15rem; font-weight: 700; color: #fff; margin-top: 2px;" id="modal-video-title">Floor Press Form Guide</h3>
                 </div>
-                <button class="step-btn" style="width:28px; height:28px;" onclick="closeVideoModal()">✕</button>
+                <div style="display:flex; gap:0.5rem; align-items:center;">
+                    <a id="btn-modal-yt-top" href="#" target="_blank" class="btn-copy-chat" style="padding: 0.35rem 0.75rem; text-decoration: none; font-size: 0.75rem; background: #dc2626; border-color: #ef4444; color: #fff;">
+                        ▶ Open in YouTube ↗
+                    </a>
+                    <button class="step-btn" style="width:28px; height:28px;" onclick="closeVideoModal()">✕</button>
+                </div>
             </div>
+
+            <div id="modal-timestamp-banner" style="display:none; align-items:center; justify-content:space-between; background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 6px; padding: 6px 12px; margin-top: 10px; margin-bottom: 4px; font-size: 0.8rem; color: #38bdf8;"></div>
 
             <div class="video-embed-container" id="video-frame-wrap"></div>
 
@@ -1239,199 +1484,913 @@
     </div>
 
     <script>
-        const STORAGE_KEY = "physiosync_workout_vault_v1";
+        const STORAGE_KEY = "physiosync_vault_v6_forearms_decoupled_20261001";
+        const LEGACY_STORAGE_KEYS = [
+            "physiosync_vault_v6_forearms_decoupled_20261001",
+            "physiosync_vault_v5_18kg_baseline_20260923",
+            "physiosync_workout_vault_v1",
+            "physiosync_workout_vault",
+            "physiosync_vault"
+        ];
+
+        // Golden Seed Data directly extracted from Daily Workout Journal (2026-09-23 & 2026-09-24)
+        const SEED_WORKOUT_HISTORY = {
+            // Day 1: Athletic Power & Anterior Quads/Pecs (2026-09-23)
+            "w1_day1_barefoot_pogos": {
+                precheck: { status: "clean", severity: null, notes: "Zero pre-existing aches, ready to train", muscleId: null, muscleName: "Full Body Ready" },
+                1: { weight: 0, reps: 20, status: "clean", sensationType: null, severity: null, muscleId: null, muscleName: "All Target Muscles", notes: "Stiff ankle spring pop, <200ms contact" },
+                2: { weight: 0, reps: 20, status: "clean", sensationType: null, severity: null, muscleId: null, muscleName: "All Target Muscles", notes: "Achilles and plantar fascia primed" }
+            },
+            "w1_day1_bed_box_jump": {
+                precheck: { status: "clean", severity: null, notes: "Zero pre-existing aches, ready to train", muscleId: null, muscleName: "Full Body Ready" },
+                1: { weight: 0, reps: 3, status: "clean", sensationType: null, severity: null, muscleId: null, muscleName: "All Target Muscles", notes: "Soft mattress landing" },
+                2: { weight: 0, reps: 3, status: "clean", sensationType: null, severity: null, muscleId: null, muscleName: "All Target Muscles", notes: "Clean hip explosion" },
+                3: { weight: 0, reps: 3, status: "clean", sensationType: null, severity: null, muscleId: null, muscleName: "All Target Muscles", notes: "CNS fresh, zero landing shock" }
+            },
+            "w1_day1_heel_wedge_goblet": {
+                precheck: { status: "clean", severity: null, notes: "Zero pre-existing aches, ready to train", muscleId: null, muscleName: "Full Body Ready" },
+                1: { weight: 24, reps: 8, status: "clean", sensationType: null, severity: null, muscleId: null, muscleName: "All Target Muscles", notes: "Clean set, deep knee flexion" },
+                2: { weight: 24, reps: 8, status: "fatigue", sensationType: "Joint / Tendon Shear", severity: 2, muscleId: "glute_med_right", muscleName: "Right Glute Medius", notes: "Dull soreness near right glute medius. Most activation felt on front quad." },
+                3: { weight: 24, reps: 8, status: "clean", sensationType: null, severity: null, muscleId: "glute_med_left", muscleName: "Left Glute Medius", notes: "Corkscrew cue eliminated right glute medius ache!" },
+                4: { weight: 24, reps: 8, status: "clean", sensationType: null, severity: null, muscleId: null, muscleName: "All Target Muscles", notes: "Symmetrical 50/50 quad drive" }
+            },
+            "w1_day1_deficit_floor_press": {
+                precheck: { status: "clean", severity: null, notes: "Converted permanently to Single-Arm Unilateral Press (18kg working baseline)", muscleId: null, muscleName: "Full Body Ready" },
+                1: { weight: 18, reps: 8, status: "clean", sensationType: null, severity: null, muscleId: null, muscleName: "All Target Muscles", notes: "Flawless sternal stretch, 45° arrowhead tuck" },
+                2: { weight: 18, reps: 8, status: "clean", sensationType: null, severity: null, muscleId: null, muscleName: "All Target Muscles", notes: "Clean unilateral press, non-working arm posted" },
+                3: { weight: 18, reps: 8, status: "clean", sensationType: null, severity: null, muscleId: null, muscleName: "All Target Muscles", notes: "Solid core brace, zero clavicular impingement" },
+                4: { weight: 18, reps: 8, status: "clean", sensationType: null, severity: null, muscleId: null, muscleName: "All Target Muscles", notes: "Confirmed 18kg working baseline" }
+            },
+            "w1_day1_tibialis_raise": {
+                precheck: { status: "clean", severity: null, notes: "Zero pre-existing aches", muscleId: null, muscleName: "Full Body Ready" },
+                1: { weight: 0, reps: 20, status: "clean", sensationType: null, severity: null, muscleId: null, muscleName: "All Target Muscles", notes: "1s isometric dorsiflexion squeeze at top" },
+                2: { weight: 0, reps: 20, status: "clean", sensationType: null, severity: null, muscleId: null, muscleName: "All Target Muscles", notes: "Solid tibialis burn" },
+                3: { weight: 0, reps: 20, status: "clean", sensationType: null, severity: null, muscleId: null, muscleName: "All Target Muscles", notes: "Full dorsiflexion range of motion" }
+            },
+            "w1_day1_neck_curl": {
+                precheck: { status: "clean", severity: null, notes: "Zero cervical strain", muscleId: null, muscleName: "Full Body Ready" },
+                1: { weight: 5, reps: 15, status: "clean", sensationType: null, severity: null, muscleId: null, muscleName: "All Target Muscles", notes: "Towel wrapped plate, controlled flexion" },
+                2: { weight: 5, reps: 15, status: "clean", sensationType: null, severity: null, muscleId: null, muscleName: "All Target Muscles", notes: "10s neutral hold at end" },
+                3: { weight: 5, reps: 15, status: "clean", sensationType: null, severity: null, muscleId: null, muscleName: "All Target Muscles", notes: "Deep SCM activation, zero headache/strain" }
+            },
+            // Day 2: Posterior Chain & V-Taper Lats (2026-09-24)
+            "w1_day2_hamstring_bridge_pri": {
+                precheck: { status: "clean", severity: null, notes: "Pelvic Centration completed (2 sets × 5 deep breaths/side). Neutralized seated rightward pelvic torsion.", muscleId: null, muscleName: "Full Body Ready" },
+                1: { weight: 0, reps: 5, status: "clean", sensationType: null, severity: null, muscleId: "hamstring_left", muscleName: "Left Hamstring", notes: "Left heel dug into wall, left hamstring locked" },
+                2: { weight: 0, reps: 5, status: "clean", sensationType: null, severity: null, muscleId: "obliques_left", muscleName: "Left Oblique", notes: "Full exhale, left pelvis pulled back" }
+            },
+            "w1_day2_bed_row": {
+                precheck: { status: "clean", severity: null, notes: "Medial epicondyle fully protected via lifting straps; torso parallel to floor", muscleId: null, muscleName: "Full Body Ready" }
+            },
+            "w1_day2_kickstand_rdl": {
+                precheck: { status: "clean", severity: null, notes: "Tripod foot rooted; 3s eccentric stretch at long muscle lengths", muscleId: null, muscleName: "Full Body Ready" }
+            },
+            "w1_day2_rotary_chops": {
+                precheck: { status: "clean", severity: null, notes: "Medium Resistance Band anchored high on doorframe/bar", muscleId: null, muscleName: "Full Body Ready" },
+                1: { weight: 0, reps: 8, status: "clean", sensationType: null, severity: null, muscleId: null, muscleName: "All Target Muscles", notes: "Medium Band × 8 reps (Calibration baseline)" },
+                2: { weight: 0, reps: 10, status: "clean", sensationType: null, severity: null, muscleId: null, muscleName: "All Target Muscles", notes: "Medium Band × 10 reps (Reps stepped up dynamically)" },
+                3: { weight: 0, reps: 10, status: "clean", sensationType: null, severity: null, muscleId: null, muscleName: "All Target Muscles", notes: "Medium Band × 10 reps established as working baseline" }
+            },
+            "w1_day2_calf_step": {
+                precheck: { status: "clean", severity: null, notes: "Ball of foot on wedge; 15 kg dumbbell in working-side hand", muscleId: null, muscleName: "Full Body Ready" },
+                1: { weight: 15, reps: 10, status: "clean", sensationType: null, severity: null, muscleId: "foot_right", muscleName: "Right Foot", notes: "Symmetric eccentric lower to floor level; Left foot upward concentric stronger." },
+                2: { weight: 15, reps: 10, status: "clean", sensationType: null, severity: null, muscleId: "foot_left", muscleName: "Left Foot", notes: "Rule of Peak Height Equality enforced: Right foot trained first." },
+                3: { weight: 15, reps: 10, status: "clean", sensationType: null, severity: null, muscleId: "calf_inner_right", muscleName: "Right Calf", notes: "1.0s squeeze at maximum top height matching left." }
+            },
+            // Day 5: Unilateral Ankle Restoration & Glute Drive (2026-09-29)
+            "w1_day5_hip_thrust": {
+                precheck: { status: "clean", severity: null, notes: "Rule of Weaker Side First: Right glute trained first with 2s lockout", muscleId: null, muscleName: "Full Body Ready" },
+                1: { weight: 27, reps: 10, status: "clean", sensationType: null, severity: null, muscleId: "glute_max_right", muscleName: "Right Glute Max", notes: "27 kg dumbbell on hip crease; Right side 2s lockout" },
+                2: { weight: 27, reps: 10, status: "clean", sensationType: null, severity: null, muscleId: "glute_max_left", muscleName: "Left Glute Max", notes: "Left side matched 10 reps" },
+                3: { weight: 27, reps: 10, status: "clean", sensationType: null, severity: null, muscleId: "glute_max_right", muscleName: "Right Glute Max", notes: "Right side fatigue tracked; 2s hold maintained" },
+                4: { weight: 27, reps: 10, status: "clean", sensationType: null, severity: null, muscleId: "glute_max_left", muscleName: "Left Glute Max", notes: "Bilateral parity target set for Week 2" }
+            },
+            "w1_day5_suitcase_carry": {
+                precheck: { status: "clean", severity: null, notes: "Strict Left-Hand carry to correct right pelvic hike", muscleId: null, muscleName: "Full Body Ready" },
+                1: { weight: 27, reps: 40, status: "clean", sensationType: null, severity: null, muscleId: "obliques_right", muscleName: "Right Oblique / QL", notes: "27 kg × 40 paces strictly in left hand; right QL fired solid" },
+                2: { weight: 27, reps: 40, status: "clean", sensationType: null, severity: null, muscleId: "obliques_right", muscleName: "Right Oblique / QL", notes: "Upright spine, zero lateral ribcage lean" },
+                3: { weight: 27, reps: 40, status: "clean", sensationType: null, severity: null, muscleId: "obliques_right", muscleName: "Right Oblique / QL", notes: "Pelvis held horizontally level throughout" }
+            },
+            // Day 6: Deceleration Power, Pectoral Deficit & Arms (2026-09-30)
+            "w1_day6_bed_pushup": {
+                precheck: { status: "clean", severity: null, notes: "Mandatory hollow-body pelvic tilt locked to eliminate lumbar sagging", muscleId: null, muscleName: "Full Body Ready" },
+                1: { weight: 0, reps: 15, status: "clean", sensationType: null, severity: null, muscleId: "chest_lower_left", muscleName: "Pectoralis Major", notes: "Clean 15 reps; 3–4 inch deficit stretch between dumbbell handles" },
+                2: { weight: 0, reps: 15, status: "clean", sensationType: null, severity: null, muscleId: "chest_lower_right", muscleName: "Pectoralis Major", notes: "15 reps; hollow-body core brace solid, zero lumbar sag" },
+                3: { weight: 0, reps: 15, status: "clean", sensationType: null, severity: null, muscleId: "tricep_lateral_right", muscleName: "Triceps / Pecs", notes: "15 reps; strong lockout, deep clavicular/sternal stretch" },
+                4: { weight: 0, reps: 15, status: "clean", sensationType: null, severity: null, muscleId: null, muscleName: "All Target Muscles", notes: "15 reps completed; confirmed 4 sets × 15 reps working baseline" }
+            }
+        };
 
         const WORKOUT_DATABASE = {
             day1: {
-                name: "Day 1: Upper A (Lats, Chest, Triceps, Neck)",
+                name: "Day 1: Athletic Power & Anterior Quads/Pecs (PRI Reset, Tibial Sliders, Pogos, FP Reach, Bed Jumps, Wedged Squat, Deficit Press, Tibialis, Neck)",
                 exercises: [
                     { 
-                        id: "floor_press", 
-                        name: "DB Floor Press", 
+                        id: "pri_9090_reset", 
+                        name: "Bilateral 90/90 Supine Breathing with Yoga Block Squeeze", 
+                        totalSets: 2, 
+                        getTarget: () => "2 sets × 5 deep diaphragmatic breaths (4s nose in, 8s mouth out, 3s pause)", 
+                        defaultWeight: () => 0, 
+                        defaultReps: () => 5, 
+                        tempo: "4s nose inhale into back ribs, 8s full mouth exhale, 3s pause", 
+                        primeMuscles: ["abs_lower", "adductor_left", "adductor_right", "hamstring_inner_left", "hamstring_inner_right"], 
+                        view: "front", 
+                        creator: "Keep It Moving PT", 
+                        videoTitle: "90/90 Breathing with Yoga Block Squeeze (Bilateral Symmetrical)", 
+                        youtubeId: "86weNGIJmlI", 
+                        cues: [
+                            "⚠️ STRICT SYMMETRY: Knees must remain 100% LEVEL. Do NOT shift right knee ahead of left knee.",
+                            "Lie flat on back, feet on wall/chair at 90° hip and knee flexion. Place a 4–6 inch yoga block or folded pillow between knees.",
+                            "Dig heels down gently to tilt tailbone 1 inch off floor (posterior pelvic tilt); squeeze block 50/50 with both inner thighs at 20% effort.",
+                            "Inhale 4s through nose expanding back ribs; exhale 8s fully through mouth until ribs sink; pause 3s empty. Symmetrical adductor pull levels the pubic symphysis and immediately un-pinches the right outer buttock."
+                        ] 
+                    },
+                    { 
+                        id: "tibial_nerve_sliders", 
+                        name: "Seated Tibial & Sciatic Nerve Sliders (Neurodynamic Flossing)", 
+                        totalSets: 2, 
+                        getTarget: () => "2 sets × 10 fluid reps per leg (Continuous smooth motion)", 
+                        defaultWeight: () => 0, 
+                        defaultReps: () => 10, 
+                        tempo: "Fluid wave: foot up/out + look UP <-> foot down + look DOWN", 
+                        primeMuscles: ["calf_inner_left", "calf_inner_right", "hamstring_inner_left", "hamstring_inner_right"], 
+                        view: "back", 
+                        creator: "Rehab Science: Dr. Tom Walters PT, DPT", 
+                        videoTitle: "Seated Tibial Nerve Flossing (Mobilization with Ankle Eversion & Spinal Coordination)", 
+                        youtubeId: "4YlWvFiPWKY", 
+                        startTimestamp: 290,
+                        cues: [
+                            "Sit tall on edge of bed/chair with thighs supported and feet hanging free.",
+                            "PHASE 1 (Tension Foot / Slack Spine): Straighten knee, flex toes UP toward shin, and turn sole of foot slightly OUTWARD (ankle eversion). Simultaneously LOOK UP at the ceiling.",
+                            "PHASE 2 (Slack Foot / Tension Spine): Bend knee back to 90° and point toes DOWN toward floor. Simultaneously drop chin to chest (LOOK DOWN).",
+                            "⚠️ NEVER hold an aggressive static stretch at end-range. Keep it a continuous, fluid, 100% painless flossing wave to glide the tibial nerve through the tarsal tunnel and sciatic notch."
+                        ] 
+                    },
+                    { 
+                        id: "barefoot_pogos", 
+                        name: "Barefoot Carpet Ankle Pogos", 
+                        totalSets: 3, 
+                        getTarget: w => w >= 2 ? "3 sets × 25 rapid spring bounces (<200ms contact)" : "2 sets × 20 rapid spring bounces (<200ms contact)", 
+                        defaultWeight: () => 0, 
+                        defaultReps: w => w >= 2 ? 25 : 20, 
+                        tempo: "Stiff ankle spring pop, <15° knee bend, zero heel strike", 
+                        primeMuscles: ["calf_inner_left", "calf_inner_right", "calf_outer_left", "calf_outer_right", "achilles_left", "achilles_right"], 
+                        view: "back", 
+                        creator: "Ashby Smith", 
+                        videoTitle: "Pogo Jumps: Reactive Elastic Stiffness", 
+                        youtubeId: "L_khHgMz9uU", 
+                        cues: [
+                            "Barefoot on padded carpet/mat; land on ball of foot.",
+                            "Ankles stiff like carbon steel springs; instant elastic recoil.",
+                            "Pre-activates the Achilles tendon and neuromuscular system for bed jumps."
+                        ] 
+                    },
+                    { 
+                        id: "fp_contralateral_reach", 
+                        name: "Functional Patterns Standing Contralateral Reciprocal Reach", 
+                        totalSets: 2, 
+                        getTarget: () => "2 sets × 8 reps per side (Controlled reciprocal sling tension)", 
+                        defaultWeight: () => 0, 
+                        defaultReps: () => 8, 
+                        tempo: "Slow, deliberate reciprocal reach with tall decompressed cylinder", 
+                        primeMuscles: ["obliques_left", "obliques_right", "glute_max_left", "glute_max_right", "lat_left", "lat_right"], 
+                        view: "front", 
+                        creator: "Chaplin Performance", 
+                        videoTitle: "Standing Stance with Contralateral Reach & Sling Dynamics", 
+                        youtubeId: "XNhJiAxMRGA", 
+                        cues: [
+                            "Split athletic stance (Right foot forward, left foot back on ball of foot).",
+                            "Push through lead foot tripod; reach opposite hand forward while driving ipsilateral elbow backward with lat engaged.",
+                            "Maintain a tall decompressed torso cylinder; inhale into 360° ribcage, exhale into reciprocal oblique rotation.",
+                            "🔑 Unwinds seated transverse pelvic torsion and activates the Posterior Oblique Sling (Right Lat <-> Left Glute Max) before dumbbell loading."
+                        ] 
+                    },
+                    { 
+                        id: "bed_box_jump", 
+                        name: "The Concentric Bed Jump Hack (4ft away to 3ft mattress)", 
+                        totalSets: 3, 
+                        getTarget: w => w >= 19 ? "4.5-ft distance × 3 reps (Max vertical pop)" : w >= 13 ? "4.2-ft distance × 3 reps" : w >= 2 ? "4.0-ft distance × 3 reps (Explosive Hip Snap)" : "3.5-ft distance × 3 reps", 
+                        defaultWeight: () => 0, 
+                        defaultReps: () => 3, 
+                        tempo: "Max concentric RFD; soft mattress absorption (<1.5x BW landing)", 
+                        primeMuscles: ["glute_max_left", "glute_max_right", "quad_lat_left", "quad_lat_right", "calf_inner_left", "calf_inner_right"], 
+                        view: "front", 
+                        creator: "Gerardi Performance", 
+                        videoTitle: "How to Properly Perform Box Jumps With Good Form (Exercise Demonstration)", 
+                        youtubeId: "HJZh-12p6vg", 
+                        cues: [
+                            "Step back to 4.0 feet from the 3-foot bed on fresh CNS (Week 2 expanded distance).",
+                            "Explosive arm swing and hip drive; land softly on bed mattress in balanced athletic crouch.",
+                            "Step down gently onto floor; NEVER jump backward down."
+                        ] 
+                    },
+                    { 
+                        id: "heel_wedge_goblet", 
+                        name: "15°–20° Heel-Elevated DB Goblet Squat", 
+                        totalSets: 4, 
+                        getTarget: w => w == 2 ? "24 kg × 10, 10, 10, 10 reps (Week 2 VMO Teardrop Expansion)" : w >= 21 ? "38–40 kg × 8–10 reps" : w >= 15 ? "36 kg × 8–10 reps" : w >= 9 ? "32–34 kg × 8–10 reps" : w >= 5 ? "28–30 kg × 8–10 reps" : w >= 3 ? "26 kg × 8–10 reps" : "24 kg × 8–10 reps", 
+                        defaultWeight: w => w >= 21 ? 38 : w >= 15 ? 36 : w >= 9 ? 32 : w >= 5 ? 28 : w >= 3 ? 26 : 24, 
+                        defaultReps: w => (w == 2 || w == 4 || w == 8 || w == 10 || w == 14 || w == 16 || w == 20 || w == 22) ? 10 : 8, 
+                        tempo: "3-1-1-0: 3s eccentric, 1s dead stop at bottom", 
+                        primeMuscles: ["quad_vmo_left", "quad_vmo_right", "knee_patellar_left", "knee_patellar_right"], 
+                        view: "front", 
+                        creator: "Slight Edge Fitness", 
+                        videoTitle: "Dumbbell Goblet Squat + Heels Elevated (VMO Teardrop Focus)", 
+                        youtubeId: "cvaLhYPSHto", 
+                        cues: [
+                            "15°–20° heel wedge eliminates left ankle block; flare toes 15°–20°.",
+                            "🔑 Corkscrew both feet outward into the wedge to pre-activate left glute medius and prevent rightward pelvic shift.",
+                            "Keep tall 360° chest expansion ('tall chest cylinder'); never collapse right ribcage into right hip during bottom pause.",
+                            "Torso stays strictly vertical; drive 50/50 evenly through both heels out of the hole."
+                        ] 
+                    },
+                    { 
+                        id: "deficit_floor_press", 
+                        name: "Single-Arm Thoracic Deficit DB Press (Bolster Assisted)", 
                         totalSets: 4,
-                        getTarget: w => w >= 7 ? "34 kg × 8 reps" : w >= 5 ? "32 kg × 8 reps" : w >= 3 ? "30 kg × 8 reps" : w === 2 ? "28 kg × 10 reps" : "28 kg × 8 reps", 
-                        defaultWeight: w => w >= 7 ? 34 : w >= 5 ? 32 : w >= 3 ? 30 : 28, 
-                        defaultReps: w => w === 2 || w === 4 ? 10 : 8, 
-                        tempo: "Set 1: 3s floor pause", 
-                        primeMuscles: ["chest_lower_left", "chest_lower_right", "tricep_lateral_left", "tricep_lateral_right", "delts_front_left", "delts_front_right"], 
+                        getTarget: w => w == 2 ? "18 kg × 10, 10, 10, 10 reps (Week 2 Sternal Pec Deficit Expansion)" : w >= 23 ? "34 kg × 8–10 reps/side" : w >= 20 ? "32 kg × 8–10 reps/side" : w >= 17 ? "30 kg × 8–10 reps/side" : w >= 15 ? "28 kg × 8–10 reps/side" : w >= 10 ? "26 kg × 8–10 reps/side" : w >= 8 ? "24 kg × 8–10 reps/side" : w >= 5 ? "22 kg × 8 reps/side" : w >= 3 ? "20 kg × 8 reps/side" : "18 kg × 8–10 reps/side", 
+                        defaultWeight: w => w >= 23 ? 34 : w >= 20 ? 32 : w >= 17 ? 30 : w >= 15 ? 28 : w >= 10 ? 26 : w >= 8 ? 24 : w >= 5 ? 22 : w >= 3 ? 20 : 18, 
+                        defaultReps: w => (w == 2 || w == 4 || w == 8 || w == 10 || w == 14 || w == 16 || w == 20 || w == 22) ? 10 : 8, 
+                        tempo: "3-1-1-0: 3s eccentric, 1s dead-stop deficit pause, 45° arrowhead tuck", 
+                        primeMuscles: ["chest_lower_left", "chest_lower_right", "chest_upper_left", "chest_upper_right", "tricep_lateral_left", "tricep_lateral_right", "obliques_left", "obliques_right"], 
                         view: "front",
-                        creator: "Dr. Mike Israetel (Renaissance Periodization)",
-                        videoTitle: "How to Dumbbell Floor Press for Huge Pecs",
-                        youtubeId: "uUGDRwge4F8",
-                        cues: ["Tuck elbows at 45°–60° from torso.", "Set 1: 3-second dead-stop on carpet to build tendon stiffness.", "Squeeze pecs at lockout."]
+                        creator: "Noregretspt (Physical Therapy)",
+                        videoTitle: "Why the Chest Press on a Foam Roller is Great for Your Shoulders & Chest Stretch",
+                        youtubeId: "difCdAzFAbs",
+                        cues: [
+                            "Perform SINGLE-ARM: Use two hands to safely position dumbbell on chest; non-working arm posts wide on floor for anti-rotation stability.",
+                            "Tuck elbow to 45°–55° ('Arrowhead' angle) with semi-neutral grip (bell at 45°) to eliminate clavicle/AC joint pinching.",
+                            "Lower to nipple line / lower sternum with 1s dead-stop at deficit. Never flare elbow out to 90°."
+                        ]
                     },
                     { 
-                        id: "bed_row", 
-                        name: "Bed-Braced Single-Arm DB Row", 
-                        totalSets: 4,
-                        getTarget: w => w >= 7 ? "38–40 kg × 8 reps" : w >= 5 ? "36 kg × 8 reps" : w >= 3 ? "34 kg × 8 reps" : w === 2 ? "32 kg × 10 reps" : "32 kg × 8 reps", 
-                        defaultWeight: w => w >= 7 ? 38 : w >= 5 ? 36 : w >= 3 ? 34 : 32, 
-                        defaultReps: w => w === 2 || w === 4 ? 10 : 8, 
-                        tempo: "2s peak squeeze at hip", 
-                        primeMuscles: ["lat_lower_left", "lat_lower_right", "rhomboids"], 
-                        view: "back",
-                        creator: "Eugene Teo (Ganbaru Method)",
-                        videoTitle: "Dumbbell Row: Fix Your Form & Stop Bicep/Grip Fatigue",
-                        youtubeId: "DMo3HJoawrU",
-                        cues: ["Brace one palm on bed, hips at 45°.", "Pull elbow in an arc to hip pocket.", "Hook grip to save forearms."]
-                    },
-                    { 
-                        id: "pullup", 
-                        name: "Neutral-Grip Pull-Up", 
-                        totalSets: 3,
-                        getTarget: w => w >= 7 ? "+12.5 kg × 6–8 reps" : w >= 5 ? "+10 kg × 6 reps" : w >= 4 ? "+7.5 kg × 6 reps" : w >= 3 ? "+5 kg × 6 reps" : w === 2 ? "Bodyweight × 10 reps" : "Bodyweight × 8 reps", 
-                        defaultWeight: w => w >= 7 ? 12.5 : w >= 5 ? 10 : w >= 4 ? 7.5 : w >= 3 ? 5 : 0, 
-                        defaultReps: w => w >= 3 ? 6 : w === 2 ? 10 : 8, 
-                        tempo: "Thumbless grip, 3s lower", 
-                        primeMuscles: ["lat_upper_left", "lat_upper_right", "biceps_left", "biceps_right"], 
-                        view: "back",
-                        creator: "Jeff Cavaliere (Athlean-X)",
-                        videoTitle: "Pull-Ups Without Elbow Pain (Neutral Grip Technique)",
-                        youtubeId: "eGo4IYlbE5g",
-                        cues: ["Thumbless neutral grip to protect brachioradialis.", "Depress shoulder blades before pulling.", "3s slow eccentric lower."]
-                    },
-                    { 
-                        id: "tricep_ext", 
-                        name: "Overhead DB Triceps Extension", 
-                        totalSets: 3,
-                        getTarget: w => w >= 7 ? "20 kg × 10 reps" : w >= 5 ? "20 kg × 8 reps" : w >= 3 ? "17.5 kg × 8 reps" : w === 2 ? "15 kg × 12 reps" : "15 kg × 10 reps", 
-                        defaultWeight: w => w >= 5 ? 20 : w >= 3 ? 17.5 : 15, 
-                        defaultReps: w => w === 2 ? 12 : w === 4 ? 10 : w >= 3 ? 8 : 10, 
-                        tempo: "15s iso-hold final set", 
-                        primeMuscles: ["tricep_long_left", "tricep_long_right"], 
-                        view: "back",
-                        creator: "Dr. Mike Israetel (RP)",
-                        videoTitle: "Overhead Triceps Extensions: Maximizing Long Head Growth",
-                        youtubeId: "ir5Psb44uGs",
-                        cues: ["Ribcage down, no lumbar arching.", "Deep stretch at bottom.", "Final set 15s hold at 90°."]
+                        id: "tibialis_raise", 
+                        name: "Wall Tibialis Anterior Raises", 
+                        totalSets: 3, 
+                        getTarget: w => w >= 2 ? "Bodyweight × 25 reps (1s peak squeeze, ankle armor)" : "Bodyweight × 20 reps (1s top hold)", 
+                        defaultWeight: w => w >= 13 ? 5 : 0, 
+                        defaultReps: w => w >= 2 ? 25 : 20, 
+                        tempo: "1s hard isometric dorsiflexion squeeze at top", 
+                        primeMuscles: ["tibialis_left", "tibialis_right"], 
+                        view: "front", 
+                        creator: "Bulletproof Jumper", 
+                        videoTitle: "Tibialis Raise Benefits: Deceleration & Ankle Armor", 
+                        youtubeId: "WKVBwoRJKfI", 
+                        cues: [
+                            "Glutes on wall, legs straight.",
+                            "Pull toes as high toward shins as possible; 1s hold at peak.",
+                            "Builds the primary decelerator muscle that protects knees and patellar tendon during jump landings."
+                        ] 
                     },
                     { 
                         id: "neck_curl", 
-                        name: "Bed-Edge Neck Curls & Ext.", 
-                        totalSets: 3,
-                        getTarget: w => w >= 7 ? "12.5 kg × 12 reps" : w >= 5 ? "10 kg × 12 reps" : w >= 3 ? "7.5 kg × 12 reps" : w === 2 ? "5 kg × 18 reps" : "5 kg × 15 reps", 
-                        defaultWeight: w => w >= 7 ? 12.5 : w >= 5 ? 10 : w >= 3 ? 7.5 : 5, 
-                        defaultReps: w => w === 2 ? 18 : 12, 
-                        tempo: "10–15s hold neutral", 
-                        primeMuscles: ["neck_front", "neck_back", "traps_upper"], 
-                        view: "front",
-                        creator: "Jeff Nippard",
-                        videoTitle: "How to Build a Thicker Neck Safely",
-                        youtubeId: "k_21Z6i5p80",
-                        cues: ["Wrap towel around plate/DB.", "Chin-tuck before curling.", "Controlled smooth tempo."]
+                        name: "Supine Bed-Edge Neck Curls", 
+                        totalSets: 3, 
+                        getTarget: w => w == 2 ? "5 kg × 18, 18, 18 reps (Week 2 Cervical Flexor Endurance)" : w >= 21 ? "15 kg × 15 reps" : w >= 15 ? "12.5 kg × 15 reps" : w >= 9 ? "10 kg × 15 reps" : w >= 5 ? "7.5 kg × 15 reps" : "5 kg × 15–20 reps", 
+                        defaultWeight: w => w >= 21 ? 15 : w >= 15 ? 12.5 : w >= 9 ? 10 : w >= 5 ? 7.5 : 5, 
+                        defaultReps: w => w == 2 ? 18 : 15, 
+                        tempo: "Controlled smooth tempo, 10s neutral hold at end of set", 
+                        primeMuscles: ["neck_front", "traps_upper"], 
+                        view: "front", 
+                        creator: "Jeff Nippard", 
+                        videoTitle: "Plate-Loaded Neck Curls: Setup, Strict Form & Spine Safety", 
+                        youtubeId: "gimeRpdqWQw", 
+                        startTimestamp: 243, 
+                        cues: [
+                            "MANDATORY: Bend knees at 90° with feet flat on bed to lock the pelvis and prevent abs & lower back from crunching the weight.",
+                            "Position shoulders right at the edge of the bed/bench; isolate movement strictly to cervical spine flexion (chin-to-sternum).",
+                            "Wrap dumbbell or plate in a soft towel or wear a knit beanie on your forehead for comfort.",
+                            "Keep a light/loose fingertip guide on the weight—do NOT pull or row the plate with your arms; let the anterior neck flexors (SCM & deep cervical flexors) do 100% of the work."
+                        ] 
                     }
                 ]
             },
             day2: {
-                name: "Day 2: Lower A (Quads, Ankle, Patellar)",
-                exercises: [
-                    { id: "rfess", name: "RFESS (Foot on Bed)", totalSets: 4, getTarget: () => "18 kg DBs × 8 reps", defaultWeight: () => 18, defaultReps: () => 8, tempo: "3s pause Set 1", primeMuscles: ["quad_lat_left", "quad_vmo_left", "glute_max_left"], view: "front", creator: "Ben Patrick (ATG)", videoTitle: "Bulgarian Split Squats for Bulletproof Knees", youtubeId: "2C-uNgKwPLE", cues: ["Heel wedge under front foot.", "Full stretch without knee pain."] },
-                    { id: "goblet", name: "Goblet Squat (Heels Up)", totalSets: 3, getTarget: () => "28 kg DB × 10 reps", defaultWeight: () => 28, defaultReps: () => 10, tempo: "Full knee bend", primeMuscles: ["quad_vmo_left", "quad_vmo_right", "knee_patellar_left"], view: "front", creator: "Ben Patrick", videoTitle: "Heel-Elevated Goblet Squat", youtubeId: "p3g4wUPE8iM", cues: ["Deep upright squat.", "Teardrop VMO focus."] },
-                    { id: "calf_step", name: "Single-Leg DB Calf Raise on Step", totalSets: 4, getTarget: () => "15 kg DB × 12 reps", defaultWeight: () => 15, defaultReps: () => 12, tempo: "30s bottom stretch hold Sets 2 & 4", primeMuscles: ["calves_left", "calves_right", "ankle_achilles_left", "ankle_achilles_right"], view: "back", creator: "Eugene Teo", videoTitle: "Calf Raises Done Right for Ankle & Achilles Strength", youtubeId: "gwLzMXqqp04", cues: ["Full stretch at bottom.", "Pause for 2 seconds at peak squeeze."] }
-                ]
-            },
-            day3: {
-                name: "Day 3: Active Recovery & Gait",
-                exercises: [
-                    { id: "couch_stretch", name: "Bed Couch Stretch", totalSets: 3, getTarget: () => "45s hold/leg", defaultWeight: () => 0, defaultReps: () => 45, tempo: "Deep diaphragmatic breathing", primeMuscles: ["quad_lat_left", "quad_lat_right"], view: "front", creator: "Kelly Starrett", videoTitle: "The Couch Stretch for Hip Flexor Opening", youtubeId: "40dGjHqA_wU", cues: ["Back knee near bed edge.", "Squeeze glute to extend hip."] }
-                ]
-            },
-            day4: {
-                name: "Day 4: Upper B (Delts, Biceps, Forearms, Neck)",
-                exercises: [
-                    { id: "db_shoulder_press", name: "Seated DB Shoulder Press", totalSets: 3, getTarget: () => "20 kg DBs × 8 reps", defaultWeight: () => 20, defaultReps: () => 8, tempo: "Neutral grip smooth press", primeMuscles: ["delts_front_left", "delts_front_right"], view: "front", creator: "Dr. Mike Israetel", videoTitle: "Dumbbell Overhead Press Guide", youtubeId: "hzEdk2zH2qQ", cues: ["Palms facing inward.", "Controlled descent."] },
-                    { id: "bed_pushup", name: "Bed-Deficit Push-Up", totalSets: 3, getTarget: () => "Bodyweight × 12 reps", defaultWeight: () => 0, defaultReps: () => 12, tempo: "3s deep stretch at bottom", primeMuscles: ["chest_upper_left", "chest_upper_right", "chest_lower_left", "chest_lower_right"], view: "front", creator: "Jeff Cavaliere", videoTitle: "Deep Deficit Push-Ups for Chest Growth", youtubeId: "IODxDxX7oi4", cues: ["Hands on bed edge or books.", "Chest sinks deep between hands."] },
-                    { id: "lateral_raise", name: "Lean-Away DB Lateral Raise", totalSets: 4, getTarget: () => "10 kg DB × 12 reps", defaultWeight: () => 10, defaultReps: () => 12, tempo: "15s iso-hold final set", primeMuscles: ["delts_lateral_left", "delts_lateral_right"], view: "front", creator: "Eugene Teo", videoTitle: "The Perfect Lateral Raise for Wide Delts", youtubeId: "3VcKaXpzqRo", cues: ["Lead with elbows.", "Slight forward torso tilt."] },
-                    { id: "bicep_curl", name: "Incline-Torso DB Bicep Curl", totalSets: 3, getTarget: () => "12.5 kg DBs × 10 reps", defaultWeight: () => 12.5, defaultReps: () => 10, tempo: "5s freeze at 90° on rep 8", primeMuscles: ["biceps_left", "biceps_right"], view: "front", creator: "Dr. Mike Israetel", videoTitle: "Dumbbell Curls for Maximum Bicep Growth", youtubeId: "in7PaeYlhrM", cues: ["Supinate hard at top.", "No swinging shoulders."] },
-                    { id: "forearm_superset", name: "DB Wrist Curls & Ext. Superset", totalSets: 3, getTarget: () => "10 kg DB × 15 reps", defaultWeight: () => 10, defaultReps: () => 15, tempo: "Full flexion & extension", primeMuscles: ["forearm_inner_left", "forearm_inner_right", "forearm_outer_left", "forearm_outer_right"], view: "front", creator: "Jeff Nippard", videoTitle: "Science-Based Forearm Training", youtubeId: "c_vH5M2qP10", cues: ["Forearms flat on thighs.", "Direct forearm thickness builder."] }
-                ]
-            },
-            day5: {
-                name: "Day 5: Lower B (Hamstrings, Glutes, Core)",
-                exercises: [
-                    { id: "tibialis_raise", name: "Tibialis Anterior Wall Raises", totalSets: 2, getTarget: () => "20 reps", defaultWeight: () => 0, defaultReps: () => 20, tempo: "Peak dorsiflexion pull", primeMuscles: ["shin_tibialis_left", "shin_tibialis_right"], view: "front", creator: "Ben Patrick (ATG)", videoTitle: "Tibialis Raises to Protect Knees and Jump Higher", youtubeId: "g4x1b4p9j9I", cues: ["Glutes on wall.", "Pull toes as high toward shins as possible."] },
-                    { id: "single_leg_rdl", name: "Single-Leg Contralateral DB RDL", totalSets: 4, getTarget: () => "22 kg DB × 8 reps/leg", defaultWeight: () => 22, defaultReps: () => 8, tempo: "3s eccentric hinge", primeMuscles: ["hamstring_biceps_left", "hamstring_biceps_right", "glute_max_left", "glute_max_right"], view: "back", creator: "Eugene Teo", videoTitle: "Single Leg RDL Mastery", youtubeId: "9o4S1E0y_u0", cues: ["Hips square.", "Feel stretch in working hamstring."] },
-                    { id: "hip_thrust", name: "Bed-Edge B-Stance Hip Thrust", totalSets: 3, getTarget: () => "28 kg DB × 10 reps/leg", defaultWeight: () => 28, defaultReps: () => 10, tempo: "2s glute squeeze at top", primeMuscles: ["glute_max_left", "glute_max_right"], view: "back", creator: "Bret Contreras", videoTitle: "B-Stance Hip Thrust Technique", youtubeId: "Zp26q4BY5HE", cues: ["Upper back on bed edge.", "Drive through heel."] },
-                    { id: "suitcase_carry", name: "Single-Arm Suitcase Carry", totalSets: 3, getTarget: () => "32 kg DB × 40 paces/side", defaultWeight: () => 32, defaultReps: () => 40, tempo: "Upright athletic posture", primeMuscles: ["obliques_left", "obliques_right", "lat_lower_left", "lat_lower_right"], view: "front", creator: "Dr. Stuart McGill", videoTitle: "Suitcase Carries for Core & Hip Stability", youtubeId: "x0oQ2vI9L8Y", cues: ["Do not lean toward the weight.", "Grip tight, walk tall."] }
-                ]
-            },
-            day6: {
-                name: "Day 6: Athletic Rotary, Plyometrics & Jump Power",
+                name: "Day 2: Posterior Chain & V-Taper Lats (90/90 Bridge, Nerve Sliders, Strapped Rows, B-Stance RDLs, Rotational Chops, Calf Raise)",
                 exercises: [
                     { 
-                        id: "pogo_hops", 
-                        name: "Barefoot Ankle Pogo Hops", 
+                        id: "hamstring_bridge_pri", 
+                        name: "Bilateral Symmetrical 90/90 Hamstring Bridge with Yoga Block", 
                         totalSets: 2, 
-                        getTarget: () => "20 rapid elastic bounces", 
+                        getTarget: () => "2 sets × 5 deep diaphragmatic breaths (Bilateral Hamstring Activation)", 
                         defaultWeight: () => 0, 
-                        defaultReps: () => 20, 
-                        tempo: "Stiff ankle spring pop", 
-                        primeMuscles: ["calves_left", "calves_right", "ankle_achilles_left", "ankle_achilles_right"], 
+                        defaultReps: () => 5, 
+                        tempo: "Full exhalation, squeeze block 50/50, hold pelvic tuck", 
+                        primeMuscles: ["hamstring_inner_left", "hamstring_inner_right", "glute_med_left", "glute_med_right"], 
                         view: "back", 
-                        creator: "Dr. Stuart McGill", 
-                        videoTitle: "Pogo Hops for Tendon Stiffness and Spring Elasticity", 
-                        youtubeId: "k5W3B3W5hWw", 
-                        cues: ["Ankles stiff like carbon steel springs.", "Minimal knee bend.", "Instant recoil off the floor."] 
+                        creator: "Zac Cupples", 
+                        videoTitle: "90-90 Tilt and Squeeze (Bilateral Hamstring Activation)", 
+                        youtubeId: "i6QK_Q088Vw", 
+                        cues: [
+                            "⚠️ STRICT BILATERAL SYMMETRY: Knees remain 100% level. Do NOT shift right knee forward (protects right outer buttock from impingement).",
+                            "Lie supine with feet flat on wall or chair at 90° hip and knee flexion. Place a 4–6 inch yoga block or folded pillow between knees.",
+                            "Dig heels down toward floor to activate hamstrings; peel tailbone 1 inch off floor into posterior pelvic tilt while squeezing block 50/50.",
+                            "Reach hands toward ceiling on full exhalation; maintain the pelvic tuck through 5 deep diaphragmatic breaths (2 sets)."
+                        ] 
                     },
                     { 
-                        id: "bed_box_jump", 
-                        name: "Bed Box Jump (4ft to 3ft high)", 
+                        id: "tibial_nerve_sliders", 
+                        name: "Seated Tibial & Sciatic Nerve Sliders (Neurodynamic Flossing)", 
+                        totalSets: 2, 
+                        getTarget: () => "2 sets × 10 fluid reps per leg (Continuous smooth motion)", 
+                        defaultWeight: () => 0, 
+                        defaultReps: () => 10, 
+                        tempo: "Fluid wave: foot up/out + look UP <-> foot down + look DOWN", 
+                        primeMuscles: ["calf_inner_left", "calf_inner_right", "hamstring_inner_left", "hamstring_inner_right"], 
+                        view: "back", 
+                        creator: "Rehab Science: Dr. Tom Walters PT, DPT", 
+                        videoTitle: "Seated Tibial Nerve Flossing (Mobilization with Ankle Eversion & Spinal Coordination)", 
+                        youtubeId: "4YlWvFiPWKY", 
+                        startTimestamp: 290, 
+                        cues: [
+                            "Sit tall on edge of bed/chair with thighs supported and feet hanging free.",
+                            "PHASE 1 (Tension Foot / Slack Spine): Straighten knee, flex toes UP toward shin, and turn sole of foot slightly OUTWARD (ankle eversion). Simultaneously LOOK UP at the ceiling.",
+                            "PHASE 2 (Slack Foot / Tension Spine): Bend knee back to 90° and point toes DOWN toward floor. Simultaneously drop chin to chest (LOOK DOWN).",
+                            "⚠️ MANDATORY BEFORE RDLS: De-tensions the inner calf and sciatic nerve sheath so hamstrings can hinge without neurological guarding."
+                        ] 
+                    },
+                    { 
+                        id: "half_kneeling_lat_pulldown", 
+                        name: "Half-Kneeling High-to-Low Lat Pulldown (SPINE-DECOMPRESSED)", 
                         totalSets: 4, 
-                        getTarget: () => "4-ft distance to 3-ft bed × 4 reps", 
+                        getTarget: w => w >= 15 ? "Extra-Heavy + Medium Band × 12 reps (2s lat hold)" : w >= 9 ? "Extra-Heavy Band × 10–12 reps (2s lat hold)" : w >= 5 ? "Heavy Band × 12 reps" : w >= 3 ? "Heavy Band × 10, 10, 10, 10 (2s peak lat hold)" : w == 2 ? "32kg/27kg logged → Next Week: Heavy Band × 10 reps (Zero Back Shear)" : "Heavy Band × 10–12 reps", 
                         defaultWeight: () => 0, 
-                        defaultReps: () => 4, 
-                        tempo: "Max triple extension; soft mattress landing", 
-                        primeMuscles: ["glute_max_left", "glute_max_right", "quad_lat_left", "quad_lat_right", "calves_left", "calves_right"], 
-                        view: "front", 
-                        creator: "PJF Performance", 
-                        videoTitle: "Box Jumps for Maximal Vertical Jump Power", 
-                        youtubeId: "y1X2wJ6T5F0", 
-                        cues: ["Stand 4 feet from 3-foot bed.", "Explosive arm swing and hip drive.", "Land softly on bed mattress (zero impact shock). Step down gently."] 
-                    },
-                    { 
-                        id: "broad_jump", 
-                        name: "Double-Leg Broad Jump to 2s Stick", 
-                        totalSets: 3, 
-                        getTarget: w => `${170 + (w - 1) * 2} cm target × 4 reps`, 
-                        defaultWeight: () => 0, 
-                        defaultReps: () => 4, 
-                        tempo: "2-second ninja stick hold", 
-                        primeMuscles: ["glute_max_left", "glute_max_right", "hamstring_biceps_left", "hamstring_biceps_right", "calves_left", "calves_right"], 
+                        defaultReps: w => w >= 2 ? 10 : 10, 
+                        tempo: "3-1-2-0: 3s overhead stretch reach (inhale), 2s peak lat squeeze at hip (exhale)", 
+                        primeMuscles: ["lat_lower_left", "lat_lower_right", "rhomboids"], 
                         view: "back", 
-                        creator: "Nathanael Morton", 
-                        videoTitle: "Broad Jump Mechanics for Explosive Athletes", 
-                        youtubeId: "8c7L3w9V0Yg", 
-                        cues: ["Baseline: 170 cm.", "Explode horizontally with full hip extension.", "Land softly in athletic quarter-squat and hold 2 seconds without wobbling."] 
+                        creator: "Mike Robertson (MS, CSCS)", 
+                        videoTitle: "How to Perform the Half-Kneeling Lat Pulldown (Spine & Hip Decompression)", 
+                        youtubeId: "oIPT8T0UneU", 
+                        startTimestamp: 75,
+                        cues: [
+                            "90-90 half-kneeling position on cushioned mat; knee, hip, and shoulder aligned vertically.",
+                            "Anchor band high on doorframe/bar; reach LONG at top on deep inhale to decompress lower back & psoas.",
+                            "Exhale forcefully and pull elbow in 45° arc to hip crest; squeeze lat for 2s with ZERO spinal shear."
+                        ] 
                     },
                     { 
-                        id: "skater_hops", 
-                        name: "Lateral Skater Hops with Stick", 
-                        totalSets: 3, 
-                        getTarget: () => "6 reps/side", 
-                        defaultWeight: () => 0, 
-                        defaultReps: () => 6, 
-                        tempo: "2s single-leg balance hold", 
-                        primeMuscles: ["glute_med_left", "glute_med_right", "knee_joint_left", "knee_joint_right"], 
-                        view: "front", 
-                        creator: "Knees Over Toes Guy", 
-                        videoTitle: "Lateral Bounds for Bulletproof Knees and Deceleration", 
-                        youtubeId: "7cK4V2j1K9Q", 
-                        cues: ["Bound laterally off one leg.", "Absorb landing on single leg without knee caving inward.", "Hold 2 seconds."] 
+                        id: "kickstand_rdl", 
+                        name: "B-Stance Kickstand Dumbbell RDL", 
+                        totalSets: 4, 
+                        getTarget: w => w >= 19 ? "32–34 kg DBs × 8–10 reps" : w >= 13 ? "28–30 kg DBs × 8–10 reps" : w >= 7 ? "26 kg DBs × 8–10 reps" : w == 2 ? "22 kg × 10, 10, 10, 10 (Week 2 Hinge Expansion)" : "22–24 kg DBs × 8–10 reps", 
+                        defaultWeight: w => w >= 19 ? 32 : w >= 13 ? 28 : w >= 7 ? 26 : 22, 
+                        defaultReps: w => w >= 2 ? 10 : 8, 
+                        tempo: "3s eccentric hinge, barefoot tripod rooted", 
+                        primeMuscles: ["hamstring_inner_left", "hamstring_inner_right", "hamstring_outer_left", "hamstring_outer_right", "glute_max_left", "glute_max_right"], 
+                        view: "back", 
+                        creator: "Fitness Pain Free (Dr. Dan Pope, DPT)", 
+                        videoTitle: "How to Perform a Kickstand Dumbbell Romanian Deadlift", 
+                        youtubeId: "-ULvnca_WMs", 
+                        cues: [
+                            "80% weight on front working leg; rear kickstand toe lightly touches floor for balance only.",
+                            "Barefoot tripod rooted into floor (heel, 1st metatarsal, 5th metatarsal).",
+                            "Neutral lower back throughout; send hips straight back into a deep loaded hamstring stretch (3s eccentric)."
+                        ] 
                     },
                     { 
                         id: "rotary_chops", 
                         name: "High-to-Low Rotational Band Chops", 
                         totalSets: 3, 
-                        getTarget: () => "10 reps/side", 
+                        getTarget: w => w >= 19 ? "3 sets × 10–12 reps/side (Max Band Tension)" : w >= 9 ? "3 sets × 10–12 reps/side (Extra-Heavy Band)" : w >= 4 ? "3 sets × 10–12 reps/side (Heavy Band)" : w >= 2 ? "3 sets × 10 reps/side (Medium Band)" : "3 sets × 10 reps/side (Set 1: 8 reps, Sets 2–3: 10 reps) | Medium Band", 
                         defaultWeight: () => 0, 
-                        defaultReps: () => 10, 
-                        tempo: "Explosive pivot through hips", 
-                        primeMuscles: ["obliques_left", "obliques_right"], 
+                        defaultReps: (w, s) => (s && s >= 2 ? 10 : (w >= 2 ? 10 : 8)), 
+                        tempo: "Explosive diagonal hip-torso rotation with controlled eccentric recoil", 
+                        primeMuscles: ["obliques_left", "obliques_right", "lat_lower_left", "lat_lower_right"], 
                         view: "front", 
-                        creator: "Jeff Cavaliere (Athlean-X)", 
-                        videoTitle: "Rotational Core Power for Athletes", 
-                        youtubeId: "5F3m4B0f6rA", 
-                        cues: ["Anchor band high.", "Pivot back foot and initiate rotation from hips and glutes, not lower spine."] 
+                        creator: "PTP Performance", 
+                        videoTitle: "High to Low Woodchop: Athletic Diagonal Sling", 
+                        youtubeId: "OHP0IrxGsP4", 
+                        cues: [
+                            "Anchor band high on doorframe or sturdy overhead mount.",
+                            "Medium Resistance Band; initiate diagonal chop by pivoting the rear foot and rotating ribcage.",
+                            "Pulls through the Posterior Oblique Sling (lat across to opposite glute) under controlled deceleration.",
+                            "Maintain a tall decompressed spine; exhale forcefully through the chop."
+                        ] 
+                    },
+                    { 
+                        id: "calf_step", 
+                        name: "Single-Leg Wedge Calf Raise (Gastrocnemius & Soleus)", 
+                        totalSets: 3, 
+                        getTarget: w => w >= 13 ? "20–22 kg DB × 10–12 reps" : w >= 7 ? "18 kg DB × 10–12 reps" : w == 2 ? "15 kg DB × 12, 12, 12 reps (Week 2 Plantarflexion Density + 25s hold Set 3)" : "14–16 kg DB × 10–12 reps", 
+                        defaultWeight: w => w >= 13 ? 20 : w >= 7 ? 18 : 15, 
+                        defaultReps: w => w >= 2 ? 12 : 10, 
+                        tempo: "2s loaded stretch at bottom, 1s peak plantarflexion", 
+                        primeMuscles: ["calf_inner_left", "calf_inner_right", "calf_outer_left", "calf_outer_right", "achilles_left", "achilles_right"], 
+                        view: "back", 
+                        creator: "Rehab and Revive (Dr. Justin Lin, PT, DPT)", 
+                        videoTitle: "The Correct Way to Do Calf Raises (Achilles Alignment & Big Toe Drive)", 
+                        youtubeId: "CtyIVeJH6lI", 
+                        cues: [
+                            "Ball of foot on wedge or step; hold 15 kg DB in working-side hand.",
+                            "Both heels sink below step level for a full 2-second loaded stretch at bottom.",
+                            "Drive through big toe knuckle (1st metatarsal) to achieve true terminal vertical height without rolling outward.",
+                            "Rule of Peak Height Equality: Right foot sets the pace. Set 3 finishes with a mandatory 25s isometric hold at peak height."
+                        ] 
+                    }
+                ]
+            },
+            day3: {
+                name: "Day 3: Active Rest & Pelvic De-Torque (Outdoor PRI Walk, Couch Stretch, Ribcage Windmills, PRI 90/90 Breathing)",
+                exercises: [
+                    { 
+                        id: "gait_walk", 
+                        name: "Outdoor PRI Decompression Walk", 
+                        totalSets: 1, 
+                        getTarget: w => w >= 19 ? "60 Mins (10,000 steps)" : w >= 13 ? "55 Mins (8,500–9,000 steps)" : w >= 7 ? "50 Mins (7,500–8,000 steps)" : "45 Mins (6,000–8,000 steps)", 
+                        defaultWeight: () => 0, 
+                        defaultReps: w => w >= 19 ? 60 : w >= 13 ? 55 : w >= 7 ? 50 : 45, 
+                        tempo: "Natural brisk cadence with relaxed reciprocal arm swing", 
+                        primeMuscles: ["glute_med_left", "glute_med_right", "foot_left", "foot_right"], 
+                        view: "front", 
+                        creator: "Bob & Brad (ft. Dr. Stuart McGill)", 
+                        videoTitle: "Stop Sciatica with Dr. Stuart McGill’s “Modified Walking” Program", 
+                        youtubeId: "rsGGZXeq5IM", 
+                        cues: [
+                            "Barefoot shoes or supportive flat trainers.",
+                            "Exaggerate reciprocal arm swing to restore alternating thoracic-pelvic rotation.",
+                            "Zero mechanical lifting tension; restores intervertebral disc hydration."
+                        ] 
+                    },
+                    { 
+                        id: "couch_stretch", 
+                        name: "Bed Couch Stretch (Hip Flexor & Rectus Femoris Release)", 
+                        totalSets: 3, 
+                        getTarget: w => w >= 19 ? "3 sets × 80–90s per leg" : w >= 13 ? "3 sets × 70–80s per leg" : w >= 7 ? "3 sets × 60–75s per leg" : "3 sets × 45–60s per leg", 
+                        defaultWeight: () => 0, 
+                        defaultReps: w => w >= 19 ? 85 : w >= 13 ? 75 : w >= 7 ? 60 : 45, 
+                        tempo: "Deep diaphragmatic breathing, glute contracted", 
+                        primeMuscles: ["quad_lat_left", "quad_lat_right"], 
+                        view: "front", 
+                        creator: "Vitality Wellness", 
+                        videoTitle: "Couch Stretch: Opening Tight Hip Flexors", 
+                        youtubeId: "TIJu5aWPke0", 
+                        cues: [
+                            "Back foot hooked onto bed frame or wall, knee on soft carpet/mat.",
+                            "Squeeze trailing glute hard to push hip crease open.",
+                            "Counteracts 10+ hours of sitting and eliminates anterior pelvic tilt."
+                        ] 
+                    },
+                    { 
+                        id: "rib_windmills", 
+                        name: "Side-Lying Thoracic Ribcage Windmills", 
+                        totalSets: 3, 
+                        getTarget: w => w >= 13 ? "3 sets × 14–15 sweeps per side" : w >= 7 ? "3 sets × 12–14 sweeps per side" : "3 sets × 10–12 sweeps per side", 
+                        defaultWeight: () => 0, 
+                        defaultReps: w => w >= 13 ? 15 : w >= 7 ? 12 : 10, 
+                        tempo: "Smooth 180° rainbow arc, eyes track hand", 
+                        primeMuscles: ["obliques_left", "obliques_right", "lat_upper_left", "lat_upper_right"], 
+                        view: "back", 
+                        creator: "Drake Strength", 
+                        videoTitle: "Side Lying Windmills for Thoracic Spine Mobility", 
+                        youtubeId: "_ZzVbCaLQ0U", 
+                        cues: [
+                            "Lie on side with knees stacked at 90° (pillow between knees locks pelvis).",
+                            "Sweep top arm in large 180° arc overhead to opposite floor, tracking fingers with eyes.",
+                            "Exhale completely at end-range, opening right ribcage away from hip to release right QL/hip compression.",
+                            "Restores leftward thoracic rotation restricted by rightward desk lean."
+                        ] 
+                    },
+                    { 
+                        id: "pri_breathing", 
+                        name: "PRI 90/90 Supine Breathing & Pelvic Reset", 
+                        totalSets: 3, 
+                        getTarget: w => w >= 7 ? "3 sets × 5–6 deep breaths" : "2–3 sets × 5 deep breaths", 
+                        defaultWeight: () => 0, 
+                        defaultReps: () => 5, 
+                        tempo: "4s nasal inhale, 8s slow mouth exhale, 3s pause", 
+                        primeMuscles: ["abs_upper", "abs_lower", "obliques_left", "obliques_right"], 
+                        view: "front", 
+                        creator: "Conor Harris", 
+                        videoTitle: "How To Improve Your Breathing - A Tutorial For Diaphragmatic Breathing", 
+                        youtubeId: "SYJu_y6WvEc", 
+                        cues: [
+                            "Lie supine with feet flat on wall/chair, knees and hips at 90°.",
+                            "🔑 'Lift the Leash Off Right Hip': Inhale quietly through nose for 4s, directing air into right chest and back to elevate right ribcage away from iliac crest.",
+                            "Exhale slowly and fully through open mouth for 8 seconds, feeling ribs depress and abdominal wall engage.",
+                            "Pause for 3 seconds before next inhale to restore parasympathetic tone, pelvic centration, and relieve right hip compression."
+                        ] 
+                    }
+                ]
+            },
+            day4: {
+                name: "Day 4: Vertical Pull, Shoulders & Long-Head Triceps (Neutral Pull-Ups, DB Press, Overhead Ext, Lateral Raise)",
+                exercises: [
+                    { 
+                        id: "wrist_isometrics", 
+                        name: "Keith Baar Isometric Wrist Flexion / Extension Hold", 
+                        totalSets: 3, 
+                        getTarget: () => "3 sets × 30s holds at 70% MVC", 
+                        defaultWeight: () => 0, 
+                        defaultReps: () => 30, 
+                        tempo: "Sustained isometric tension without movement", 
+                        primeMuscles: ["forearm_inner_left", "forearm_inner_right", "elbow_inner_left", "elbow_inner_right"], 
+                        view: "front", 
+                        creator: "E3 Rehab", 
+                        videoTitle: "Tendinopathy Isometric Loading with Dr. Keith Baar", 
+                        youtubeId: "GJuzyy2YRRk", 
+                        cues: [
+                            "Push palm against immovable resistance (desk or wall) at 70% max voluntary contraction.",
+                            "Induces stress-relaxation in the common flexor tendon, turning off pain signaling.",
+                            "Prepares collagen matrix immediately before pull-ups."
+                        ] 
+                    },
+                    { 
+                        id: "neutral_pullup", 
+                        name: "Strict Neutral-Grip Pull-Up (Tendon Lag Focus)", 
+                        totalSets: 3, 
+                        getTarget: w => w >= 21 ? "+15 kg × 6–8 reps" : w >= 19 ? "+12.5 kg × 6 reps" : w >= 15 ? "+10 kg × 6–8 reps" : w >= 11 ? "+7.5 kg × 6 reps" : w >= 9 ? "+5 kg × 6 reps" : w >= 7 ? "+2.5 kg × 6 reps" : "Bodyweight × 6–8 reps (3s eccentric)", 
+                        defaultWeight: w => w >= 21 ? 15 : w >= 19 ? 12.5 : w >= 15 ? 10 : w >= 11 ? 7.5 : w >= 9 ? 5 : w >= 7 ? 2.5 : 0, 
+                        defaultReps: () => 6, 
+                        tempo: "3s eccentric descent, 1s dead-hang stretch, zero swinging", 
+                        primeMuscles: ["lat_upper_left", "lat_upper_right", "biceps_left", "biceps_right", "rhomboids"], 
+                        view: "back", 
+                        creator: "Kade Howell", 
+                        videoTitle: "How To: Neutral Grip Pull-Up | Form Tutorial", 
+                        youtubeId: "Ai4S1uzMP7A", 
+                        cues: [
+                            "Strict parallel/neutral grip to eliminate forearm flexor shear.",
+                            "Strictly bodyweight in Weeks 1–6 to allow tendon remodeling to catch up.",
+                            "Depress shoulder blades before pulling; pull sternum to bar level; 3s lower."
+                        ] 
+                    },
+                    { 
+                        id: "db_shoulder_press", 
+                        name: "Seated Neutral-Grip DB Overhead Shoulder Press", 
+                        totalSets: 4, 
+                        getTarget: w => w >= 21 ? "22–24 kg DBs × 8–10 reps" : w >= 15 ? "20–22 kg DBs × 8–10 reps" : w >= 9 ? "16–18 kg DBs × 8–10 reps" : w >= 5 ? "14–16 kg DBs × 8–10 reps" : "12–14 kg DBs × 8–10 reps", 
+                        defaultWeight: w => w >= 21 ? 22 : w >= 15 ? 20 : w >= 9 ? 16 : w >= 5 ? 14 : 13, 
+                        defaultReps: () => 8, 
+                        tempo: "3-1-1-0 tempo: 3–4s controlled eccentric lowering, 1s ear-level pause", 
+                        primeMuscles: ["delts_front_left", "delts_front_right", "tricep_lateral_left", "tricep_lateral_right"], 
+                        view: "front", 
+                        creator: "Clean Health", 
+                        videoTitle: "Seated Neutral Grip Dumbbell Shoulder Press | Clean Health", 
+                        youtubeId: "DbubsKK0OVU", 
+                        cues: [
+                            "Sit upright with core braced, ribcage locked down.",
+                            "🔑 3–4s Slow Lowering: Control the eccentric descent for 3–4 full seconds to eliminate joint wobble and allow stabilizers to work.",
+                            "🔑 Triceps Joint Coaptation: Actively feel and pre-brace the triceps to lock the elbow joint into its socket and eliminate shift/click.",
+                            "🔑 Depth Clamping: Lower to ear/chin level only (elbows just below shoulder); never collapse deep into ribs.",
+                            "🔑 30°–45° Scapular Plane: Elbows angled 30°–45° forward in a natural 'V' shape with neutral palms to clear subacromial space."
+                        ] 
+                    },
+                    { 
+                        id: "tricep_ext", 
+                        name: "Overhead DB Triceps Extension (Long-Head Mass)", 
+                        totalSets: 3, 
+                        getTarget: w => w >= 21 ? "25 kg × 10–12 reps" : w >= 15 ? "22.5 kg × 10–12 reps" : w >= 9 ? "20 kg × 10–12 reps" : w >= 5 ? "17.5 kg × 10–12 reps" : "15 kg × 10–12 reps", 
+                        defaultWeight: w => w >= 21 ? 25 : w >= 15 ? 22.5 : w >= 9 ? 20 : w >= 5 ? 17.5 : 15, 
+                        defaultReps: () => 10, 
+                        tempo: "Full bottom stretch; Set 3 finishes with 15s isometric hold at 90° bend", 
+                        primeMuscles: ["tricep_long_left", "tricep_long_right"], 
+                        view: "back", 
+                        creator: "Andrew Kwong (DeltaBolic)", 
+                        videoTitle: "The PERFECT Overhead DB Tricep Extension (Long Head Growth)", 
+                        youtubeId: "b_r_LW4HEcM", 
+                        cues: [
+                            "🔑 Strict 90° Depth Clamp: Lower only until elbows reach a 90° angle (forearm parallel to floor); NEVER collapse deep behind head.",
+                            "🔑 Inner Triceps (Medial Head) Drive: Push through the heel of the palm and pinky side to keep inner triceps tensed and lock tendon in its track (eliminates click/sound).",
+                            "Keep elbows tucked forward (scapular plane), ribs pinned down.",
+                            "Final set ends with a 15-second static hold at 90° elbow flexion."
+                        ] 
+                    },
+                    { 
+                        id: "lateral_raise", 
+                        name: "Standing Lean-Away DB Lateral Raise", 
+                        totalSets: 3, 
+                        getTarget: w => w >= 15 ? "12–14 kg DB × 12–15 reps" : w >= 7 ? "10–12 kg DB × 12–15 reps" : "8–10 kg DB × 12–15 reps", 
+                        defaultWeight: w => w >= 15 ? 12 : w >= 7 ? 10 : 8, 
+                        defaultReps: () => 12, 
+                        tempo: "Controlled 2s lower, 1s hold at peak", 
+                        primeMuscles: ["delts_lateral_left", "delts_lateral_right"], 
+                        view: "front", 
+                        creator: "Eugene Teo", 
+                        videoTitle: "How I Like to Do Lateral Raises for Capped Delts", 
+                        youtubeId: "Y5wOY08j8aI", 
+                        cues: [
+                            "Hold doorframe or bedpost, lean torso 15° outward.",
+                            "Maintains continuous tension at the bottom of the movement arc.",
+                            "Lead with elbows, slight internal tilt (pinky up)."
+                        ] 
+                    },
+                    { 
+                        id: "neck_ext_prone", 
+                        name: "Prone Bed-Edge Neck Extensions (Splenius & Upper Traps)", 
+                        totalSets: 3, 
+                        getTarget: w => w >= 21 ? "15 kg × 15–20 reps" : w >= 15 ? "12.5 kg × 15–20 reps" : w >= 9 ? "10 kg × 15–20 reps" : w >= 5 ? "7.5 kg × 15–20 reps" : "5 kg × 15–20 reps", 
+                        defaultWeight: w => w >= 21 ? 15 : w >= 15 ? 12.5 : w >= 9 ? 10 : w >= 5 ? 7.5 : 5, 
+                        defaultReps: () => 15, 
+                        tempo: "Controlled extension, 10s neutral hold at end", 
+                        primeMuscles: ["neck_back", "traps_upper"], 
+                        view: "back", 
+                        creator: "Jeff Nippard", 
+                        videoTitle: "How To Build A Thicker Neck Fast! (Simple Science-Based Training)", 
+                        youtubeId: "gimeRpdqWQw", 
+                        cues: [
+                            "Lie prone on bed with head off edge, holding plate/dumbbell behind head wrapped in a towel.",
+                            "Controlled cervical flexion down, then extend smoothly until head is neutral with upper back.",
+                            "CRITICAL SAFETY RULE: Never hyperextend past neutral; stop as soon as cervical spine aligns with thoracic spine."
+                        ] 
+                    }
+                ]
+            },
+            day5: {
+                name: "Day 5: Unilateral Ankle Restoration & Glute Drive (Skater Bounds, ATG Split Squats, Hip Thrust, Left Carry)",
+                exercises: [
+                    { 
+                        id: "skater_bounds", 
+                        name: "Lateral Skater Bounds with 2.0-Second Isometric Stick", 
+                        totalSets: 3, 
+                        getTarget: () => "3 sets × 5 reps/side (2s single-leg balance stick)", 
+                        defaultWeight: () => 0, 
+                        defaultReps: () => 5, 
+                        tempo: "2-second frozen single-leg balance stick in deep glute hinge", 
+                        primeMuscles: ["glute_med_left", "glute_med_right", "knee_inner_left", "knee_inner_right"], 
+                        view: "front", 
+                        creator: "Movement Fitness", 
+                        videoTitle: "LATERAL BOUND - STICK: Deceleration & Cutting Armor", 
+                        youtubeId: "IyMLKJX4MRU", 
+                        cues: [
+                            "Push off lateral edge of foot; bound laterally across carpet.",
+                            "Land silently on single leg in deep glute hinge and freeze for 2 full seconds.",
+                            "Zero knee valgus (inward caving) allowed on landing."
+                        ] 
+                    },
+                    { 
+                        id: "atg_split_squat", 
+                        name: "Elevated Front-Foot ATG Split Squat", 
+                        totalSets: 4, 
+                        getTarget: w => w >= 15 ? "18–22 kg DBs × 8–10 reps/leg" : w >= 9 ? "16–18 kg DBs × 8–10 reps/leg" : w >= 5 ? "14–16 kg DBs × 8–10 reps/leg" : "Bodyweight to 12 kg × 8–10 reps/leg", 
+                        defaultWeight: w => w >= 15 ? 18 : w >= 9 ? 16 : w >= 5 ? 14 : 12, 
+                        defaultReps: () => 8, 
+                        tempo: "Strict 3s descent, full hamstring-to-calf cover", 
+                        primeMuscles: ["quad_lat_left", "quad_lat_right", "quad_vmo_left", "quad_vmo_right", "glute_max_left", "glute_max_right"], 
+                        view: "front", 
+                        creator: "ATG Exercise Coaching", 
+                        videoTitle: "ATG Split Squat Breakdown (Knee & Ankle Restoration)", 
+                        youtubeId: "LHX34TpJxbQ", 
+                        cues: [
+                            "Front foot elevated 3–4 inches on a solid block or thick books.",
+                            "Knee drives forward until hamstring completely touches calf.",
+                            "Dynamically mobilizes left talus into posterior glide; stretches right psoas."
+                        ] 
+                    },
+                    { 
+                        id: "hip_thrust", 
+                        name: "Bed-Edge B-Stance Hip Thrust", 
+                        totalSets: 4, 
+                        getTarget: w => w >= 19 ? "38–40 kg DB × 10–12 reps" : w >= 13 ? "34–38 kg DB × 10–12 reps" : w >= 7 ? "28–32 kg DB × 10–12 reps" : w >= 2 ? "27–28 kg DB × 10–12 reps" : "27 kg DB × 10 reps (Right 1st)", 
+                        defaultWeight: w => w >= 19 ? 38 : w >= 13 ? 34 : w >= 7 ? 28 : 27, 
+                        defaultReps: () => 10, 
+                        tempo: "2s peak contraction squeeze at top", 
+                        primeMuscles: ["glute_max_left", "glute_max_right"], 
+                        view: "back", 
+                        creator: "Kenssey Fitness", 
+                        videoTitle: "Single Leg Dumbbell Hip Thrust Setup & Execution", 
+                        youtubeId: "Rtor33qMmhQ", 
+                        cues: [
+                            "Rule of Weaker Side First: Train Right Leg first (1 level weaker at 27 kg baseline).",
+                            "Drive through right heel to 180° hip extension; hold strict 2.0s glute lockout.",
+                            "Match reps exactly on left leg; target clean bilateral parity at 27 kg by Week 2."
+                        ] 
+                    },
+                    { 
+                        id: "suitcase_carry", 
+                        name: "Contralateral Left-Hand Offset Suitcase Carry", 
+                        totalSets: 3, 
+                        getTarget: w => w >= 19 ? "36–38 kg DB × 45 paces" : w >= 13 ? "32–34 kg DB × 45 paces" : w >= 7 ? "30 kg DB × 40 paces" : "27 kg DB × 40 paces", 
+                        defaultWeight: w => w >= 19 ? 36 : w >= 13 ? 32 : w >= 7 ? 30 : 27, 
+                        defaultReps: () => 40, 
+                        tempo: "Tall upright barefoot gait, zero side tilt", 
+                        primeMuscles: ["obliques_left", "obliques_right", "lat_lower_left", "erectors_left", "erectors_right"], 
+                        view: "front", 
+                        creator: "Charlie Howick", 
+                        videoTitle: "How to do a Suitcase Carry for Lateral Core & Pelvis Reset", 
+                        youtubeId: "w76_JnzMfXM", 
+                        cues: [
+                            "Hold dumbbell STRICTLY in LEFT hand to fire right QL and internal obliques.",
+                            "Pulls the right-hiked pelvis back down into horizontal symmetry.",
+                            "Walk barefoot, maintaining a completely vertical torso."
+                        ] 
+                    },
+                    { 
+                        id: "hamstring_curls", 
+                        name: "Prone Banded Hamstring Curls", 
+                        totalSets: 3, 
+                        getTarget: () => "3 sets × 12–15 reps with 2s butt squeeze", 
+                        defaultWeight: () => 0, 
+                        defaultReps: () => 12, 
+                        tempo: "Controlled 3s release, peak squeeze at top", 
+                        primeMuscles: ["hamstring_inner_left", "hamstring_inner_right", "hamstring_outer_left", "hamstring_outer_right"], 
+                        view: "back", 
+                        creator: "Testosterone Nation", 
+                        videoTitle: "Band Prone Hamstring Curl for Distal Tendon Resilience", 
+                        youtubeId: "LtTcXXgeRYo", 
+                        cues: [
+                            "Lie prone on bed, heavy band anchored to bed frame and looped around ankles.",
+                            "Curl heels all the way to glutes, squeeze 2 seconds.",
+                            "Direct knee-flexion hypertrophy to build distal hamstring tendon armor."
+                        ] 
+                    }
+                ]
+            },
+            day6: {
+                name: "Day 6: Deceleration Power, Pectoral Deficit & Arms (Broad Jumps, Bed-Deficit Pushups, Biceps, Spanish Squats)",
+                exercises: [
+                    { 
+                        id: "broad_jump", 
+                        name: "Double-Leg Broad Jump to 2.0-Second Stick Landing", 
+                        totalSets: 3, 
+                        getTarget: w => `${130 + Math.min(w, 24) * 2} cm target × 3 reps (2s ninja stick / 90-90 mod)`, 
+                        defaultWeight: () => 0, 
+                        defaultReps: () => 3, 
+                        tempo: "Mandatory ninja-silent 2-second stick landing in deep hinge", 
+                        primeMuscles: ["glute_max_left", "glute_max_right", "hamstring_outer_left", "hamstring_outer_right", "knee_patellar_left", "knee_patellar_right"], 
+                        view: "back", 
+                        creator: "Body Art Athletics", 
+                        videoTitle: "Broad Jump Stick Landing: Eccentric Deceleration", 
+                        youtubeId: "nmvGGDL5G3g", 
+                        cues: [
+                            "Lumbar Guardrail: If lower back strain >= 2/10, substitute with 5 min PRI 90/90 breathing + pelvic tuck.",
+                            "Explode forward (130–150 cm); land ninja-silent in a deep athletic hip-hinge quarter squat.",
+                            "Catch impact 100% in glutes and hamstrings; hold strict 2s freeze with zero spinal shock or knee valgus."
+                        ] 
+                    },
+                    { 
+                        id: "pallof_shuffle", 
+                        name: "Standing Band Pallof Press with Lateral Shuffle Steps", 
+                        totalSets: 3, 
+                        getTarget: () => "3 sets × 6 out-and-back shuffle cycles per side", 
+                        defaultWeight: () => 0, 
+                        defaultReps: () => 6, 
+                        tempo: "Transverse core stability under dynamic footwork", 
+                        primeMuscles: ["obliques_left", "obliques_right", "abs_upper", "abs_lower"], 
+                        view: "front", 
+                        creator: "Face-Off Fitness", 
+                        videoTitle: "Banded Pallof Press with Lateral Shuffle", 
+                        youtubeId: "aAR1Bvex9UY", 
+                        cues: [
+                            "Anchor band at chest height; press out with straight arms (resisting rotation).",
+                            "Reciprocal Inhibition Release: Resisting the band fires obliques and instantly shuts off tight lower back/QL spasms.",
+                            "Shuffle 3 paces out and back with locked pelvic canister; stabilizes core for dynamic court cutting."
+                        ] 
+                    },
+                    { 
+                        id: "bed_pushup", 
+                        name: "Bed-Deficit Push-Ups (Feet Elevated on Bed)", 
+                        totalSets: 4, 
+                        getTarget: w => w >= 13 ? "Feet Elevated + Band Resisted × 15 reps" : w >= 7 ? "Feet Elevated × 15–18 reps" : "Feet Elevated × 15 reps", 
+                        defaultWeight: () => 0, 
+                        defaultReps: () => 15, 
+                        tempo: "3-1-1 tempo with 2s deep deficit stretch pause", 
+                        primeMuscles: ["chest_upper_left", "chest_upper_right", "chest_lower_left", "chest_lower_right", "tricep_lateral_left", "tricep_lateral_right"], 
+                        view: "front", 
+                        creator: "Ryan McCaffrey", 
+                        videoTitle: "Push-Up vs Deficit Push-Up: Why Range of Motion Matters", 
+                        youtubeId: "Ed38v7kcgXM", 
+                        cues: [
+                            "Feet on bed edge; hands gripping dumbbell handles on floor (chest sinks 3–4\" deficit).",
+                            "Hollow-Body Lumbar Lock: Squeeze glutes and tuck pelvis—NEVER allow lower back to sag into an arch.",
+                            "2s loaded stretch pause at bottom; press up smoothly and protract shoulder blades at top."
+                        ] 
+                    },
+                    { 
+                        id: "bicep_curl", 
+                        name: "Standing Incline-Torso DB Bicep Curls", 
+                        totalSets: 3, 
+                        getTarget: w => w >= 19 ? "18 kg DBs × 10–12 reps" : w >= 13 ? "16 kg DBs × 10–12 reps" : w >= 7 ? "14 kg DBs × 10–12 reps" : "12 kg DBs × 10–12 reps", 
+                        defaultWeight: w => w >= 19 ? 18 : w >= 13 ? 16 : w >= 7 ? 14 : 12, 
+                        defaultReps: () => 10, 
+                        tempo: "3s eccentric, full supination at peak", 
+                        primeMuscles: ["biceps_left", "biceps_right"], 
+                        view: "front", 
+                        creator: "Andrew Kwong (DeltaBolic)", 
+                        videoTitle: "How to Perform the PERFECT Incline Bicep Curl", 
+                        youtubeId: "uCUaRFlA9vE", 
+                        cues: [
+                            "Torso hinged 15° forward; brace anterior core tight to eliminate lower back hyperextension swing.",
+                            "Elbows pinned at sides; supinate wrists hard at top (turn pinkies toward ceiling).",
+                            "3s slow eccentric lower to full arm extension with zero lumbar arching."
+                        ] 
+                    },
+                    { 
+                        id: "wrist_curl_flexion", 
+                        name: "Seated DB Wrist Curls (Palms-Up Flexion)", 
+                        totalSets: 3, 
+                        getTarget: w => w >= 19 ? "16–20 kg DB × 12–15 reps" : w >= 13 ? "14–18 kg DB × 12–15 reps" : w >= 7 ? "12–16 kg DB × 15 reps" : "10–14 kg DB × 15 reps", 
+                        defaultWeight: w => w >= 19 ? 16 : w >= 13 ? 14 : w >= 7 ? 12 : 10, 
+                        defaultReps: () => 15, 
+                        tempo: "Controlled stretch to fingertip, full flex upward", 
+                        primeMuscles: ["forearm_inner_left", "forearm_inner_right"], 
+                        view: "front", 
+                        creator: "Blue Collar Fitness", 
+                        videoTitle: "Dumbbell Seated Wrist Curl: Forearm Hypertrophy", 
+                        youtubeId: "y-x14sVi12o", 
+                        cues: [
+                            "Forearms resting flat across thighs, wrists extending past knees, palms facing up.",
+                            "Lower dumbbell into fingers for deep stretch, then curl wrist upward with explosive squeeze.",
+                            "Flexor strength is naturally ~2× extensor strength; load heavily (10–14+ kg) to build medial epicondyle shield."
+                        ] 
+                    },
+                    { 
+                        id: "reverse_wrist_curl_extension", 
+                        name: "Seated DB Reverse Wrist Curls (Palms-Down Extension)", 
+                        totalSets: 3, 
+                        getTarget: w => w >= 19 ? "8–10 kg DB × 12–15 reps" : w >= 13 ? "7–9 kg DB × 12–15 reps" : w >= 7 ? "6–8 kg DB × 15 reps" : "5–7 kg DB × 15 reps", 
+                        defaultWeight: w => w >= 19 ? 8 : w >= 13 ? 7 : w >= 7 ? 6 : 5, 
+                        defaultReps: () => 15, 
+                        tempo: "2s pause at top contraction, 3s eccentric", 
+                        primeMuscles: ["forearm_outer_left", "forearm_outer_right", "forearm_ext_left", "forearm_ext_right"], 
+                        view: "front", 
+                        creator: "Muscle & Strength", 
+                        videoTitle: "Dumbbell Reverse Wrist Curl Tutorial", 
+                        youtubeId: "AX1Lm4c4-Uc", 
+                        cues: [
+                            "Forearms pinned firmly to thighs, wrists just past knees, palms facing DOWN toward floor.",
+                            "Curl knuckles upward as high as possible; hold peak contraction for 1–2 seconds.",
+                            "Extensor ratio rule: Use ~50–60% of flexor weight (5–7 kg) to avoid overloading the lateral epicondyle."
+                        ] 
+                    },
+                    { 
+                        id: "spanish_squat", 
+                        name: "Spanish Squat Isometric Hold (Keith Baar Patellar Protocol)", 
+                        totalSets: 3, 
+                        getTarget: () => "3 sets × 45s holds at 60° knee bend", 
+                        defaultWeight: () => 0, 
+                        defaultReps: () => 45, 
+                        tempo: "Sustained isometric hold against heavy band", 
+                        primeMuscles: ["quad_vmo_left", "quad_vmo_right", "knee_patellar_left", "knee_patellar_right"], 
+                        view: "front", 
+                        creator: "Squat University (Dr. Aaron Horschig)", 
+                        videoTitle: "Instantly Decrease Patellar Tendon Pain with Spanish Squats", 
+                        youtubeId: "xbJRBJQ2UzE", 
+                        cues: [
+                            "Heavy looped resistance band behind upper shins/knees, anchored to bedpost.",
+                            "Lean back into band with vertical shins and squat to 60° knee bend.",
+                            "Holds tension for 45s, offloading patella while stimulating collagen cross-linking."
+                        ] 
+                    },
+                    { 
+                        id: "neck_iso_4way", 
+                        name: "4-Way Isometric Neck Resistance", 
+                        totalSets: 2, 
+                        getTarget: () => "2 rounds × 20s each direction (Front, Back, Left, Right)", 
+                        defaultWeight: () => 0, 
+                        defaultReps: () => 20, 
+                        tempo: "Sustained isometric tension (60–70% MVC)", 
+                        primeMuscles: ["neck_front", "neck_back"], 
+                        view: "front", 
+                        creator: "Dr. Brian Abelson", 
+                        videoTitle: "Isometric Neck Strengthening Exercises", 
+                        youtubeId: "0kWF968uFXY", 
+                        cues: [
+                            "Manual isometric resistance against forehead, back of head, left temple, right temple.",
+                            "Keep cervical spine in neutral alignment.",
+                            "Fortifies symmetrical neck collar against desk forward-head posture."
+                        ] 
+                    }
+                ]
+            },
+            day7: {
+                name: "Day 7: Full Regeneration & Sunday Latency Tendon Audit (Zero CNS/Tissue Load)",
+                exercises: [
+                    { 
+                        id: "tendon_audit", 
+                        name: "Sunday Morning 24-Hour Latency Tendon Palpation Audit", 
+                        totalSets: 1, 
+                        getTarget: () => "Palpate 3 key tendon sites; score must be <= 1/10", 
+                        defaultWeight: () => 0, 
+                        defaultReps: () => 1, 
+                        tempo: "Firm thumb palpation test (4–5 lbs pressure)", 
+                        primeMuscles: ["elbow_inner_left", "elbow_inner_right", "knee_patellar_left", "achilles_left"], 
+                        view: "front", 
+                        creator: "UC Davis Health (Dr. Keith Baar)", 
+                        videoTitle: "3 Isometric Exercises for Strengthening Tendons with Dr. Keith Baar", 
+                        youtubeId: "GJuzyy2YRRk", 
+                        cues: [
+                            "Firmly palpate medial epicondyles, patellar tendons, and Achilles insertions.",
+                            "Score <= 1/10 (Green Light): Unlock planned +2kg to +2.5kg increase for next week.",
+                            "Score >= 2/10 (Red Light): Freeze all loads for 7 days; execute daily Keith Baar isometrics."
+                        ] 
+                    },
+                    { 
+                        id: "restorative_walk", 
+                        name: "Light Restorative Walk & Hydration", 
+                        totalSets: 1, 
+                        getTarget: () => "30–45 Mins (5,000 steps)", 
+                        defaultWeight: () => 0, 
+                        defaultReps: () => 30, 
+                        tempo: "Gentle restorative pace", 
+                        primeMuscles: ["foot_left", "foot_right"], 
+                        view: "front", 
+                        creator: "The Ready State (Dr. Kelly Starrett)", 
+                        videoTitle: "How to Take a Rest Day Without Taking a Rest Day", 
+                        youtubeId: "8Sj2mcM3ByI", 
+                        cues: [
+                            "Zero dumbbells, zero jumping, zero joint strain.",
+                            "Focus on 8+ hours of sleep, 3+ liters of water, and collagen uptake."
+                        ] 
                     }
                 ]
             }
@@ -1440,6 +2399,7 @@
         let currentWeek = 1;
         let currentDay = "day1";
         let currentExercise = null;
+        let isServerOnline = true;
         let activeSetIndex = 0; // 0 = PRE-CHECK, 1..N = Working Sets
         
         let sessionStore = {};
@@ -1455,28 +2415,176 @@
         }
 
         function loadPersistentStore() {
+            sessionStore = {};
+
+            // 1. Collect from all known keys & any localStorage key containing 'physiosync' or 'workout_vault'
+            const keysToTry = [...LEGACY_STORAGE_KEYS];
             try {
-                const raw = localStorage.getItem(STORAGE_KEY);
-                if (raw) {
-                    sessionStore = JSON.parse(raw);
+                if (typeof localStorage !== 'undefined') {
+                    for (let i = 0; i < localStorage.length; i++) {
+                        const k = localStorage.key(i);
+                        if (k && (k.toLowerCase().includes('physiosync') || k.toLowerCase().includes('workout_vault'))) {
+                            if (!keysToTry.includes(k)) keysToTry.push(k);
+                        }
+                    }
                 }
             } catch (e) {
-                console.warn("Storage load error:", e);
+                console.warn("Error scanning localStorage keys:", e);
             }
+
+            // 2. Read each key and deep merge
+            keysToTry.forEach(key => {
+                try {
+                    const raw = localStorage.getItem(key);
+                    if (raw) {
+                        const parsed = JSON.parse(raw);
+                        if (parsed && typeof parsed === 'object') {
+                            Object.keys(parsed).forEach(k => {
+                                if (!sessionStore[k]) {
+                                    sessionStore[k] = parsed[k];
+                                } else {
+                                    sessionStore[k] = Object.assign({}, parsed[k], sessionStore[k]);
+                                }
+                            });
+                        }
+                    }
+                } catch (e) {
+                    console.warn(`Error reading key ${key}:`, e);
+                }
+            });
+
+            // 3. Normalize legacy un-prefixed keys (e.g. 'barefoot_pogos' -> 'w1_day1_barefoot_pogos')
+            const exToDayMap = {};
+            if (typeof WORKOUT_DATABASE !== 'undefined') {
+                Object.keys(WORKOUT_DATABASE).forEach(dayKey => {
+                    const dayObj = WORKOUT_DATABASE[dayKey];
+                    if (dayObj && dayObj.exercises) {
+                        dayObj.exercises.forEach(ex => {
+                            exToDayMap[ex.id] = dayKey;
+                        });
+                    }
+                });
+            }
+
+            Object.keys(sessionStore).forEach(k => {
+                if (!k.startsWith('w') && exToDayMap[k]) {
+                    const scopedKey = `w1_${exToDayMap[k]}_${k}`;
+                    if (!sessionStore[scopedKey]) {
+                        sessionStore[scopedKey] = sessionStore[k];
+                    }
+                }
+            });
+
+            // 4. Ensure verified Day 1 & Day 2 logged data is never missing:
+            const day1Exs = ["barefoot_pogos", "bed_box_jump", "heel_wedge_goblet", "deficit_floor_press", "tibialis_raise", "neck_curl"];
+            let hasDay1Data = false;
+            day1Exs.forEach(id => {
+                const data = sessionStore[`w1_day1_${id}`] || sessionStore[id];
+                if (data && (data[1] || (data.precheck && data.precheck.status !== null))) hasDay1Data = true;
+            });
+
+            if (!hasDay1Data) {
+                console.log("Day 1 data not present in localStorage — restoring from verified journal seed...");
+                Object.keys(SEED_WORKOUT_HISTORY).forEach(k => {
+                    if (!sessionStore[k]) {
+                        sessionStore[k] = JSON.parse(JSON.stringify(SEED_WORKOUT_HISTORY[k]));
+                    }
+                });
+            }
+
+            // Always save consolidated store back to primary and legacy keys
+            savePersistentStore();
         }
 
         function savePersistentStore() {
             try {
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(sessionStore));
+                const payload = JSON.stringify(sessionStore);
+                localStorage.setItem(STORAGE_KEY, payload);
+                LEGACY_STORAGE_KEYS.forEach(k => {
+                    try { localStorage.setItem(k, payload); } catch(e) {}
+                });
+
+                // Two-Way Automatic Disk Sync Bridge (Port 8789)
+                if (typeof fetch !== 'undefined') {
+                    fetch('http://127.0.0.1:8789/api/sync', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: payload
+                    }).then(r => r.json()).then(data => {
+                        updateSyncBadge(true, 'Synced ' + (data.keys_saved || Object.keys(sessionStore).length) + ' exercises to disk');
+                    }).catch(err => {
+                        updateSyncBadge(false, 'Saved to LocalStorage (Sync Server Idle)');
+                    });
+                }
             } catch (e) {
                 console.warn("Storage save error:", e);
+            }
+        }
+
+        function updateSyncBadge(isActive, message) {
+            const badge = document.getElementById('sync-status-badge');
+            if (!badge) return;
+            if (isActive) {
+                badge.style.background = 'rgba(0, 230, 118, 0.12)';
+                badge.style.color = '#00E676';
+                badge.style.borderColor = 'rgba(0, 230, 118, 0.35)';
+                badge.innerHTML = '🟢 ' + message;
+            } else {
+                badge.style.background = 'rgba(255, 171, 0, 0.12)';
+                badge.style.color = '#FFAB00';
+                badge.style.borderColor = 'rgba(255, 171, 0, 0.35)';
+                badge.innerHTML = '🟡 ' + message;
+            }
+        }
+
+        function checkSyncServerStatus() {
+            if (typeof fetch === 'undefined') return;
+            fetch('http://127.0.0.1:8789/api/status')
+                .then(r => r.json())
+                .then(data => {
+                    isServerOnline = true;
+                    updateSyncBadge(true, 'Disk Sync Active (Port 8789)');
+                })
+                .catch(() => {
+                    isServerOnline = false;
+                    updateSyncBadge(false, 'LocalStorage Mode (Server Idle)');
+                });
+        }
+
+        function triggerManualDiskSync() {
+            savePersistentStore();
+            if (typeof fetch !== 'undefined') {
+                fetch('http://127.0.0.1:8789/api/sync', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(sessionStore)
+                }).then(r => r.json()).then(data => {
+                    alert('⚡ Success: All workout inputs (' + Object.keys(sessionStore).length + ' exercise keys) automatically written to workspace disk at logs/active_workout_state.json! The AI assistant has live access to your exact weights & reps.');
+                }).catch(err => {
+                    exportHistoryToJSON();
+                    alert('ℹ️ Saved to browser LocalStorage and downloaded active_workout_state.json! Ensure python3 sync_server.py is running on port 8789 for instant background auto-sync.');
+                });
+            }
+        }
+
+        function restoreVerifiedWorkoutJournal(showToast = true) {
+            Object.keys(SEED_WORKOUT_HISTORY).forEach(k => {
+                sessionStore[k] = JSON.parse(JSON.stringify(SEED_WORKOUT_HISTORY[k]));
+            });
+            savePersistentStore();
+            onSessionChange();
+            if (showToast) {
+                alert("✅ Success: Day 1 & Day 2 progress data successfully restored from the Verified Workout Journal!");
             }
         }
 
         function initApp() {
             loadPersistentStore();
             onSessionChange();
+            checkSyncServerStatus();
         }
+
+        let currentExerciseIndex = 0;
 
         function onSessionChange() {
             currentWeek = parseInt(document.getElementById('week-select').value);
@@ -1486,33 +2594,84 @@
 
             const chipContainer = document.getElementById('exercise-chips');
             chipContainer.innerHTML = '';
+            const exSelect = document.getElementById('exercise-select-dropdown');
+            if (exSelect) exSelect.innerHTML = '';
+
             const dayData = WORKOUT_DATABASE[currentDay] || WORKOUT_DATABASE['day1'];
             
             dayData.exercises.forEach((ex, idx) => {
                 const targetText = ex.getTarget(currentWeek);
+                const loadBadge = targetText.split('×')[0].trim();
+                const exStoreKey = `w${currentWeek}_${currentDay}_${ex.id}`;
+                const exData = sessionStore[exStoreKey];
+                let isDone = false;
+                if (exData) {
+                    const totalSets = ex.totalSets || 4;
+                    let loggedCount = 0;
+                    for (let s = 1; s <= totalSets; s++) {
+                        if (exData[s]) loggedCount++;
+                    }
+                    if (loggedCount >= totalSets) isDone = true;
+                }
+
+                // 1. Create chip
                 const chip = document.createElement('div');
-                chip.className = `exercise-chip ${idx === 0 ? 'active' : ''}`;
+                chip.className = `exercise-chip ${idx === 0 ? 'active' : ''} ${isDone ? 'chip-completed' : ''}`;
+                chip.id = `ex-chip-${idx}`;
                 chip.innerHTML = `
-                    <span>${ex.name}</span>
-                    <span class="chip-weight">${targetText.split('×')[0].trim()}</span>
+                    <span class="chip-num" style="${isDone ? 'background:#10b981; color:#fff;' : ''}">${isDone ? '✓' : idx + 1}</span>
+                    <span class="chip-name">${ex.name}</span>
+                    <span class="chip-weight" style="${isDone ? 'color:#10b981; font-weight:700;' : ''}">${isDone ? 'Completed' : loadBadge}</span>
                 `;
-                chip.onclick = () => selectExercise(ex, chip);
+                chip.onclick = () => selectExercise(ex, chip, idx);
                 chipContainer.appendChild(chip);
+
+                // 2. Add to dropdown
+                if (exSelect) {
+                    const opt = document.createElement('option');
+                    opt.value = idx;
+                    opt.textContent = `${isDone ? '✓ ' : ''}${idx + 1}. ${ex.name} (${isDone ? 'Completed' : loadBadge})`;
+                    exSelect.appendChild(opt);
+                }
             });
 
             if (dayData.exercises.length > 0) {
-                selectExercise(dayData.exercises[0], chipContainer.children[0]);
+                selectExercise(dayData.exercises[0], chipContainer.children[0], 0);
             }
+        }
+
+        function onExerciseDropdownChange(val) {
+            const dayData = WORKOUT_DATABASE[currentDay] || WORKOUT_DATABASE['day1'];
+            const idx = parseInt(val);
+            if (dayData.exercises[idx]) {
+                const chip = document.getElementById('exercise-chips').children[idx];
+                selectExercise(dayData.exercises[idx], chip, idx);
+            }
+        }
+
+        function navigateExercise(direction) {
+            const dayData = WORKOUT_DATABASE[currentDay] || WORKOUT_DATABASE['day1'];
+            let newIdx = currentExerciseIndex + direction;
+            if (newIdx < 0) newIdx = dayData.exercises.length - 1;
+            if (newIdx >= dayData.exercises.length) newIdx = 0;
+            const chip = document.getElementById('exercise-chips').children[newIdx];
+            selectExercise(dayData.exercises[newIdx], chip, newIdx);
         }
 
         function getExerciseStoreKey() {
             return `w${currentWeek}_${currentDay}_${currentExercise.id}`;
         }
 
-        function selectExercise(ex, chipElem) {
+        function selectExercise(ex, chipElem, exIndex) {
             currentExercise = ex;
+            if (typeof exIndex === 'number') currentExerciseIndex = exIndex;
             document.querySelectorAll('.exercise-chip').forEach(c => c.classList.remove('active'));
             if (chipElem) chipElem.classList.add('active');
+
+            const exSelect = document.getElementById('exercise-select-dropdown');
+            if (exSelect && typeof exIndex === 'number') {
+                exSelect.value = exIndex;
+            }
 
             const storeKey = getExerciseStoreKey();
             if (!sessionStore[storeKey]) sessionStore[storeKey] = { precheck: null };
@@ -1548,17 +2707,24 @@
 
         function renderSetTabs() {
             const tabsContainer = document.getElementById('set-tabs-container');
+            if (!tabsContainer) return;
             tabsContainer.innerHTML = '';
             const storeKey = getExerciseStoreKey();
             
             // 1. PRE-CHECK TAB
             const preBtn = document.createElement('button');
+            preBtn.type = 'button';
             preBtn.className = `set-tab-btn tab-precheck ${activeSetIndex === 0 ? 'active' : ''}`;
             const preData = sessionStore[storeKey] && sessionStore[storeKey].precheck;
             let preStatusText = "Pending";
             if (preData) {
-                if (preData.status === 'clean') preStatusText = "🟢 Ready";
-                else preStatusText = `🟣 ${preData.severity ? `${preData.severity}/5` : 'Caution'}`;
+                if (preData.status === 'clean') {
+                    preBtn.classList.add('logged-green');
+                    preStatusText = "🟢 Ready";
+                } else {
+                    preBtn.classList.add('logged-issue');
+                    preStatusText = `🟣 ${preData.severity ? `${preData.severity}/5` : 'Caution'}`;
+                }
             }
             preBtn.innerHTML = `
                 <span>🛡️ PRE-CHECK</span>
@@ -1572,6 +2738,7 @@
             for (let i = 1; i <= totalSets; i++) {
                 const logged = sessionStore[storeKey] && sessionStore[storeKey][i];
                 const btn = document.createElement('button');
+                btn.type = 'button';
                 btn.className = `set-tab-btn ${i === activeSetIndex ? 'active' : ''}`;
                 
                 let statusBadge = "Pending";
@@ -1581,9 +2748,9 @@
                         statusBadge = "🟢 Clean";
                     } else if (logged.status === 'pain') {
                         btn.classList.add('logged-issue');
-                        statusBadge = `🔴 Pain ${logged.severity}/5`;
+                        statusBadge = `🔴 Pain ${logged.severity ? `${logged.severity}/5` : ''}`;
                     } else if (logged.status === 'fatigue') {
-                        btn.classList.add('logged-issue');
+                        btn.classList.add('logged-fatigue');
                         statusBadge = "🟡 Fatigue";
                     }
                 }
@@ -1601,7 +2768,13 @@
             activeSetIndex = setIndex;
             const storeKey = getExerciseStoreKey();
 
+            // Highlight active tab
+            document.querySelectorAll('.set-tab-btn').forEach((btn, idx) => {
+                btn.classList.toggle('active', idx === setIndex);
+            });
+
             if (setIndex === 0) {
+                // PRE-CHECK MODE (Before Set 1)
                 document.getElementById('set-logger-header').textContent = `Pre-Flight Readiness Check`;
                 document.getElementById('precheck-container').style.display = 'block';
                 document.getElementById('set-metrics-container').style.display = 'none';
@@ -1617,19 +2790,26 @@
                         document.getElementById('severity-container').style.display = 'block';
                         document.getElementById('sev-slider').value = pre.severity || 2;
                         updateSeverity(pre.severity || 2);
+                        if (pre.status === 'precheck') document.getElementById('btn-status-precheck').classList.add('active-precheck');
+                        if (pre.status === 'pain') document.getElementById('btn-status-pain').classList.add('active-pain');
+                    } else {
+                        document.getElementById('severity-container').style.display = 'none';
+                        resetButtons();
                     }
                 } else {
                     document.getElementById('muscle-notes').value = '';
                     document.getElementById('severity-container').style.display = 'none';
+                    resetButtons();
                 }
             } else {
+                // WORKING SET MODE (Set 1..N)
                 document.getElementById('set-logger-header').textContent = `Set Logger • Set ${setIndex} of ${currentExercise.totalSets || 4}`;
                 document.getElementById('precheck-container').style.display = 'none';
                 document.getElementById('set-metrics-container').style.display = 'block';
                 document.getElementById('btn-status-precheck').style.display = 'none';
                 document.getElementById('btn-status-activated').style.display = 'flex';
-                document.getElementById('issue-box-label').textContent = 'Tag Muscle / Joint Sensation for this Set:';
-                document.getElementById('btn-submit-action').textContent = '💾 Save Set & Advance';
+                document.getElementById('issue-box-label').textContent = `Tag Muscle / Joint Sensation for Set ${setIndex}:`;
+                document.getElementById('btn-submit-action').textContent = setIndex === (currentExercise.totalSets || 4) ? '💾 Save Final Set' : '💾 Save Set & Advance';
 
                 const logged = sessionStore[storeKey] && sessionStore[storeKey][setIndex];
                 const prevLogged = sessionStore[storeKey] && sessionStore[storeKey][setIndex - 1];
@@ -1638,10 +2818,18 @@
                     document.getElementById('input-weight').value = logged.weight;
                     document.getElementById('input-reps').value = logged.reps;
                     document.getElementById('muscle-notes').value = logged.notes || '';
+                    resetButtons();
                     if (logged.status === 'pain') {
+                        document.getElementById('btn-status-pain').classList.add('active-pain');
                         document.getElementById('severity-container').style.display = 'block';
                         document.getElementById('sev-slider').value = logged.severity || 2;
                         updateSeverity(logged.severity || 2);
+                    } else if (logged.status === 'fatigue') {
+                        document.getElementById('btn-status-fatigue').classList.add('active-fatigue');
+                        document.getElementById('severity-container').style.display = 'none';
+                    } else if (logged.status === 'activated') {
+                        document.getElementById('btn-status-activated').classList.add('active-activated');
+                        document.getElementById('severity-container').style.display = 'none';
                     } else {
                         document.getElementById('severity-container').style.display = 'none';
                     }
@@ -1650,18 +2838,15 @@
                     document.getElementById('input-reps').value = prevLogged.reps;
                     document.getElementById('muscle-notes').value = '';
                     document.getElementById('severity-container').style.display = 'none';
+                    resetButtons();
                 } else {
-                    document.getElementById('input-weight').value = currentExercise.defaultWeight(currentWeek);
-                    document.getElementById('input-reps').value = currentExercise.defaultReps(currentWeek);
+                    document.getElementById('input-weight').value = currentExercise.defaultWeight(currentWeek, activeSetIndex);
+                    document.getElementById('input-reps').value = currentExercise.defaultReps(currentWeek, activeSetIndex);
                     document.getElementById('muscle-notes').value = '';
                     document.getElementById('severity-container').style.display = 'none';
+                    resetButtons();
                 }
             }
-
-            resetButtons();
-            activeMuscleTag = null;
-            document.getElementById('selected-muscle-name').textContent = "Click body part";
-            renderSetTabs();
         }
 
         function logPreCheckClean() {
@@ -1671,6 +2856,7 @@
                 status: 'clean',
                 severity: null,
                 notes: 'Zero pre-existing aches, ready to train',
+                muscleId: null,
                 muscleName: 'Full Body Ready'
             };
             savePersistentStore();
@@ -1690,6 +2876,7 @@
                 status: 'clean',
                 severity: null,
                 notes: document.getElementById('muscle-notes').value || 'Clean target activation',
+                muscleId: null,
                 muscleName: 'All Target Muscles'
             };
 
@@ -1699,8 +2886,8 @@
 
         function setMuscleStatus(status) {
             if (!activeMuscleTag) {
-                alert("Please click a muscle or joint on the body diagram first!");
-                return;
+                activeMuscleTag = { id: 'target_zone', name: currentExercise ? currentExercise.name : 'Target Zone' };
+                document.getElementById('selected-muscle-name').textContent = activeMuscleTag.name;
             }
             resetButtons();
             if (status === 'activated') {
@@ -1720,25 +2907,32 @@
 
         function commitRecord() {
             const storeKey = getExerciseStoreKey();
+            if (!sessionStore[storeKey]) sessionStore[storeKey] = {};
+
             if (activeSetIndex === 0) {
+                // Pre-check
                 let chosenStatus = 'clean';
-                if (document.getElementById('btn-status-precheck').classList.contains('active-precheck')) chosenStatus = 'precheck';
-                else if (document.getElementById('btn-status-pain').classList.contains('active-pain')) chosenStatus = 'pain';
+                if (document.getElementById('btn-status-pain').classList.contains('active-pain')) chosenStatus = 'pain';
+                else if (document.getElementById('btn-status-precheck').classList.contains('active-precheck')) chosenStatus = 'precheck';
                 else if (document.getElementById('btn-status-fatigue').classList.contains('active-fatigue')) chosenStatus = 'fatigue';
 
-                if (!sessionStore[storeKey]) sessionStore[storeKey] = {};
                 sessionStore[storeKey].precheck = {
                     status: chosenStatus,
                     severity: document.getElementById('severity-container').style.display !== 'none' ? document.getElementById('sev-slider').value : null,
-                    notes: document.getElementById('muscle-notes').value || 'Pre-existing tension noted',
-                    muscleName: activeMuscleTag ? activeMuscleTag.name : 'Target Muscle'
+                    notes: document.getElementById('muscle-notes').value || (chosenStatus === 'clean' ? 'Clean baseline readiness' : 'Pre-existing tension noted'),
+                    muscleId: activeMuscleTag ? activeMuscleTag.id : null,
+                    muscleName: activeMuscleTag ? activeMuscleTag.name : 'Target Zone'
                 };
 
-                if (activeMuscleTag) {
+                if (activeMuscleTag && activeMuscleTag.id && activeMuscleTag.id !== 'target_zone') {
                     const node = document.getElementById(activeMuscleTag.id);
-                    if (node) node.classList.add('state-pre-warning');
+                    if (node) {
+                        node.classList.remove('state-pain', 'state-fatigue', 'state-activated', 'state-pre-warning');
+                        node.classList.add('state-pre-warning');
+                    }
                 }
             } else {
+                // Working set
                 const weightVal = parseFloat(document.getElementById('input-weight').value) || 0;
                 const repsVal = parseInt(document.getElementById('input-reps').value) || 0;
 
@@ -1747,8 +2941,6 @@
                 else if (document.getElementById('btn-status-fatigue').classList.contains('active-fatigue')) chosenStatus = 'fatigue';
                 else if (document.getElementById('btn-status-activated').classList.contains('active-activated')) chosenStatus = 'activated';
 
-                if (!sessionStore[storeKey]) sessionStore[storeKey] = {};
-
                 sessionStore[storeKey][activeSetIndex] = {
                     weight: weightVal,
                     reps: repsVal,
@@ -1756,8 +2948,19 @@
                     sensationType: chosenStatus === 'pain' ? currentSensationType : null,
                     severity: chosenStatus === 'pain' ? document.getElementById('sev-slider').value : null,
                     notes: document.getElementById('muscle-notes').value,
+                    muscleId: activeMuscleTag ? activeMuscleTag.id : null,
                     muscleName: activeMuscleTag ? activeMuscleTag.name : 'All Target Muscles'
                 };
+
+                if (activeMuscleTag && activeMuscleTag.id && activeMuscleTag.id !== 'target_zone') {
+                    const node = document.getElementById(activeMuscleTag.id);
+                    if (node) {
+                        node.classList.remove('state-pain', 'state-fatigue', 'state-activated', 'state-pre-warning');
+                        if (chosenStatus === 'pain') node.classList.add('state-pain');
+                        else if (chosenStatus === 'fatigue') node.classList.add('state-fatigue');
+                        else if (chosenStatus === 'activated') node.classList.add('state-activated');
+                    }
+                }
             }
 
             savePersistentStore();
@@ -1767,12 +2970,46 @@
         function advanceToNextSet() {
             renderSetTabs();
             renderSetHistoryTable();
+            refreshActiveChipStatus();
 
             const total = currentExercise.totalSets || 4;
             if (activeSetIndex === 0) {
                 goToSet(1);
             } else if (activeSetIndex < total) {
                 goToSet(activeSetIndex + 1);
+            }
+        }
+
+        function refreshActiveChipStatus() {
+            if (!currentExercise) return;
+            const chip = document.getElementById(`ex-chip-${currentExerciseIndex}`);
+            if (!chip) return;
+            const storeKey = getExerciseStoreKey();
+            const exData = sessionStore[storeKey];
+            const total = currentExercise.totalSets || 4;
+            let loggedCount = 0;
+            if (exData) {
+                for (let s = 1; s <= total; s++) {
+                    if (exData[s]) loggedCount++;
+                }
+            }
+            const isDone = loggedCount >= total;
+            const targetText = currentExercise.getTarget(currentWeek);
+            const loadBadge = targetText.split('×')[0].trim();
+            if (isDone) {
+                chip.classList.add('chip-completed');
+                const numSpan = chip.querySelector('.chip-num');
+                if (numSpan) {
+                    numSpan.textContent = '✓';
+                    numSpan.style.background = '#10b981';
+                    numSpan.style.color = '#fff';
+                }
+                const weightSpan = chip.querySelector('.chip-weight');
+                if (weightSpan) {
+                    weightSpan.textContent = 'Completed';
+                    weightSpan.style.color = '#10b981';
+                    weightSpan.style.fontWeight = '700';
+                }
             }
         }
 
@@ -1912,13 +3149,61 @@
             });
         });
 
+        function formatTimestamp(seconds) {
+            if (!seconds || seconds <= 0) return null;
+            const mins = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+
         function openVideoModal() {
             if (!currentExercise || !currentExercise.youtubeId) return;
             document.getElementById('modal-video-creator').textContent = currentExercise.creator.toUpperCase();
             document.getElementById('modal-video-title').textContent = currentExercise.videoTitle;
+
+            const startSec = currentExercise.startTimestamp || 0;
+            const timeStr = formatTimestamp(startSec);
+            const ytWatchUrl = startSec > 0 
+                ? `https://www.youtube.com/watch?v=${currentExercise.youtubeId}&t=${startSec}s` 
+                : `https://www.youtube.com/watch?v=${currentExercise.youtubeId}`;
+
+            // Top action button with exact timestamp
+            const topYtBtn = document.getElementById('btn-modal-yt-top');
+            if (topYtBtn) {
+                topYtBtn.href = ytWatchUrl;
+                topYtBtn.innerHTML = timeStr ? `▶ Open at ${timeStr} on YouTube ↗` : `▶ Open in YouTube ↗`;
+            }
+
+            // Timestamp banner above video
+            const tsBanner = document.getElementById('modal-timestamp-banner');
+            if (tsBanner) {
+                if (timeStr) {
+                    tsBanner.style.display = 'flex';
+                    tsBanner.innerHTML = `
+                        <span>⏱️ <strong>Target Demonstration:</strong> Starts at <strong>${timeStr}</strong></span>
+                        <a href="${ytWatchUrl}" target="_blank" style="color: #fff; background: #0284c7; padding: 3px 8px; border-radius: 4px; text-decoration: none; font-weight: 600; font-size: 0.75rem;">Jump to ${timeStr} ↗</a>
+                    `;
+                } else {
+                    tsBanner.style.display = 'none';
+                }
+            }
+
+            // Built-in Embed (Use localhost:8789 player bridge to provide a valid HTTP origin/referrer and prevent YouTube Error 153)
+            const isLocal = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || isServerOnline);
+            const embedSrc = isLocal
+                ? `http://127.0.0.1:8789/player?id=${currentExercise.youtubeId}&start=${startSec}`
+                : `https://www.youtube.com/embed/${currentExercise.youtubeId}?start=${startSec}&autoplay=1&rel=0&playsinline=1&modestbranding=1`;
+
             document.getElementById('video-frame-wrap').innerHTML = `
-                <iframe src="https://www.youtube-nocookie.com/embed/${currentExercise.youtubeId}?autoplay=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe src="${embedSrc}" 
+                        title="${currentExercise.videoTitle}" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        allowfullscreen 
+                        style="width:100%; height:100%; border:none;"></iframe>
             `;
+
+            // Form cues
             const cuesList = document.getElementById('modal-cues-list');
             cuesList.innerHTML = '';
             (currentExercise.cues || []).forEach(c => {
@@ -1926,7 +3211,16 @@
                 li.textContent = c;
                 cuesList.appendChild(li);
             });
-            document.getElementById('modal-youtube-link').href = `https://www.youtube.com/watch?v=${currentExercise.youtubeId}`;
+
+            // Bottom link with exact timestamp
+            const bottomYtLink = document.getElementById('modal-youtube-link');
+            if (bottomYtLink) {
+                bottomYtLink.href = ytWatchUrl;
+                bottomYtLink.innerHTML = timeStr 
+                    ? `🔗 Watch full tutorial on YouTube (Auto-seeks to ${timeStr}) ↗` 
+                    : `🔗 Open on YouTube ↗`;
+            }
+
             document.getElementById('video-modal').style.display = 'flex';
         }
 

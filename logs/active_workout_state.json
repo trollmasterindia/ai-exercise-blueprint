@@ -1,0 +1,1783 @@
+{
+  "w1_day1_barefoot_pogos": {
+    "1": {
+      "weight": 0,
+      "reps": 20,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 0,
+      "reps": 20,
+      "status": "clean",
+      "sensationType": null,
+      "severity": null,
+      "notes": "",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": null
+  },
+  "w1_day1_neck_curl": {
+    "1": {
+      "weight": 5,
+      "reps": 15,
+      "status": "clean",
+      "sensationType": null,
+      "severity": null,
+      "notes": "",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 5,
+      "reps": 15,
+      "status": "clean",
+      "sensationType": null,
+      "severity": null,
+      "notes": "",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "3": {
+      "weight": 5,
+      "reps": 15,
+      "status": "clean",
+      "sensationType": null,
+      "severity": null,
+      "notes": "",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w1_day2_hamstring_bridge_pri": {
+    "1": {
+      "weight": 0,
+      "reps": 5,
+      "status": "clean",
+      "sensationType": null,
+      "severity": null,
+      "notes": "",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 0,
+      "reps": 5,
+      "status": "clean",
+      "sensationType": null,
+      "severity": null,
+      "notes": "",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w1_day2_bed_row": {
+    "1": {
+      "weight": 32,
+      "reps": 8,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 32,
+      "reps": 8,
+      "status": "clean",
+      "sensationType": null,
+      "severity": null,
+      "notes": "",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "3": {
+      "weight": 32,
+      "reps": 8,
+      "status": "clean",
+      "sensationType": null,
+      "severity": null,
+      "notes": "",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "4": {
+      "weight": 32,
+      "reps": 8,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w1_day2_kickstand_rdl": {
+    "1": {
+      "weight": 22,
+      "reps": 8,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 22,
+      "reps": 8,
+      "status": "clean",
+      "sensationType": null,
+      "severity": null,
+      "notes": "",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "3": {
+      "weight": 22,
+      "reps": 8,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "4": {
+      "weight": 22,
+      "reps": 8,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w1_day2_calf_step": {
+    "1": {
+      "weight": 14,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 14,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "3": {
+      "weight": 14,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w1_day2_rotary_chops": {
+    "1": {
+      "weight": 0,
+      "reps": 8,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 0,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "3": {
+      "weight": 0,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w1_day1_bed_box_jump": {
+    "1": {
+      "weight": 0,
+      "reps": 3,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 0,
+      "reps": 3,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "3": {
+      "weight": 0,
+      "reps": 3,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w1_day1_heel_wedge_goblet": {
+    "1": {
+      "weight": 24,
+      "reps": 8,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 24,
+      "reps": 8,
+      "status": "clean",
+      "sensationType": null,
+      "severity": null,
+      "notes": "some type of dull soreness",
+      "muscleId": "glute_med_right",
+      "muscleName": "Right Glute Medius (Hip Stabilizer)"
+    },
+    "3": {
+      "weight": 24,
+      "reps": 8,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "4": {
+      "weight": 24,
+      "reps": 8,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w1_day1_deficit_floor_press": {
+    "1": {
+      "weight": 18,
+      "reps": 8,
+      "status": "clean",
+      "sensationType": null,
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 18,
+      "reps": 8,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "3": {
+      "weight": 18,
+      "reps": 8,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "4": {
+      "weight": 18,
+      "reps": 8,
+      "status": "clean",
+      "sensationType": null,
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w1_day1_tibialis_raise": {
+    "1": {
+      "weight": 0,
+      "reps": 20,
+      "status": "clean",
+      "sensationType": null,
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 0,
+      "reps": 20,
+      "status": "clean",
+      "sensationType": null,
+      "severity": null,
+      "notes": "",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "3": {
+      "weight": 0,
+      "reps": 20,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w2_day1_barefoot_pogos": {
+    "1": {
+      "weight": 0,
+      "reps": 25,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 0,
+      "reps": 25,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "3": {
+      "weight": 0,
+      "reps": 25,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w2_day1_neck_curl": {
+    "1": {
+      "weight": 5,
+      "reps": 18,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 5,
+      "reps": 18,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w2_day1_tibialis_raise": {
+    "1": {
+      "weight": 0,
+      "reps": 25,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 0,
+      "reps": 25,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "3": {
+      "weight": 0,
+      "reps": 25,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w2_day1_deficit_floor_press": {
+    "1": {
+      "weight": 18,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 18,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "3": {
+      "weight": 18,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w6_day1_barefoot_pogos": {
+    "precheck": null
+  },
+  "w6_day1_deficit_floor_press": {
+    "precheck": null
+  },
+  "w1_day3_gait_walk": {
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w1_day3_couch_stretch": {
+    "1": {
+      "weight": 0,
+      "reps": 45,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 0,
+      "reps": 45,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "3": {
+      "weight": 0,
+      "reps": 45,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean baseline readiness",
+      "muscleId": null,
+      "muscleName": "Target Zone"
+    }
+  },
+  "w1_day3_rib_windmills": {
+    "1": {
+      "weight": 0,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 0,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "3": {
+      "weight": 0,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w1_day3_pri_breathing": {
+    "1": {
+      "weight": 0,
+      "reps": 5,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 0,
+      "reps": 5,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "3": {
+      "weight": 0,
+      "reps": 5,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w1_day4_wrist_isometrics": {
+    "1": {
+      "weight": 0,
+      "reps": 30,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 0,
+      "reps": 30,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "3": {
+      "weight": 0,
+      "reps": 30,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w1_day4_neutral_pullup": {
+    "1": {
+      "weight": 0,
+      "reps": 6,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 0,
+      "reps": 6,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "3": {
+      "weight": 0,
+      "reps": 6,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w1_day4_db_shoulder_press": {
+    "1": {
+      "weight": 18,
+      "reps": 8,
+      "status": "pain",
+      "sensationType": "Joint / Tendon Shear",
+      "severity": "1",
+      "notes": "clicking ound near right elbow inner",
+      "muscleId": "elbow_inner_right",
+      "muscleName": "Right Inner Elbow (Medial Tendon)"
+    },
+    "2": {
+      "weight": 18,
+      "reps": 8,
+      "status": "pain",
+      "sensationType": "Joint / Tendon Shear",
+      "severity": "1",
+      "notes": "clicking ound near right elbow inner",
+      "muscleId": "elbow_inner_right",
+      "muscleName": "Right Inner Elbow (Medial Tendon)"
+    },
+    "3": {
+      "weight": 18,
+      "reps": 8,
+      "status": "pain",
+      "sensationType": "Joint / Tendon Shear",
+      "severity": "1",
+      "notes": "clicking ound near right elbow inner",
+      "muscleId": "elbow_inner_right",
+      "muscleName": "Right Inner Elbow (Medial Tendon)"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w1_day4_tricep_ext": {
+    "1": {
+      "weight": 15,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 15,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "3": {
+      "weight": 15,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w1_day4_lateral_raise": {
+    "1": {
+      "weight": 8,
+      "reps": 12,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 8,
+      "reps": 12,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "3": {
+      "weight": 8,
+      "reps": 12,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w1_day4_neck_ext_prone": {
+    "1": {
+      "weight": 5,
+      "reps": 15,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 5,
+      "reps": 15,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "3": {
+      "weight": 5,
+      "reps": 15,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w1_day5_skater_bounds": {
+    "1": {
+      "weight": 0,
+      "reps": 5,
+      "status": "clean",
+      "sensationType": null,
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": "target_zone",
+      "muscleName": "Elevated Front-Foot ATG Split Squat"
+    },
+    "2": {
+      "weight": 0,
+      "reps": 5,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "3": {
+      "weight": 0,
+      "reps": 5,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w1_day5_atg_split_squat": {
+    "1": {
+      "weight": 0,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 9,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "3": {
+      "weight": 9,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "4": {
+      "weight": 9,
+      "reps": 10,
+      "status": "clean",
+      "sensationType": null,
+      "severity": null,
+      "notes": "",
+      "muscleId": "target_zone",
+      "muscleName": "Elevated Front-Foot ATG Split Squat"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w1_day5_hip_thrust": {
+    "1": {
+      "weight": 27,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 27,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "3": {
+      "weight": 27,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "4": {
+      "weight": 27,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w1_day5_suitcase_carry": {
+    "1": {
+      "weight": 27,
+      "reps": 40,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 27,
+      "reps": 40,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "3": {
+      "weight": 27,
+      "reps": 40,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w1_day5_hamstring_curls": {
+    "1": {
+      "weight": 0,
+      "reps": 12,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 0,
+      "reps": 12,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "3": {
+      "weight": 0,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w1_day6_broad_jump": {
+    "precheck": null
+  },
+  "w1_day6_pallof_shuffle": {
+    "1": {
+      "weight": 0,
+      "reps": 6,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 0,
+      "reps": 6,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "3": {
+      "weight": 0,
+      "reps": 6,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w1_day6_bed_pushup": {
+    "1": {
+      "weight": 0,
+      "reps": 15,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 0,
+      "reps": 15,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "3": {
+      "weight": 0,
+      "reps": 15,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "4": {
+      "weight": 0,
+      "reps": 15,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w1_day6_bicep_curl": {
+    "1": {
+      "weight": 15,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 15,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "3": {
+      "weight": 15,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w1_day6_forearm_superset": {
+    "1": {
+      "weight": 8,
+      "reps": 15,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 8,
+      "reps": 15,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w1_day6_spanish_squat": {
+    "1": {
+      "weight": 0,
+      "reps": 45,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 0,
+      "reps": 45,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "3": {
+      "weight": 0,
+      "reps": 45,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w1_day6_neck_iso_4way": {
+    "1": {
+      "weight": 0,
+      "reps": 20,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 0,
+      "reps": 20,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w1_day7_tendon_audit": {
+    "precheck": null
+  },
+  "w1_day7_restorative_walk": {
+    "precheck": null
+  },
+  "w1_day1_pri_9090_reset": {
+    "precheck": null
+  },
+  "w2_day1_pri_9090_reset": {
+    "1": {
+      "weight": 0,
+      "reps": 5,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 0,
+      "reps": 5,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w2_day2_hamstring_bridge_pri": {
+    "1": {
+      "weight": 0,
+      "reps": 5,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 0,
+      "reps": 5,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w2_day1_fp_contralateral_reach": {
+    "1": {
+      "weight": 0,
+      "reps": 8,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 0,
+      "reps": 8,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w2_day1_tibial_nerve_sliders": {
+    "1": {
+      "weight": 0,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 0,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w2_day1_bed_box_jump": {
+    "1": {
+      "weight": 0,
+      "reps": 3,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 0,
+      "reps": 3,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "3": {
+      "weight": 0,
+      "reps": 3,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w2_day1_heel_wedge_goblet": {
+    "1": {
+      "weight": 24,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 24,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "3": {
+      "weight": 24,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "4": {
+      "weight": 24,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w2_day2_tibial_nerve_sliders": {
+    "1": {
+      "weight": 0,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 0,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w2_day2_bed_row": {
+    "1": {
+      "weight": 32,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 32,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "3": {
+      "weight": 27,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "4": {
+      "weight": 27,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w2_day2_kickstand_rdl": {
+    "1": {
+      "weight": 22,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 22,
+      "reps": 10,
+      "status": "clean",
+      "sensationType": null,
+      "severity": null,
+      "notes": "",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "3": {
+      "weight": 22,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "4": {
+      "weight": 22,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w2_day2_calf_step": {
+    "1": {
+      "weight": 15,
+      "reps": 12,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 15,
+      "reps": 12,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "3": {
+      "weight": 15,
+      "reps": 12,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w2_day2_rotary_chops": {
+    "1": {
+      "weight": 0,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 0,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "3": {
+      "weight": 0,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w2_day3_gait_walk": {
+    "precheck": null
+  },
+  "w2_day3_couch_stretch": {
+    "1": {
+      "weight": 0,
+      "reps": 45,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 0,
+      "reps": 45,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "3": {
+      "weight": 0,
+      "reps": 45,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w2_day3_rib_windmills": {
+    "1": {
+      "weight": 0,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "2": {
+      "weight": 0,
+      "reps": 10,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  },
+  "w2_day3_pri_breathing": {
+    "1": {
+      "weight": 0,
+      "reps": 5,
+      "status": "clean",
+      "severity": null,
+      "notes": "Clean target activation",
+      "muscleId": null,
+      "muscleName": "All Target Muscles"
+    },
+    "precheck": {
+      "status": "clean",
+      "severity": null,
+      "notes": "Zero pre-existing aches, ready to train",
+      "muscleId": null,
+      "muscleName": "Full Body Ready"
+    }
+  }
+}
